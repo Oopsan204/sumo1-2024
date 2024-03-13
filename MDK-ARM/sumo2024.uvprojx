@@ -408,6 +408,11 @@
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f1xx_hal_msp.c</FilePath>
             </File>
+            <File>
+              <FileName>tim_pwm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\tim_pwm.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
