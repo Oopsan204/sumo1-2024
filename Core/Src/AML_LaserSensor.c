@@ -2,9 +2,25 @@
 
 // uint8_t LaserSensorAddress[] = {0x29, 0x59, 0x60, 0x32, 0x57};
 uint8_t LaserSensorAddress[] = {0x32, 0x57, 0x60, 0x29, 0x59};
+// define the name laser
+enum LaserPosition
+{
+    BL,
+    FF,
+    BR,
+    FL,
+    FR,
+    R,
+    L
+};
+// define the laser anddresses
+uint8_t LaserSensorAddresses[NUM_LASERS] = {0x52, 0x52, 0x52, 0x52, 0x52, 0x52, 0x52};
+
+// Define the GPIO pins
+GPIO_TypeDef *XSHUT_GPIO_Ports[NUM_LASERS] = {XSHUT_BL_GPIO_Port, XSHUT_FF_GPIO_Port, XSHUT_BR_GPIO_Port, XSHUT_FL_GPIO_Port, XSHUT_FR_GPIO_Port, XSHUT_R_GPIO_Port, XSHUT_L_GPIO_Port};
+uint16_t XSHUT_Pins[NUM_LASERS] = {XSHUT_BL_Pin, XSHUT_FF_Pin, XSHUT_BR_Pin, XSHUT_FL_Pin, XSHUT_FR_Pin, XSHUT_R_Pin, XSHUT_L_Pin};
 
 SimpleKalmanFilter KalmanFilter[7];
-
 extern I2C_HandleTypeDef hi2c1;
 
 VL53L0X_RangingMeasurementData_t SensorValue[7];
@@ -55,6 +71,22 @@ void AML_LaserSensor_Init(uint8_t i)
     VL53L0X_StartMeasurement(Laser[i]);
 }
 
+// Function to initialize all lasers
+void InitAllLasers(void)
+{
+    for (int i = 0; i < NUM_LASERS; i++)
+    {
+        // Enable laser and init
+        HAL_GPIO_WritePin(XSHUT_GPIO_Ports[i], XSHUT_Pins[i], GPIO_PIN_SET);
+        HAL_Delay(DelayTime);
+        Laser[i] = &Dev_Val[i];
+        Laser[i]->I2cHandle = &hi2c1;
+        Laser[i]->I2cDevAddr = LaserSensorAddresses[i];
+        VL53L0X_SetDeviceAddress(Laser[i], LaserSensorAddresses[i]);
+        Laser[i]->I2cDevAddr = LaserSensorAddresses[i];
+        AML_LaserSensor_Init(i);
+    }
+}
 void AML_LaserSensor_Setup(void)
 {
     uint8_t DelayTime = 70;
@@ -69,77 +101,8 @@ void AML_LaserSensor_Setup(void)
 
     HAL_Delay(DelayTime);
 
-    // enable laser BL and init
-    HAL_GPIO_WritePin(XSHUT_BL_GPIO_Port, XSHUT_BL_Pin, GPIO_PIN_SET);
-    HAL_Delay(DelayTime);
-    Laser[BL] = &Dev_Val[BL];
-    Laser[BL]->I2cHandle = &hi2c1;
-    Laser[BL]->I2cDevAddr = 0x52;
-    VL53L0X_SetDeviceAddress(Laser[BL], LaserSensorAddress[BL]);
-    Laser[BL]->I2cDevAddr = LaserSensorAddress[BL];
-    AML_LaserSensor_Init(BL);
-
-    // enable laser FF and init
-    HAL_GPIO_WritePin(XSHUT_FF_GPIO_Port, XSHUT_FF_Pin, GPIO_PIN_SET);
-    HAL_Delay(DelayTime);
-    Laser[FF] = &Dev_Val[FF];
-    Laser[FF]->I2cHandle = &hi2c1;
-    Laser[FF]->I2cDevAddr = 0x52;
-    VL53L0X_SetDeviceAddress(Laser[FF], LaserSensorAddress[FF]);
-    Laser[FF]->I2cDevAddr = LaserSensorAddress[FF];
-    AML_LaserSensor_Init(FF);
-
-    // enable laser BR and init
-    HAL_GPIO_WritePin(XSHUT_BR_GPIO_Port, XSHUT_BR_Pin, GPIO_PIN_SET);
-    HAL_Delay(DelayTime);
-    Laser[BR] = &Dev_Val[BR];
-    Laser[BR]->I2cHandle = &hi2c1;
-    Laser[BR]->I2cDevAddr = 0x52;
-    VL53L0X_SetDeviceAddress(Laser[BR], LaserSensorAddress[BR]);
-    Laser[BR]->I2cDevAddr = LaserSensorAddress[BR];
-    AML_LaserSensor_Init(BR);
-
-    // enable laser FL and init
-    HAL_GPIO_WritePin(XSHUT_FL_GPIO_Port, XSHUT_FL_Pin, GPIO_PIN_SET);
-    HAL_Delay(DelayTime);
-    Laser[FL] = &Dev_Val[FL];
-    Laser[FL]->I2cHandle = &hi2c1;
-    Laser[FL]->I2cDevAddr = 0x52;
-    VL53L0X_SetDeviceAddress(Laser[FL], LaserSensorAddress[FL]);
-    Laser[FL]->I2cDevAddr = LaserSensorAddress[FL];
-    AML_LaserSensor_Init(FL);
-
-    // enable laser FR and init
-    HAL_GPIO_WritePin(XSHUT_FR_GPIO_Port, XSHUT_FR_Pin, GPIO_PIN_SET);
-    HAL_Delay(DelayTime);
-    Laser[FR] = &Dev_Val[FR];
-    Laser[FR]->I2cHandle = &hi2c1;
-    Laser[FR]->I2cDevAddr = 0x52;
-    VL53L0X_SetDeviceAddress(Laser[FR], LaserSensorAddress[FR]);
-    Laser[FR]->I2cDevAddr = LaserSensorAddress[FR];
-    AML_LaserSensor_Init(FR);
-
-    // enable laser R and init
-    HAL_GPIO_WritePin(XSHUT_R_GPIO_Port, XSHUT_R_Pin, GPIO_PIN_SET);
-    HAL_Delay(DelayTime);
-    Laser[R] = &Dev_Val[R];
-    Laser[R]->I2cHandle = &hi2c1;
-    Laser[R]->I2cDevAddr = 0x52;
-    VL53L0X_SetDeviceAddress(Laser[R], LaserSensorAddress[R]);
-    Laser[FR]->I2cDevAddr = LaserSensorAddress[R];
-    AML_LaserSensor_Init(R);
-
-    //enable laser L and init
-    HAL_GPIO_WritePin(XSHUT_L_GPIO_Port, XSHUT_L_Pin, GPIO_PIN_SET);
-    HAL_Delay(DelayTime);
-    Laser[L] = &Dev_Val[L];
-    Laser[L]->I2cHandle = &hi2c1;
-    Laser[L]->I2cDevAddr = 0x52;
-    VL53L0X_SetDeviceAddress(Laser[L], LaserSensorAddress[L]);
-    Laser[L]->I2cDevAddr = LaserSensorAddress[L];
-    AML_LaserSensor_Init(L);
-
-    for (uint8_t i = 0; i < 7; i++)
+    InitAllLasers();
+     for (uint8_t i = 0; i < 7; i++)
     {
         SimpleKalmanFilter_Init(&KalmanFilter[i], 0.07, 0.01, 0.001);
     }
@@ -154,8 +117,6 @@ void AML_LaserSensor_Setup(void)
 
         Giá trị ban đầu x: Giá trị này là ước lượng ban đầu của trạng thái. Nếu giá trị này không chính xác, bộ lọc có thể mất thời gian để "hội tụ" với giá trị thực sự.
     */
-
-   
 }
 
 void AML_LaserSensor_ReadAll(void)
@@ -252,20 +213,7 @@ int32_t AML_LaserSensor_ReadSingleWithoutFillter(uint8_t name)
         return 2000;
     }
     // AML_LaserSensor_ReadAll();
-
     // return (int32_t)SensorValue[name].RangeMilliMeter;
-}
-
-uint8_t AML_LaserSensor_WallFavor(void)
-{
-    if (AML_LaserSensor_ReadSingleWithoutFillter(FL < LEFT_WALL)) // North
-        return 0;
-    else if (AML_LaserSensor_ReadSingleWithoutFillter(FF < 100)) // East
-        return 1;
-    else if (AML_LaserSensor_ReadSingleWithoutFillter(FR < 100)) // South
-        return 2;
-    else if (AML_LaserSensor_ReadSingleWithoutFillter(BR < 100)) // West
-        return 3;
 }
 
 void AML_LaserSensor_TestLaser(void)
@@ -275,16 +223,16 @@ void AML_LaserSensor_TestLaser(void)
     int32_t t2 = AML_LaserSensor_ReadSingleWithoutFillter(FR);
     int32_t t3 = AML_LaserSensor_ReadSingleWithoutFillter(BR);
     int32_t t4 = AML_LaserSensor_ReadSingleWithoutFillter(BL);
+    int32_t t5 = AML_LaserSensor_ReadSingleWithoutFillter(R);
+    int32_t t6 = AML_LaserSensor_ReadSingleWithoutFillter(L);
 
-    for (int8_t i = 0; i < 5; i++)
+    for (int8_t i = 0; i < 7; i++)
     {
         if ((AML_LaserSensor_ReadSingleWithFillter(FL) - t0) != 0)
         {
-            AML_DebugDevice_TurnOnLED(0);
         }
         else
         {
-            AML_DebugDevice_TurnOffLED(0);
         }
 
         if ((AML_LaserSensor_ReadSingleWithFillter(FF) - t1) != 0)
