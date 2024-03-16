@@ -3,17 +3,9 @@
 // uint8_t LaserSensorAddress[] = {0x29, 0x59, 0x60, 0x32, 0x57};
 uint8_t LaserSensorAddress[] = {0x32, 0x57, 0x60, 0x29, 0x59};
 // define the name laser
-enum LaserPosition
-{
-    BL,
-    FF,
-    BR,
-    FL,
-    FR,
-    R,
-    L
-};
+//enum LaserPosition { BL1,BR1,FF1,FL1,FR1,R1,L1};
 // define the laser anddresses
+#define NUM_LASERS 7
 uint8_t LaserSensorAddresses[NUM_LASERS] = {0x52, 0x52, 0x52, 0x52, 0x52, 0x52, 0x52};
 
 // Define the GPIO pins
@@ -74,6 +66,7 @@ void AML_LaserSensor_Init(uint8_t i)
 // Function to initialize all lasers
 void InitAllLasers(void)
 {
+		uint8_t DelayTime = 70;
     for (int i = 0; i < NUM_LASERS; i++)
     {
         // Enable laser and init
@@ -216,61 +209,61 @@ int32_t AML_LaserSensor_ReadSingleWithoutFillter(uint8_t name)
     // return (int32_t)SensorValue[name].RangeMilliMeter;
 }
 
-void AML_LaserSensor_TestLaser(void)
-{
-    int32_t t0 = AML_LaserSensor_ReadSingleWithoutFillter(FL);
-    int32_t t1 = AML_LaserSensor_ReadSingleWithoutFillter(FF);
-    int32_t t2 = AML_LaserSensor_ReadSingleWithoutFillter(FR);
-    int32_t t3 = AML_LaserSensor_ReadSingleWithoutFillter(BR);
-    int32_t t4 = AML_LaserSensor_ReadSingleWithoutFillter(BL);
-    int32_t t5 = AML_LaserSensor_ReadSingleWithoutFillter(R);
-    int32_t t6 = AML_LaserSensor_ReadSingleWithoutFillter(L);
+//void AML_LaserSensor_TestLaser(void)
+//{
+//    int32_t t0 = AML_LaserSensor_ReadSingleWithoutFillter(FL);
+//    int32_t t1 = AML_LaserSensor_ReadSingleWithoutFillter(FF);
+//    int32_t t2 = AML_LaserSensor_ReadSingleWithoutFillter(FR);
+//    int32_t t3 = AML_LaserSensor_ReadSingleWithoutFillter(BR);
+//    int32_t t4 = AML_LaserSensor_ReadSingleWithoutFillter(BL);
+//    int32_t t5 = AML_LaserSensor_ReadSingleWithoutFillter(R);
+//    int32_t t6 = AML_LaserSensor_ReadSingleWithoutFillter(L);
 
-    for (int8_t i = 0; i < 7; i++)
-    {
-        if ((AML_LaserSensor_ReadSingleWithFillter(FL) - t0) != 0)
-        {
-        }
-        else
-        {
-        }
+//    for (int8_t i = 0; i < 7; i++)
+//    {
+//        if ((AML_LaserSensor_ReadSingleWithFillter(FL) - t0) != 0)
+//        {
+//        }
+//        else
+//        {
+//        }
 
-        if ((AML_LaserSensor_ReadSingleWithFillter(FF) - t1) != 0)
-        {
-            AML_DebugDevice_TurnOnLED(1);
-        }
-        else
-        {
-            AML_DebugDevice_TurnOffLED(1);
-        }
+//        if ((AML_LaserSensor_ReadSingleWithFillter(FF) - t1) != 0)
+//        {
+//            AML_DebugDevice_TurnOnLED(1);
+//        }
+//        else
+//        {
+//            AML_DebugDevice_TurnOffLED(1);
+//        }
 
-        if ((AML_LaserSensor_ReadSingleWithFillter(FR) - t2) != 0)
-        {
-            AML_DebugDevice_TurnOnLED(2);
-        }
-        else
-        {
-            AML_DebugDevice_TurnOffLED(2);
-        }
+//        if ((AML_LaserSensor_ReadSingleWithFillter(FR) - t2) != 0)
+//        {
+//            AML_DebugDevice_TurnOnLED(2);
+//        }
+//        else
+//        {
+//            AML_DebugDevice_TurnOffLED(2);
+//        }
 
-        if ((AML_LaserSensor_ReadSingleWithFillter(BR) - t3) != 0)
-        {
-            AML_DebugDevice_TurnOnLED(3);
-        }
-        else
-        {
-            AML_DebugDevice_TurnOffLED(3);
-        }
+//        if ((AML_LaserSensor_ReadSingleWithFillter(BR) - t3) != 0)
+//        {
+//            AML_DebugDevice_TurnOnLED(3);
+//        }
+//        else
+//        {
+//            AML_DebugDevice_TurnOffLED(3);
+//        }
 
-        if ((AML_LaserSensor_ReadSingleWithFillter(BL) - t4) != 0)
-        {
-            AML_DebugDevice_TurnOnLED(4);
-        }
-        else
-        {
-            AML_DebugDevice_TurnOffLED(4);
-        }
+//        if ((AML_LaserSensor_ReadSingleWithFillter(BL) - t4) != 0)
+//        {
+//            AML_DebugDevice_TurnOnLED(4);
+//        }
+//        else
+//        {
+//            AML_DebugDevice_TurnOffLED(4);
+//        }
 
-        HAL_Delay(500);
-    }
-}
+//        HAL_Delay(500);
+//    }
+//}

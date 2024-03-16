@@ -18,7 +18,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <string.h>
-#include "stm32l4xx_hal.h"
+               // Device header
+#include "stm32f1xx_hal.h"
 #include "vl53l0x_def.h"
 #include "vl53l0x_api.h"
 
