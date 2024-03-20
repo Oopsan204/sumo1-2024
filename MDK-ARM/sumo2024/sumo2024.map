@@ -18,18 +18,479 @@ Section Cross References
     startup_stm32f103xb.o(RESET) refers to stm32f1xx_it.o(i.DebugMon_Handler) for DebugMon_Handler
     startup_stm32f103xb.o(RESET) refers to stm32f1xx_it.o(i.PendSV_Handler) for PendSV_Handler
     startup_stm32f103xb.o(RESET) refers to stm32f1xx_it.o(i.SysTick_Handler) for SysTick_Handler
-    startup_stm32f103xb.o(RESET) refers to init.o(i.SysTick_Handler) for SysTick_Handler
     startup_stm32f103xb.o(RESET) refers to stm32f1xx_it.o(i.EXTI0_IRQHandler) for EXTI0_IRQHandler
     startup_stm32f103xb.o(RESET) refers to stm32f1xx_it.o(i.EXTI1_IRQHandler) for EXTI1_IRQHandler
     startup_stm32f103xb.o(RESET) refers to stm32f1xx_it.o(i.EXTI3_IRQHandler) for EXTI3_IRQHandler
     startup_stm32f103xb.o(RESET) refers to stm32f1xx_it.o(i.EXTI4_IRQHandler) for EXTI4_IRQHandler
     startup_stm32f103xb.o(RESET) refers to stm32f1xx_it.o(i.DMA1_Channel1_IRQHandler) for DMA1_Channel1_IRQHandler
+    startup_stm32f103xb.o(RESET) refers to stm32f1xx_it.o(i.I2C1_ER_IRQHandler) for I2C1_ER_IRQHandler
     startup_stm32f103xb.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
-    startup_stm32f103xb.o(.text) refers to init.o(i.SystemInit) for SystemInit
     startup_stm32f103xb.o(.text) refers to system_stm32f1xx.o(i.SystemInit) for SystemInit
     startup_stm32f103xb.o(.text) refers to __main.o(!!!main) for __main
     startup_stm32f103xb.o(.text) refers to startup_stm32f103xb.o(HEAP) for Heap_Mem
     startup_stm32f103xb.o(.text) refers to startup_stm32f103xb.o(STACK) for Stack_Mem
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to vl53l0x_api.o(i.VL53L0X_WaitDeviceBooted) for VL53L0X_WaitDeviceBooted
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to vl53l0x_api.o(i.VL53L0X_DataInit) for VL53L0X_DataInit
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to vl53l0x_api.o(i.VL53L0X_StaticInit) for VL53L0X_StaticInit
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to vl53l0x_api.o(i.VL53L0X_PerformRefCalibration) for VL53L0X_PerformRefCalibration
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to vl53l0x_api.o(i.VL53L0X_PerformRefSpadManagement) for VL53L0X_PerformRefSpadManagement
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to vl53l0x_api.o(i.VL53L0X_SetDeviceMode) for VL53L0X_SetDeviceMode
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable) for VL53L0X_SetLimitCheckEnable
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to vl53l0x_api.o(i.VL53L0X_SetLimitCheckValue) for VL53L0X_SetLimitCheckValue
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to vl53l0x_api.o(i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds) for VL53L0X_SetMeasurementTimingBudgetMicroSeconds
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to vl53l0x_api.o(i.VL53L0X_SetVcselPulsePeriod) for VL53L0X_SetVcselPulsePeriod
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to vl53l0x_api.o(i.VL53L0X_StartMeasurement) for VL53L0X_StartMeasurement
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to aml_lasersensor.o(.bss) for .bss
+    aml_lasersensor.o(i.AML_LaserSensor_Init) refers to aml_lasersensor.o(.data) for .data
+    aml_lasersensor.o(i.AML_LaserSensor_ReadAll) refers to vl53l0x_api.o(i.VL53L0X_GetRangingMeasurementData) for VL53L0X_GetRangingMeasurementData
+    aml_lasersensor.o(i.AML_LaserSensor_ReadAll) refers to fflt_clz.o(x$fpl$ffltu) for __aeabi_ui2f
+    aml_lasersensor.o(i.AML_LaserSensor_ReadAll) refers to kalmanfilter.o(i.SimpleKalmanFilter_updateEstimate) for SimpleKalmanFilter_updateEstimate
+    aml_lasersensor.o(i.AML_LaserSensor_ReadAll) refers to ffixu.o(x$fpl$ffixu) for __aeabi_f2uiz
+    aml_lasersensor.o(i.AML_LaserSensor_ReadAll) refers to aml_lasersensor.o(.bss) for .bss
+    aml_lasersensor.o(i.AML_LaserSensor_ReadSingleWithFillter) refers to aml_lasersensor.o(.bss) for .bss
+    aml_lasersensor.o(i.AML_LaserSensor_ReadSingleWithoutFillter) refers to vl53l0x_api.o(i.VL53L0X_GetRangingMeasurementData) for VL53L0X_GetRangingMeasurementData
+    aml_lasersensor.o(i.AML_LaserSensor_ReadSingleWithoutFillter) refers to aml_lasersensor.o(.bss) for .bss
+    aml_lasersensor.o(i.AML_LaserSensor_Setup) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
+    aml_lasersensor.o(i.AML_LaserSensor_Setup) refers to stm32f1xx_hal.o(i.HAL_Delay) for HAL_Delay
+    aml_lasersensor.o(i.AML_LaserSensor_Setup) refers to vl53l0x_api.o(i.VL53L0X_SetDeviceAddress) for VL53L0X_SetDeviceAddress
+    aml_lasersensor.o(i.AML_LaserSensor_Setup) refers to aml_lasersensor.o(i.AML_LaserSensor_Init) for AML_LaserSensor_Init
+    aml_lasersensor.o(i.AML_LaserSensor_Setup) refers to kalmanfilter.o(i.SimpleKalmanFilter_Init) for SimpleKalmanFilter_Init
+    aml_lasersensor.o(i.AML_LaserSensor_Setup) refers to aml_lasersensor.o(.bss) for .bss
+    aml_lasersensor.o(i.AML_LaserSensor_Setup) refers to main.o(.bss) for hi2c1
+    aml_lasersensor.o(i.AML_LaserSensor_Setup) refers to aml_lasersensor.o(.data) for .data
+    kalmanfilter.o(i.SimpleKalmanFilter_updateEstimate) refers to faddsub_clz.o(x$fpl$fadd) for __aeabi_fadd
+    kalmanfilter.o(i.SimpleKalmanFilter_updateEstimate) refers to fdiv.o(x$fpl$fdiv) for __aeabi_fdiv
+    kalmanfilter.o(i.SimpleKalmanFilter_updateEstimate) refers to faddsub_clz.o(x$fpl$fsub) for __aeabi_fsub
+    kalmanfilter.o(i.SimpleKalmanFilter_updateEstimate) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    vl53l0x_api.o(i.VL53L0X_CheckAndLoadInterruptSettings) refers to vl53l0x_api.o(i.VL53L0X_GetInterruptThresholds) for VL53L0X_GetInterruptThresholds
+    vl53l0x_api.o(i.VL53L0X_CheckAndLoadInterruptSettings) refers to vl53l0x_api_core.o(i.VL53L0X_load_tuning_settings) for VL53L0X_load_tuning_settings
+    vl53l0x_api.o(i.VL53L0X_CheckAndLoadInterruptSettings) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_CheckAndLoadInterruptSettings) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_CheckAndLoadInterruptSettings) refers to vl53l0x_api.o(.data) for .data
+    vl53l0x_api.o(i.VL53L0X_ClearInterruptMask) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_ClearInterruptMask) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_ClearInterruptMask) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_ClearInterruptMask) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_DataInit) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_DataInit) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_DataInit) refers to vl53l0x_api.o(i.VL53L0X_GetDeviceParameters) for VL53L0X_GetDeviceParameters
+    vl53l0x_api.o(i.VL53L0X_DataInit) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    vl53l0x_api.o(i.VL53L0X_DataInit) refers to vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable) for VL53L0X_SetLimitCheckEnable
+    vl53l0x_api.o(i.VL53L0X_DataInit) refers to vl53l0x_api.o(i.VL53L0X_SetLimitCheckValue) for VL53L0X_SetLimitCheckValue
+    vl53l0x_api.o(i.VL53L0X_GetDeviceErrorStatus) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetDeviceErrorStatus) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetDeviceErrorString) refers to vl53l0x_api_strings.o(i.VL53L0X_get_device_error_string) for VL53L0X_get_device_error_string
+    vl53l0x_api.o(i.VL53L0X_GetDeviceInfo) refers to vl53l0x_api_strings.o(i.VL53L0X_get_device_info) for VL53L0X_get_device_info
+    vl53l0x_api.o(i.VL53L0X_GetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_GetInterMeasurementPeriodMilliSeconds) for VL53L0X_GetInterMeasurementPeriodMilliSeconds
+    vl53l0x_api.o(i.VL53L0X_GetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationRateMegaCps) for VL53L0X_GetXTalkCompensationRateMegaCps
+    vl53l0x_api.o(i.VL53L0X_GetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_GetOffsetCalibrationDataMicroMeter) for VL53L0X_GetOffsetCalibrationDataMicroMeter
+    vl53l0x_api.o(i.VL53L0X_GetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_GetLimitCheckValue) for VL53L0X_GetLimitCheckValue
+    vl53l0x_api.o(i.VL53L0X_GetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_GetLimitCheckEnable) for VL53L0X_GetLimitCheckEnable
+    vl53l0x_api.o(i.VL53L0X_GetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_GetWrapAroundCheckEnable) for VL53L0X_GetWrapAroundCheckEnable
+    vl53l0x_api.o(i.VL53L0X_GetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_GetMeasurementTimingBudgetMicroSeconds) for VL53L0X_GetMeasurementTimingBudgetMicroSeconds
+    vl53l0x_api.o(i.VL53L0X_GetFractionEnable) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetFractionEnable) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetGpioConfig) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetGpioConfig) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetInterMeasurementPeriodMilliSeconds) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_GetInterMeasurementPeriodMilliSeconds) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_GetInterMeasurementPeriodMilliSeconds) refers to vl53l0x_platform.o(i.VL53L0X_RdDWord) for VL53L0X_RdDWord
+    vl53l0x_api.o(i.VL53L0X_GetInterMeasurementPeriodMilliSeconds) refers to vl53l0x_tof.o(i.VL53L0X_RdDWord) for VL53L0X_RdDWord
+    vl53l0x_api.o(i.VL53L0X_GetInterruptMaskStatus) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetInterruptMaskStatus) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetInterruptThresholds) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_GetInterruptThresholds) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_GetLimitCheckCurrent) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    vl53l0x_api.o(i.VL53L0X_GetLimitCheckInfo) refers to vl53l0x_api_strings.o(i.VL53L0X_get_limit_check_info) for VL53L0X_get_limit_check_info
+    vl53l0x_api.o(i.VL53L0X_GetLimitCheckValue) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_GetLimitCheckValue) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_GetMeasurementDataReady) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetMeasurementDataReady) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetMeasurementDataReady) refers to vl53l0x_api.o(i.VL53L0X_GetInterruptMaskStatus) for VL53L0X_GetInterruptMaskStatus
+    vl53l0x_api.o(i.VL53L0X_GetMeasurementTimingBudgetMicroSeconds) refers to vl53l0x_api_core.o(i.VL53L0X_get_measurement_timing_budget_micro_seconds) for VL53L0X_get_measurement_timing_budget_micro_seconds
+    vl53l0x_api.o(i.VL53L0X_GetOffsetCalibrationDataMicroMeter) refers to vl53l0x_api_calibration.o(i.VL53L0X_get_offset_calibration_data_micro_meter) for VL53L0X_get_offset_calibration_data_micro_meter
+    vl53l0x_api.o(i.VL53L0X_GetPalErrorString) refers to vl53l0x_api_strings.o(i.VL53L0X_get_pal_error_string) for VL53L0X_get_pal_error_string
+    vl53l0x_api.o(i.VL53L0X_GetPalStateString) refers to vl53l0x_api_strings.o(i.VL53L0X_get_pal_state_string) for VL53L0X_get_pal_state_string
+    vl53l0x_api.o(i.VL53L0X_GetPowerMode) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetPowerMode) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetProductRevision) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetProductRevision) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetRangeStatusString) refers to vl53l0x_api_strings.o(i.VL53L0X_get_range_status_string) for VL53L0X_get_range_status_string
+    vl53l0x_api.o(i.VL53L0X_GetRangingMeasurementData) refers to vl53l0x_platform.o(i.VL53L0X_ReadMulti) for VL53L0X_ReadMulti
+    vl53l0x_api.o(i.VL53L0X_GetRangingMeasurementData) refers to vl53l0x_tof.o(i.VL53L0X_ReadMulti) for VL53L0X_ReadMulti
+    vl53l0x_api.o(i.VL53L0X_GetRangingMeasurementData) refers to vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status) for VL53L0X_get_pal_range_status
+    vl53l0x_api.o(i.VL53L0X_GetRangingMeasurementData) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    vl53l0x_api.o(i.VL53L0X_GetRefCalibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_get_ref_calibration) for VL53L0X_get_ref_calibration
+    vl53l0x_api.o(i.VL53L0X_GetReferenceSpads) refers to vl53l0x_api_calibration.o(i.VL53L0X_get_reference_spads) for VL53L0X_get_reference_spads
+    vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnable) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnable) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnable) refers to vl53l0x_api.o(i.sequence_step_enabled) for sequence_step_enabled
+    vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnables) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnables) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnables) refers to vl53l0x_api.o(i.sequence_step_enabled) for sequence_step_enabled
+    vl53l0x_api.o(i.VL53L0X_GetSequenceStepTimeout) refers to vl53l0x_api_core.o(i.get_sequence_step_timeout) for get_sequence_step_timeout
+    vl53l0x_api.o(i.VL53L0X_GetSequenceStepsInfo) refers to vl53l0x_api_strings.o(i.VL53L0X_get_sequence_steps_info) for VL53L0X_get_sequence_steps_info
+    vl53l0x_api.o(i.VL53L0X_GetSpadAmbientDamperFactor) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_GetSpadAmbientDamperFactor) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_GetSpadAmbientDamperFactor) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetSpadAmbientDamperFactor) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetSpadAmbientDamperThreshold) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_GetSpadAmbientDamperThreshold) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_GetSpadAmbientDamperThreshold) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_GetSpadAmbientDamperThreshold) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_GetStopCompletedStatus) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_GetStopCompletedStatus) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_GetStopCompletedStatus) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetStopCompletedStatus) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetTotalSignalRate) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    vl53l0x_api.o(i.VL53L0X_GetTotalSignalRate) refers to vl53l0x_api_core.o(i.VL53L0X_get_total_signal_rate) for VL53L0X_get_total_signal_rate
+    vl53l0x_api.o(i.VL53L0X_GetVcselPulsePeriod) refers to vl53l0x_api_core.o(i.VL53L0X_get_vcsel_pulse_period) for VL53L0X_get_vcsel_pulse_period
+    vl53l0x_api.o(i.VL53L0X_GetWrapAroundCheckEnable) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetWrapAroundCheckEnable) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationRateMegaCps) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationRateMegaCps) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_PerformOffsetCalibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_perform_offset_calibration) for VL53L0X_perform_offset_calibration
+    vl53l0x_api.o(i.VL53L0X_PerformRefCalibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_calibration) for VL53L0X_perform_ref_calibration
+    vl53l0x_api.o(i.VL53L0X_PerformRefSpadManagement) refers to vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) for VL53L0X_perform_ref_spad_management
+    vl53l0x_api.o(i.VL53L0X_PerformSingleMeasurement) refers to vl53l0x_api.o(i.VL53L0X_StartMeasurement) for VL53L0X_StartMeasurement
+    vl53l0x_api.o(i.VL53L0X_PerformSingleMeasurement) refers to vl53l0x_api_core.o(i.VL53L0X_measurement_poll_for_completion) for VL53L0X_measurement_poll_for_completion
+    vl53l0x_api.o(i.VL53L0X_PerformSingleRangingMeasurement) refers to vl53l0x_api.o(i.VL53L0X_SetDeviceMode) for VL53L0X_SetDeviceMode
+    vl53l0x_api.o(i.VL53L0X_PerformSingleRangingMeasurement) refers to vl53l0x_api.o(i.VL53L0X_PerformSingleMeasurement) for VL53L0X_PerformSingleMeasurement
+    vl53l0x_api.o(i.VL53L0X_PerformSingleRangingMeasurement) refers to vl53l0x_api.o(i.VL53L0X_GetRangingMeasurementData) for VL53L0X_GetRangingMeasurementData
+    vl53l0x_api.o(i.VL53L0X_PerformSingleRangingMeasurement) refers to vl53l0x_api.o(i.VL53L0X_ClearInterruptMask) for VL53L0X_ClearInterruptMask
+    vl53l0x_api.o(i.VL53L0X_PerformXTalkCalibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_perform_xtalk_calibration) for VL53L0X_perform_xtalk_calibration
+    vl53l0x_api.o(i.VL53L0X_ResetDevice) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_ResetDevice) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_ResetDevice) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_ResetDevice) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_SetDeviceAddress) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetDeviceAddress) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_SetDeviceMode) for VL53L0X_SetDeviceMode
+    vl53l0x_api.o(i.VL53L0X_SetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_SetInterMeasurementPeriodMilliSeconds) for VL53L0X_SetInterMeasurementPeriodMilliSeconds
+    vl53l0x_api.o(i.VL53L0X_SetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_SetXTalkCompensationRateMegaCps) for VL53L0X_SetXTalkCompensationRateMegaCps
+    vl53l0x_api.o(i.VL53L0X_SetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_SetOffsetCalibrationDataMicroMeter) for VL53L0X_SetOffsetCalibrationDataMicroMeter
+    vl53l0x_api.o(i.VL53L0X_SetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable) for VL53L0X_SetLimitCheckEnable
+    vl53l0x_api.o(i.VL53L0X_SetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_SetLimitCheckValue) for VL53L0X_SetLimitCheckValue
+    vl53l0x_api.o(i.VL53L0X_SetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_SetWrapAroundCheckEnable) for VL53L0X_SetWrapAroundCheckEnable
+    vl53l0x_api.o(i.VL53L0X_SetDeviceParameters) refers to vl53l0x_api.o(i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds) for VL53L0X_SetMeasurementTimingBudgetMicroSeconds
+    vl53l0x_api.o(i.VL53L0X_SetDmaxCalParameters) refers to vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) for VL53L0X_get_info_from_device
+    vl53l0x_api.o(i.VL53L0X_SetGpioConfig) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetGpioConfig) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetGpioConfig) refers to vl53l0x_platform.o(i.VL53L0X_UpdateByte) for VL53L0X_UpdateByte
+    vl53l0x_api.o(i.VL53L0X_SetGpioConfig) refers to vl53l0x_tof.o(i.VL53L0X_UpdateByte) for VL53L0X_UpdateByte
+    vl53l0x_api.o(i.VL53L0X_SetGpioConfig) refers to vl53l0x_api.o(i.VL53L0X_ClearInterruptMask) for VL53L0X_ClearInterruptMask
+    vl53l0x_api.o(i.VL53L0X_SetInterMeasurementPeriodMilliSeconds) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_SetInterMeasurementPeriodMilliSeconds) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_SetInterMeasurementPeriodMilliSeconds) refers to vl53l0x_platform.o(i.VL53L0X_WrDWord) for VL53L0X_WrDWord
+    vl53l0x_api.o(i.VL53L0X_SetInterMeasurementPeriodMilliSeconds) refers to vl53l0x_tof.o(i.VL53L0X_WrDWord) for VL53L0X_WrDWord
+    vl53l0x_api.o(i.VL53L0X_SetInterruptThresholds) refers to vl53l0x_platform.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetInterruptThresholds) refers to vl53l0x_tof.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable) refers to vl53l0x_platform.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable) refers to vl53l0x_tof.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable) refers to vl53l0x_platform.o(i.VL53L0X_UpdateByte) for VL53L0X_UpdateByte
+    vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable) refers to vl53l0x_tof.o(i.VL53L0X_UpdateByte) for VL53L0X_UpdateByte
+    vl53l0x_api.o(i.VL53L0X_SetLimitCheckValue) refers to vl53l0x_platform.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetLimitCheckValue) refers to vl53l0x_tof.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetLinearityCorrectiveGain) refers to vl53l0x_platform.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetLinearityCorrectiveGain) refers to vl53l0x_tof.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds) refers to vl53l0x_api_core.o(i.VL53L0X_set_measurement_timing_budget_micro_seconds) for VL53L0X_set_measurement_timing_budget_micro_seconds
+    vl53l0x_api.o(i.VL53L0X_SetOffsetCalibrationDataMicroMeter) refers to vl53l0x_api_calibration.o(i.VL53L0X_set_offset_calibration_data_micro_meter) for VL53L0X_set_offset_calibration_data_micro_meter
+    vl53l0x_api.o(i.VL53L0X_SetPowerMode) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetPowerMode) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetPowerMode) refers to vl53l0x_api.o(i.VL53L0X_StaticInit) for VL53L0X_StaticInit
+    vl53l0x_api.o(i.VL53L0X_SetRangeFractionEnable) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetRangeFractionEnable) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetRefCalibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_set_ref_calibration) for VL53L0X_set_ref_calibration
+    vl53l0x_api.o(i.VL53L0X_SetReferenceSpads) refers to vl53l0x_api_calibration.o(i.VL53L0X_set_reference_spads) for VL53L0X_set_reference_spads
+    vl53l0x_api.o(i.VL53L0X_SetSequenceStepEnable) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_SetSequenceStepEnable) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_SetSequenceStepEnable) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetSequenceStepEnable) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetSequenceStepEnable) refers to vl53l0x_api.o(i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds) for VL53L0X_SetMeasurementTimingBudgetMicroSeconds
+    vl53l0x_api.o(i.VL53L0X_SetSequenceStepTimeout) refers to vl53l0x_api_core.o(i.get_sequence_step_timeout) for get_sequence_step_timeout
+    vl53l0x_api.o(i.VL53L0X_SetSequenceStepTimeout) refers to vl53l0x_api_core.o(i.set_sequence_step_timeout) for set_sequence_step_timeout
+    vl53l0x_api.o(i.VL53L0X_SetSequenceStepTimeout) refers to vl53l0x_api.o(i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds) for VL53L0X_SetMeasurementTimingBudgetMicroSeconds
+    vl53l0x_api.o(i.VL53L0X_SetSpadAmbientDamperFactor) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetSpadAmbientDamperFactor) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetSpadAmbientDamperThreshold) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetSpadAmbientDamperThreshold) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetSpadAmbientDamperThreshold) refers to vl53l0x_platform.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetSpadAmbientDamperThreshold) refers to vl53l0x_tof.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetVcselPulsePeriod) refers to vl53l0x_api_core.o(i.VL53L0X_set_vcsel_pulse_period) for VL53L0X_set_vcsel_pulse_period
+    vl53l0x_api.o(i.VL53L0X_SetWrapAroundCheckEnable) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_SetWrapAroundCheckEnable) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_SetWrapAroundCheckEnable) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetWrapAroundCheckEnable) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_SetXTalkCompensationEnable) refers to vl53l0x_platform.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetXTalkCompensationEnable) refers to vl53l0x_tof.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetXTalkCompensationRateMegaCps) refers to vl53l0x_platform.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_SetXTalkCompensationRateMegaCps) refers to vl53l0x_tof.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api.o(i.VL53L0X_StartMeasurement) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_StartMeasurement) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_StartMeasurement) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_StartMeasurement) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_StartMeasurement) refers to vl53l0x_api.o(i.VL53L0X_CheckAndLoadInterruptSettings) for VL53L0X_CheckAndLoadInterruptSettings
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) for VL53L0X_get_info_from_device
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) for VL53L0X_perform_ref_spad_management
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_api_calibration.o(i.VL53L0X_set_reference_spads) for VL53L0X_set_reference_spads
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_api_core.o(i.VL53L0X_load_tuning_settings) for VL53L0X_load_tuning_settings
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_api.o(i.VL53L0X_SetGpioConfig) for VL53L0X_SetGpioConfig
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_api.o(i.VL53L0X_GetDeviceParameters) for VL53L0X_GetDeviceParameters
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_api.o(i.VL53L0X_GetFractionEnable) for VL53L0X_GetFractionEnable
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_api.o(i.VL53L0X_SetSequenceStepEnable) for VL53L0X_SetSequenceStepEnable
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_api.o(i.VL53L0X_GetVcselPulsePeriod) for VL53L0X_GetVcselPulsePeriod
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_api.o(i.VL53L0X_GetSequenceStepTimeout) for VL53L0X_GetSequenceStepTimeout
+    vl53l0x_api.o(i.VL53L0X_StaticInit) refers to vl53l0x_api.o(.data) for .data
+    vl53l0x_api.o(i.VL53L0X_StopMeasurement) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_StopMeasurement) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api.o(i.VL53L0X_StopMeasurement) refers to vl53l0x_api.o(i.VL53L0X_CheckAndLoadInterruptSettings) for VL53L0X_CheckAndLoadInterruptSettings
+    vl53l0x_api_calibration.o(i.VL53L0X_apply_offset_adjustment) refers to vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) for VL53L0X_get_info_from_device
+    vl53l0x_api_calibration.o(i.VL53L0X_apply_offset_adjustment) refers to vl53l0x_api.o(i.VL53L0X_GetOffsetCalibrationDataMicroMeter) for VL53L0X_GetOffsetCalibrationDataMicroMeter
+    vl53l0x_api_calibration.o(i.VL53L0X_apply_offset_adjustment) refers to vl53l0x_api.o(i.VL53L0X_SetOffsetCalibrationDataMicroMeter) for VL53L0X_SetOffsetCalibrationDataMicroMeter
+    vl53l0x_api_calibration.o(i.VL53L0X_get_offset_calibration_data_micro_meter) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api_calibration.o(i.VL53L0X_get_offset_calibration_data_micro_meter) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api_calibration.o(i.VL53L0X_get_ref_calibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io) for VL53L0X_ref_calibration_io
+    vl53l0x_api_calibration.o(i.VL53L0X_get_reference_spads) refers to vl53l0x_api_calibration.o(i.get_ref_spad_map) for get_ref_spad_map
+    vl53l0x_api_calibration.o(i.VL53L0X_get_reference_spads) refers to vl53l0x_api_calibration.o(i.count_enabled_spads) for count_enabled_spads
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_offset_calibration) refers to vl53l0x_api.o(i.VL53L0X_SetOffsetCalibrationDataMicroMeter) for VL53L0X_SetOffsetCalibrationDataMicroMeter
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_offset_calibration) refers to vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnable) for VL53L0X_GetSequenceStepEnable
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_offset_calibration) refers to vl53l0x_api.o(i.VL53L0X_SetSequenceStepEnable) for VL53L0X_SetSequenceStepEnable
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_offset_calibration) refers to vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable) for VL53L0X_SetLimitCheckEnable
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_offset_calibration) refers to vl53l0x_api.o(i.VL53L0X_PerformSingleRangingMeasurement) for VL53L0X_PerformSingleRangingMeasurement
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_phase_calibration) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_phase_calibration) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_phase_calibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_perform_single_ref_calibration) for VL53L0X_perform_single_ref_calibration
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_phase_calibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io) for VL53L0X_ref_calibration_io
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_calibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_perform_vhv_calibration) for VL53L0X_perform_vhv_calibration
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_calibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_perform_phase_calibration) for VL53L0X_perform_phase_calibration
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_calibration) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_calibration) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) refers to vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_calibration) for VL53L0X_perform_ref_calibration
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) refers to vl53l0x_api_calibration.o(i.enable_ref_spads) for enable_ref_spads
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) refers to vl53l0x_api_calibration.o(i.perform_ref_signal_measurement) for perform_ref_signal_measurement
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) refers to vl53l0x_api_calibration.o(i.is_aperture) for is_aperture
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) refers to vl53l0x_api_calibration.o(i.get_next_good_spad) for get_next_good_spad
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) refers to vl53l0x_api_calibration.o(i.enable_spad_bit) for enable_spad_bit
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_ref_spad_management) refers to vl53l0x_api_calibration.o(i.set_ref_spad_map) for set_ref_spad_map
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_single_ref_calibration) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_single_ref_calibration) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_single_ref_calibration) refers to vl53l0x_api_core.o(i.VL53L0X_measurement_poll_for_completion) for VL53L0X_measurement_poll_for_completion
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_single_ref_calibration) refers to vl53l0x_api.o(i.VL53L0X_ClearInterruptMask) for VL53L0X_ClearInterruptMask
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_vhv_calibration) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_vhv_calibration) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_vhv_calibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_perform_single_ref_calibration) for VL53L0X_perform_single_ref_calibration
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_vhv_calibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io) for VL53L0X_ref_calibration_io
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_xtalk_calibration) refers to vl53l0x_api.o(i.VL53L0X_SetXTalkCompensationEnable) for VL53L0X_SetXTalkCompensationEnable
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_xtalk_calibration) refers to vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable) for VL53L0X_SetLimitCheckEnable
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_xtalk_calibration) refers to vl53l0x_api.o(i.VL53L0X_PerformSingleRangingMeasurement) for VL53L0X_PerformSingleRangingMeasurement
+    vl53l0x_api_calibration.o(i.VL53L0X_perform_xtalk_calibration) refers to vl53l0x_api.o(i.VL53L0X_SetXTalkCompensationRateMegaCps) for VL53L0X_SetXTalkCompensationRateMegaCps
+    vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io) refers to vl53l0x_platform.o(i.VL53L0X_UpdateByte) for VL53L0X_UpdateByte
+    vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io) refers to vl53l0x_tof.o(i.VL53L0X_UpdateByte) for VL53L0X_UpdateByte
+    vl53l0x_api_calibration.o(i.VL53L0X_set_offset_calibration_data_micro_meter) refers to vl53l0x_platform.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api_calibration.o(i.VL53L0X_set_offset_calibration_data_micro_meter) refers to vl53l0x_tof.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api_calibration.o(i.VL53L0X_set_ref_calibration) refers to vl53l0x_api_calibration.o(i.VL53L0X_ref_calibration_io) for VL53L0X_ref_calibration_io
+    vl53l0x_api_calibration.o(i.VL53L0X_set_reference_spads) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_set_reference_spads) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.VL53L0X_set_reference_spads) refers to vl53l0x_api_calibration.o(i.is_aperture) for is_aperture
+    vl53l0x_api_calibration.o(i.VL53L0X_set_reference_spads) refers to vl53l0x_api_calibration.o(i.enable_ref_spads) for enable_ref_spads
+    vl53l0x_api_calibration.o(i.enable_ref_spads) refers to vl53l0x_api_calibration.o(i.get_next_good_spad) for get_next_good_spad
+    vl53l0x_api_calibration.o(i.enable_ref_spads) refers to vl53l0x_api_calibration.o(i.is_aperture) for is_aperture
+    vl53l0x_api_calibration.o(i.enable_ref_spads) refers to vl53l0x_api_calibration.o(i.enable_spad_bit) for enable_spad_bit
+    vl53l0x_api_calibration.o(i.enable_ref_spads) refers to vl53l0x_api_calibration.o(i.set_ref_spad_map) for set_ref_spad_map
+    vl53l0x_api_calibration.o(i.enable_ref_spads) refers to vl53l0x_api_calibration.o(i.get_ref_spad_map) for get_ref_spad_map
+    vl53l0x_api_calibration.o(i.get_ref_spad_map) refers to vl53l0x_platform.o(i.VL53L0X_ReadMulti) for VL53L0X_ReadMulti
+    vl53l0x_api_calibration.o(i.get_ref_spad_map) refers to vl53l0x_tof.o(i.VL53L0X_ReadMulti) for VL53L0X_ReadMulti
+    vl53l0x_api_calibration.o(i.is_aperture) refers to vl53l0x_api_calibration.o(.data) for .data
+    vl53l0x_api_calibration.o(i.perform_ref_signal_measurement) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.perform_ref_signal_measurement) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_calibration.o(i.perform_ref_signal_measurement) refers to vl53l0x_api.o(i.VL53L0X_PerformSingleRangingMeasurement) for VL53L0X_PerformSingleRangingMeasurement
+    vl53l0x_api_calibration.o(i.perform_ref_signal_measurement) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api_calibration.o(i.perform_ref_signal_measurement) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api_calibration.o(i.set_ref_spad_map) refers to vl53l0x_platform.o(i.VL53L0X_WriteMulti) for VL53L0X_WriteMulti
+    vl53l0x_api_calibration.o(i.set_ref_spad_map) refers to vl53l0x_tof.o(i.VL53L0X_WriteMulti) for VL53L0X_WriteMulti
+    vl53l0x_api_core.o(i.VL53L0X_calc_dmax) refers to vl53l0x_api_core.o(i.VL53L0X_isqrt) for VL53L0X_isqrt
+    vl53l0x_api_core.o(i.VL53L0X_calc_sigma_estimate) refers to vl53l0x_api_core.o(i.VL53L0X_get_total_signal_rate) for VL53L0X_get_total_signal_rate
+    vl53l0x_api_core.o(i.VL53L0X_calc_sigma_estimate) refers to vl53l0x_api_core.o(i.VL53L0X_get_total_xtalk_rate) for VL53L0X_get_total_xtalk_rate
+    vl53l0x_api_core.o(i.VL53L0X_calc_sigma_estimate) refers to vl53l0x_api_core.o(i.VL53L0X_calc_timeout_mclks) for VL53L0X_calc_timeout_mclks
+    vl53l0x_api_core.o(i.VL53L0X_calc_sigma_estimate) refers to vl53l0x_api_core.o(i.VL53L0X_isqrt) for VL53L0X_isqrt
+    vl53l0x_api_core.o(i.VL53L0X_calc_sigma_estimate) refers to vl53l0x_api_core.o(i.VL53L0X_calc_dmax) for VL53L0X_calc_dmax
+    vl53l0x_api_core.o(i.VL53L0X_calc_timeout_mclks) refers to vl53l0x_api_core.o(i.VL53L0X_calc_macro_period_ps) for VL53L0X_calc_macro_period_ps
+    vl53l0x_api_core.o(i.VL53L0X_calc_timeout_us) refers to vl53l0x_api_core.o(i.VL53L0X_calc_macro_period_ps) for VL53L0X_calc_macro_period_ps
+    vl53l0x_api_core.o(i.VL53L0X_device_read_strobe) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_core.o(i.VL53L0X_device_read_strobe) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_core.o(i.VL53L0X_device_read_strobe) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_core.o(i.VL53L0X_device_read_strobe) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) refers to vl53l0x_platform.o(i.VL53L0X_PollingDelay) for VL53L0X_PollingDelay
+    vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) refers to vl53l0x_tof.o(i.VL53L0X_PollingDelay) for VL53L0X_PollingDelay
+    vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) refers to vl53l0x_api_core.o(i.VL53L0X_device_read_strobe) for VL53L0X_device_read_strobe
+    vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) refers to vl53l0x_platform.o(i.VL53L0X_RdDWord) for VL53L0X_RdDWord
+    vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) refers to vl53l0x_tof.o(i.VL53L0X_RdDWord) for VL53L0X_RdDWord
+    vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) refers to strcpy.o(.text) for strcpy
+    vl53l0x_api_core.o(i.VL53L0X_get_measurement_timing_budget_micro_seconds) refers to vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnables) for VL53L0X_GetSequenceStepEnables
+    vl53l0x_api_core.o(i.VL53L0X_get_measurement_timing_budget_micro_seconds) refers to vl53l0x_api_core.o(i.get_sequence_step_timeout) for get_sequence_step_timeout
+    vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status) refers to vl53l0x_api.o(i.VL53L0X_GetLimitCheckEnable) for VL53L0X_GetLimitCheckEnable
+    vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status) refers to vl53l0x_api_core.o(i.VL53L0X_calc_sigma_estimate) for VL53L0X_calc_sigma_estimate
+    vl53l0x_api_core.o(i.VL53L0X_get_pal_range_status) refers to vl53l0x_api.o(i.VL53L0X_GetLimitCheckValue) for VL53L0X_GetLimitCheckValue
+    vl53l0x_api_core.o(i.VL53L0X_get_total_signal_rate) refers to vl53l0x_api_core.o(i.VL53L0X_get_total_xtalk_rate) for VL53L0X_get_total_xtalk_rate
+    vl53l0x_api_core.o(i.VL53L0X_get_total_xtalk_rate) refers to vl53l0x_api.o(i.VL53L0X_GetXTalkCompensationEnable) for VL53L0X_GetXTalkCompensationEnable
+    vl53l0x_api_core.o(i.VL53L0X_get_vcsel_pulse_period) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_core.o(i.VL53L0X_get_vcsel_pulse_period) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_core.o(i.VL53L0X_get_vcsel_pulse_period) refers to vl53l0x_api_core.o(i.VL53L0X_decode_vcsel_period) for VL53L0X_decode_vcsel_period
+    vl53l0x_api_core.o(i.VL53L0X_load_tuning_settings) refers to vl53l0x_platform.o(i.VL53L0X_WriteMulti) for VL53L0X_WriteMulti
+    vl53l0x_api_core.o(i.VL53L0X_load_tuning_settings) refers to vl53l0x_tof.o(i.VL53L0X_WriteMulti) for VL53L0X_WriteMulti
+    vl53l0x_api_core.o(i.VL53L0X_measurement_poll_for_completion) refers to vl53l0x_api.o(i.VL53L0X_GetMeasurementDataReady) for VL53L0X_GetMeasurementDataReady
+    vl53l0x_api_core.o(i.VL53L0X_measurement_poll_for_completion) refers to vl53l0x_platform.o(i.VL53L0X_PollingDelay) for VL53L0X_PollingDelay
+    vl53l0x_api_core.o(i.VL53L0X_measurement_poll_for_completion) refers to vl53l0x_tof.o(i.VL53L0X_PollingDelay) for VL53L0X_PollingDelay
+    vl53l0x_api_core.o(i.VL53L0X_quadrature_sum) refers to vl53l0x_api_core.o(i.VL53L0X_isqrt) for VL53L0X_isqrt
+    vl53l0x_api_core.o(i.VL53L0X_set_measurement_timing_budget_micro_seconds) refers to vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnables) for VL53L0X_GetSequenceStepEnables
+    vl53l0x_api_core.o(i.VL53L0X_set_measurement_timing_budget_micro_seconds) refers to vl53l0x_api_core.o(i.get_sequence_step_timeout) for get_sequence_step_timeout
+    vl53l0x_api_core.o(i.VL53L0X_set_measurement_timing_budget_micro_seconds) refers to vl53l0x_api_core.o(i.set_sequence_step_timeout) for set_sequence_step_timeout
+    vl53l0x_api_core.o(i.VL53L0X_set_vcsel_pulse_period) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_core.o(i.VL53L0X_set_vcsel_pulse_period) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_core.o(i.VL53L0X_set_vcsel_pulse_period) refers to vl53l0x_api_core.o(i.VL53L0X_encode_vcsel_period) for VL53L0X_encode_vcsel_period
+    vl53l0x_api_core.o(i.VL53L0X_set_vcsel_pulse_period) refers to vl53l0x_api_core.o(i.get_sequence_step_timeout) for get_sequence_step_timeout
+    vl53l0x_api_core.o(i.VL53L0X_set_vcsel_pulse_period) refers to vl53l0x_api_core.o(i.set_sequence_step_timeout) for set_sequence_step_timeout
+    vl53l0x_api_core.o(i.VL53L0X_set_vcsel_pulse_period) refers to vl53l0x_api.o(i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds) for VL53L0X_SetMeasurementTimingBudgetMicroSeconds
+    vl53l0x_api_core.o(i.VL53L0X_set_vcsel_pulse_period) refers to vl53l0x_api_calibration.o(i.VL53L0X_perform_phase_calibration) for VL53L0X_perform_phase_calibration
+    vl53l0x_api_core.o(i.get_sequence_step_timeout) refers to vl53l0x_api.o(i.VL53L0X_GetVcselPulsePeriod) for VL53L0X_GetVcselPulsePeriod
+    vl53l0x_api_core.o(i.get_sequence_step_timeout) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_core.o(i.get_sequence_step_timeout) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_core.o(i.get_sequence_step_timeout) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api_core.o(i.get_sequence_step_timeout) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api_core.o(i.get_sequence_step_timeout) refers to vl53l0x_api_core.o(i.VL53L0X_decode_timeout) for VL53L0X_decode_timeout
+    vl53l0x_api_core.o(i.get_sequence_step_timeout) refers to vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnables) for VL53L0X_GetSequenceStepEnables
+    vl53l0x_api_core.o(i.get_sequence_step_timeout) refers to vl53l0x_api_core.o(i.VL53L0X_calc_timeout_us) for VL53L0X_calc_timeout_us
+    vl53l0x_api_core.o(i.set_sequence_step_timeout) refers to vl53l0x_api.o(i.VL53L0X_GetVcselPulsePeriod) for VL53L0X_GetVcselPulsePeriod
+    vl53l0x_api_core.o(i.set_sequence_step_timeout) refers to vl53l0x_api_core.o(i.VL53L0X_calc_timeout_mclks) for VL53L0X_calc_timeout_mclks
+    vl53l0x_api_core.o(i.set_sequence_step_timeout) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_core.o(i.set_sequence_step_timeout) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_api_core.o(i.set_sequence_step_timeout) refers to vl53l0x_api_core.o(i.VL53L0X_encode_timeout) for VL53L0X_encode_timeout
+    vl53l0x_api_core.o(i.set_sequence_step_timeout) refers to vl53l0x_platform.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api_core.o(i.set_sequence_step_timeout) refers to vl53l0x_tof.o(i.VL53L0X_WrWord) for VL53L0X_WrWord
+    vl53l0x_api_core.o(i.set_sequence_step_timeout) refers to vl53l0x_api.o(i.VL53L0X_GetSequenceStepEnables) for VL53L0X_GetSequenceStepEnables
+    vl53l0x_api_core.o(i.set_sequence_step_timeout) refers to vl53l0x_platform.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api_core.o(i.set_sequence_step_timeout) refers to vl53l0x_tof.o(i.VL53L0X_RdWord) for VL53L0X_RdWord
+    vl53l0x_api_core.o(i.set_sequence_step_timeout) refers to vl53l0x_api_core.o(i.VL53L0X_decode_timeout) for VL53L0X_decode_timeout
+    vl53l0x_api_strings.o(i.VL53L0X_check_part_used) refers to vl53l0x_api_core.o(i.VL53L0X_get_info_from_device) for VL53L0X_get_info_from_device
+    vl53l0x_api_strings.o(i.VL53L0X_check_part_used) refers to strcpy.o(.text) for strcpy
+    vl53l0x_api_strings.o(i.VL53L0X_get_device_error_string) refers to strcpy.o(.text) for strcpy
+    vl53l0x_api_strings.o(i.VL53L0X_get_device_info) refers to vl53l0x_api_strings.o(i.VL53L0X_check_part_used) for VL53L0X_check_part_used
+    vl53l0x_api_strings.o(i.VL53L0X_get_device_info) refers to strcpy.o(.text) for strcpy
+    vl53l0x_api_strings.o(i.VL53L0X_get_device_info) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_strings.o(i.VL53L0X_get_device_info) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_api_strings.o(i.VL53L0X_get_limit_check_info) refers to strcpy.o(.text) for strcpy
+    vl53l0x_api_strings.o(i.VL53L0X_get_pal_error_string) refers to strcpy.o(.text) for strcpy
+    vl53l0x_api_strings.o(i.VL53L0X_get_pal_state_string) refers to strcpy.o(.text) for strcpy
+    vl53l0x_api_strings.o(i.VL53L0X_get_range_status_string) refers to strcpy.o(.text) for strcpy
+    vl53l0x_api_strings.o(i.VL53L0X_get_sequence_steps_info) refers to strcpy.o(.text) for strcpy
+    vl53l0x_platform.o(i.VL53L0X_PollingDelay) refers to stm32f1xx_hal.o(i.HAL_Delay) for HAL_Delay
+    vl53l0x_platform.o(i.VL53L0X_RdByte) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_RdByte) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_RdByte) refers to vl53l0x_platform.o(i._I2CRead) for _I2CRead
+    vl53l0x_platform.o(i.VL53L0X_RdByte) refers to vl53l0x_tof.o(i._I2CRead) for _I2CRead
+    vl53l0x_platform.o(i.VL53L0X_RdDWord) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_RdDWord) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_RdDWord) refers to vl53l0x_platform.o(i._I2CRead) for _I2CRead
+    vl53l0x_platform.o(i.VL53L0X_RdDWord) refers to vl53l0x_tof.o(i._I2CRead) for _I2CRead
+    vl53l0x_platform.o(i.VL53L0X_RdDWord) refers to vl53l0x_platform.o(.bss) for .bss
+    vl53l0x_platform.o(i.VL53L0X_RdWord) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_RdWord) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_RdWord) refers to vl53l0x_platform.o(i._I2CRead) for _I2CRead
+    vl53l0x_platform.o(i.VL53L0X_RdWord) refers to vl53l0x_tof.o(i._I2CRead) for _I2CRead
+    vl53l0x_platform.o(i.VL53L0X_RdWord) refers to vl53l0x_platform.o(.bss) for .bss
+    vl53l0x_platform.o(i.VL53L0X_ReadMulti) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_ReadMulti) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_ReadMulti) refers to vl53l0x_platform.o(i._I2CRead) for _I2CRead
+    vl53l0x_platform.o(i.VL53L0X_ReadMulti) refers to vl53l0x_tof.o(i._I2CRead) for _I2CRead
+    vl53l0x_platform.o(i.VL53L0X_UpdateByte) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_platform.o(i.VL53L0X_UpdateByte) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_platform.o(i.VL53L0X_UpdateByte) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_platform.o(i.VL53L0X_UpdateByte) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_platform.o(i.VL53L0X_WrByte) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_WrByte) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_WrByte) refers to vl53l0x_platform.o(.bss) for .bss
+    vl53l0x_platform.o(i.VL53L0X_WrDWord) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_WrDWord) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_WrDWord) refers to vl53l0x_platform.o(.bss) for .bss
+    vl53l0x_platform.o(i.VL53L0X_WrWord) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_WrWord) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_WrWord) refers to vl53l0x_platform.o(.bss) for .bss
+    vl53l0x_platform.o(i.VL53L0X_WriteMulti) refers to rt_memcpy_v6.o(.text) for __aeabi_memcpy
+    vl53l0x_platform.o(i.VL53L0X_WriteMulti) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_WriteMulti) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_platform.o(i.VL53L0X_WriteMulti) refers to vl53l0x_platform.o(.bss) for .bss
+    vl53l0x_platform.o(i._I2CRead) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive) for HAL_I2C_Master_Receive
+    vl53l0x_platform.o(i._I2CWrite) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit) for HAL_I2C_Master_Transmit
+    vl53l0x_tof.o(i.SetupSingleShot) refers to vl53l0x_api.o(i.VL53L0X_StaticInit) for VL53L0X_StaticInit
+    vl53l0x_tof.o(i.SetupSingleShot) refers to noretval__2printf.o(.text) for __2printf
+    vl53l0x_tof.o(i.SetupSingleShot) refers to vl53l0x_api.o(i.VL53L0X_PerformRefCalibration) for VL53L0X_PerformRefCalibration
+    vl53l0x_tof.o(i.SetupSingleShot) refers to vl53l0x_api.o(i.VL53L0X_PerformRefSpadManagement) for VL53L0X_PerformRefSpadManagement
+    vl53l0x_tof.o(i.SetupSingleShot) refers to vl53l0x_api.o(i.VL53L0X_SetDeviceMode) for VL53L0X_SetDeviceMode
+    vl53l0x_tof.o(i.SetupSingleShot) refers to vl53l0x_api.o(i.VL53L0X_SetLimitCheckEnable) for VL53L0X_SetLimitCheckEnable
+    vl53l0x_tof.o(i.SetupSingleShot) refers to vl53l0x_api.o(i.VL53L0X_SetLimitCheckValue) for VL53L0X_SetLimitCheckValue
+    vl53l0x_tof.o(i.SetupSingleShot) refers to vl53l0x_api.o(i.VL53L0X_SetMeasurementTimingBudgetMicroSeconds) for VL53L0X_SetMeasurementTimingBudgetMicroSeconds
+    vl53l0x_tof.o(i.SetupSingleShot) refers to vl53l0x_api.o(i.VL53L0X_SetVcselPulsePeriod) for VL53L0X_SetVcselPulsePeriod
+    vl53l0x_tof.o(i.VL53L0X_PollingDelay) refers to stm32f1xx_hal.o(i.HAL_Delay) for HAL_Delay
+    vl53l0x_tof.o(i.VL53L0X_RdByte) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_RdByte) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_RdByte) refers to vl53l0x_platform.o(i._I2CRead) for _I2CRead
+    vl53l0x_tof.o(i.VL53L0X_RdByte) refers to vl53l0x_tof.o(i._I2CRead) for _I2CRead
+    vl53l0x_tof.o(i.VL53L0X_RdDWord) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_RdDWord) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_RdDWord) refers to vl53l0x_platform.o(i._I2CRead) for _I2CRead
+    vl53l0x_tof.o(i.VL53L0X_RdDWord) refers to vl53l0x_tof.o(i._I2CRead) for _I2CRead
+    vl53l0x_tof.o(i.VL53L0X_RdDWord) refers to vl53l0x_tof.o(.bss) for .bss
+    vl53l0x_tof.o(i.VL53L0X_RdWord) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_RdWord) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_RdWord) refers to vl53l0x_platform.o(i._I2CRead) for _I2CRead
+    vl53l0x_tof.o(i.VL53L0X_RdWord) refers to vl53l0x_tof.o(i._I2CRead) for _I2CRead
+    vl53l0x_tof.o(i.VL53L0X_RdWord) refers to vl53l0x_tof.o(.bss) for .bss
+    vl53l0x_tof.o(i.VL53L0X_ReadMulti) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_ReadMulti) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_ReadMulti) refers to vl53l0x_platform.o(i._I2CRead) for _I2CRead
+    vl53l0x_tof.o(i.VL53L0X_ReadMulti) refers to vl53l0x_tof.o(i._I2CRead) for _I2CRead
+    vl53l0x_tof.o(i.VL53L0X_UpdateByte) refers to vl53l0x_platform.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_tof.o(i.VL53L0X_UpdateByte) refers to vl53l0x_tof.o(i.VL53L0X_RdByte) for VL53L0X_RdByte
+    vl53l0x_tof.o(i.VL53L0X_UpdateByte) refers to vl53l0x_platform.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_tof.o(i.VL53L0X_UpdateByte) refers to vl53l0x_tof.o(i.VL53L0X_WrByte) for VL53L0X_WrByte
+    vl53l0x_tof.o(i.VL53L0X_WrByte) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_WrByte) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_WrByte) refers to vl53l0x_tof.o(.bss) for .bss
+    vl53l0x_tof.o(i.VL53L0X_WrDWord) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_WrDWord) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_WrDWord) refers to vl53l0x_tof.o(.bss) for .bss
+    vl53l0x_tof.o(i.VL53L0X_WrWord) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_WrWord) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_WrWord) refers to vl53l0x_tof.o(.bss) for .bss
+    vl53l0x_tof.o(i.VL53L0X_WriteMulti) refers to rt_memcpy_v6.o(.text) for __aeabi_memcpy
+    vl53l0x_tof.o(i.VL53L0X_WriteMulti) refers to vl53l0x_platform.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_WriteMulti) refers to vl53l0x_tof.o(i._I2CWrite) for _I2CWrite
+    vl53l0x_tof.o(i.VL53L0X_WriteMulti) refers to vl53l0x_tof.o(.bss) for .bss
+    vl53l0x_tof.o(i._I2CRead) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive) for HAL_I2C_Master_Receive
+    vl53l0x_tof.o(i._I2CWrite) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit) for HAL_I2C_Master_Transmit
     main.o(i.HAL_GPIO_EXTI_Callback) refers to main.o(.data) for .data
     main.o(i.MX_ADC1_Init) refers to stm32f1xx_hal_adc.o(i.HAL_ADC_Init) for HAL_ADC_Init
     main.o(i.MX_ADC1_Init) refers to stm32f1xx_hal_adc.o(i.HAL_ADC_ConfigChannel) for HAL_ADC_ConfigChannel
@@ -69,6 +530,8 @@ Section Cross References
     stm32f1xx_it.o(i.EXTI1_IRQHandler) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_EXTI_IRQHandler) for HAL_GPIO_EXTI_IRQHandler
     stm32f1xx_it.o(i.EXTI3_IRQHandler) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_EXTI_IRQHandler) for HAL_GPIO_EXTI_IRQHandler
     stm32f1xx_it.o(i.EXTI4_IRQHandler) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_EXTI_IRQHandler) for HAL_GPIO_EXTI_IRQHandler
+    stm32f1xx_it.o(i.I2C1_ER_IRQHandler) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_ER_IRQHandler) for HAL_I2C_ER_IRQHandler
+    stm32f1xx_it.o(i.I2C1_ER_IRQHandler) refers to main.o(.bss) for hi2c1
     stm32f1xx_it.o(i.SysTick_Handler) refers to stm32f1xx_hal.o(i.HAL_IncTick) for HAL_IncTick
     stm32f1xx_hal_msp.o(i.HAL_ADC_MspDeInit) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_DeInit) for HAL_GPIO_DeInit
     stm32f1xx_hal_msp.o(i.HAL_ADC_MspDeInit) refers to stm32f1xx_hal_dma.o(i.HAL_DMA_DeInit) for HAL_DMA_DeInit
@@ -77,104 +540,17 @@ Section Cross References
     stm32f1xx_hal_msp.o(i.HAL_ADC_MspInit) refers to main.o(i.Error_Handler) for Error_Handler
     stm32f1xx_hal_msp.o(i.HAL_ADC_MspInit) refers to main.o(.bss) for hdma_adc1
     stm32f1xx_hal_msp.o(i.HAL_I2C_MspDeInit) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_DeInit) for HAL_GPIO_DeInit
+    stm32f1xx_hal_msp.o(i.HAL_I2C_MspDeInit) refers to stm32f1xx_hal_cortex.o(i.HAL_NVIC_DisableIRQ) for HAL_NVIC_DisableIRQ
     stm32f1xx_hal_msp.o(i.HAL_I2C_MspInit) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_Init) for HAL_GPIO_Init
+    stm32f1xx_hal_msp.o(i.HAL_I2C_MspInit) refers to stm32f1xx_hal_cortex.o(i.HAL_NVIC_SetPriority) for HAL_NVIC_SetPriority
+    stm32f1xx_hal_msp.o(i.HAL_I2C_MspInit) refers to stm32f1xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ) for HAL_NVIC_EnableIRQ
     stm32f1xx_hal_msp.o(i.HAL_TIM_MspPostInit) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_Init) for HAL_GPIO_Init
-    vl53l0x.o(i.VL53L0X_checkTimeoutExpired) refers to vl53l0x.o(.data) for .data
-    vl53l0x.o(i.VL53L0X_getMeasurementTimingBudget) refers to vl53l0x.o(i.VL53L0X_getSequenceStepEnables) for VL53L0X_getSequenceStepEnables
-    vl53l0x.o(i.VL53L0X_getMeasurementTimingBudget) refers to vl53l0x.o(i.VL53L0X_getSequenceStepTimeouts) for VL53L0X_getSequenceStepTimeouts
-    vl53l0x.o(i.VL53L0X_getSequenceStepEnables) refers to vl53l0x.o(i.VL53L0X_readReg) for VL53L0X_readReg
-    vl53l0x.o(i.VL53L0X_getSequenceStepTimeouts) refers to vl53l0x.o(i.VL53L0X_getVcselPulsePeriod) for VL53L0X_getVcselPulsePeriod
-    vl53l0x.o(i.VL53L0X_getSequenceStepTimeouts) refers to vl53l0x.o(i.VL53L0X_readReg) for VL53L0X_readReg
-    vl53l0x.o(i.VL53L0X_getSequenceStepTimeouts) refers to vl53l0x.o(i.VL53L0X_timeoutMclksToMicroseconds) for VL53L0X_timeoutMclksToMicroseconds
-    vl53l0x.o(i.VL53L0X_getSequenceStepTimeouts) refers to vl53l0x.o(i.VL53L0X_readReg16Bit) for VL53L0X_readReg16Bit
-    vl53l0x.o(i.VL53L0X_getSequenceStepTimeouts) refers to vl53l0x.o(i.VL53L0X_decodeTimeout) for VL53L0X_decodeTimeout
-    vl53l0x.o(i.VL53L0X_getSignalRateLimit) refers to vl53l0x.o(i.VL53L0X_readReg16Bit) for VL53L0X_readReg16Bit
-    vl53l0x.o(i.VL53L0X_getSignalRateLimit) refers to fflt_clz.o(x$fpl$ffltu) for __aeabi_ui2f
-    vl53l0x.o(i.VL53L0X_getSignalRateLimit) refers to scalbnf.o(x$fpl$scalbnf) for __ARM_scalbnf
-    vl53l0x.o(i.VL53L0X_getSpadInfo) refers to vl53l0x.o(i.VL53L0X_writeReg) for VL53L0X_writeReg
-    vl53l0x.o(i.VL53L0X_getSpadInfo) refers to vl53l0x.o(i.VL53L0X_readReg) for VL53L0X_readReg
-    vl53l0x.o(i.VL53L0X_getSpadInfo) refers to vl53l0x.o(i.VL53L0X_checkTimeoutExpired) for VL53L0X_checkTimeoutExpired
-    vl53l0x.o(i.VL53L0X_getSpadInfo) refers to vl53l0x.o(.data) for .data
-    vl53l0x.o(i.VL53L0X_getVcselPulsePeriod) refers to vl53l0x.o(i.VL53L0X_readReg) for VL53L0X_readReg
-    vl53l0x.o(i.VL53L0X_init) refers to vl53l0x.o(i.VL53L0X_readReg) for VL53L0X_readReg
-    vl53l0x.o(i.VL53L0X_init) refers to vl53l0x.o(i.VL53L0X_writeReg) for VL53L0X_writeReg
-    vl53l0x.o(i.VL53L0X_init) refers to vl53l0x.o(i.VL53L0X_setSignalRateLimit) for VL53L0X_setSignalRateLimit
-    vl53l0x.o(i.VL53L0X_init) refers to vl53l0x.o(i.VL53L0X_getSpadInfo) for VL53L0X_getSpadInfo
-    vl53l0x.o(i.VL53L0X_init) refers to vl53l0x.o(i.VL53L0X_readMulti) for VL53L0X_readMulti
-    vl53l0x.o(i.VL53L0X_init) refers to vl53l0x.o(i.VL53L0X_writeMulti) for VL53L0X_writeMulti
-    vl53l0x.o(i.VL53L0X_init) refers to vl53l0x.o(i.VL53L0X_getMeasurementTimingBudget) for VL53L0X_getMeasurementTimingBudget
-    vl53l0x.o(i.VL53L0X_init) refers to vl53l0x.o(i.VL53L0X_setMeasurementTimingBudget) for VL53L0X_setMeasurementTimingBudget
-    vl53l0x.o(i.VL53L0X_init) refers to vl53l0x.o(i.VL53L0X_performSingleRefCalibration) for VL53L0X_performSingleRefCalibration
-    vl53l0x.o(i.VL53L0X_performSingleRefCalibration) refers to vl53l0x.o(i.VL53L0X_writeReg) for VL53L0X_writeReg
-    vl53l0x.o(i.VL53L0X_performSingleRefCalibration) refers to vl53l0x.o(i.VL53L0X_checkTimeoutExpired) for VL53L0X_checkTimeoutExpired
-    vl53l0x.o(i.VL53L0X_performSingleRefCalibration) refers to vl53l0x.o(i.VL53L0X_readReg) for VL53L0X_readReg
-    vl53l0x.o(i.VL53L0X_performSingleRefCalibration) refers to vl53l0x.o(.data) for .data
-    vl53l0x.o(i.VL53L0X_readMulti) refers to i2c.o(i.i2c_write) for i2c_write
-    vl53l0x.o(i.VL53L0X_readMulti) refers to i2c.o(i.i2c_read) for i2c_read
-    vl53l0x.o(i.VL53L0X_readRangeContinuousMillimeters) refers to vl53l0x.o(i.VL53L0X_checkTimeoutExpired) for VL53L0X_checkTimeoutExpired
-    vl53l0x.o(i.VL53L0X_readRangeContinuousMillimeters) refers to vl53l0x.o(i.VL53L0X_readReg) for VL53L0X_readReg
-    vl53l0x.o(i.VL53L0X_readRangeContinuousMillimeters) refers to vl53l0x.o(i.VL53L0X_readReg16Bit) for VL53L0X_readReg16Bit
-    vl53l0x.o(i.VL53L0X_readRangeContinuousMillimeters) refers to vl53l0x.o(i.VL53L0X_writeReg) for VL53L0X_writeReg
-    vl53l0x.o(i.VL53L0X_readRangeContinuousMillimeters) refers to vl53l0x.o(.data) for .data
-    vl53l0x.o(i.VL53L0X_readRangeSingleMillimeters) refers to vl53l0x.o(i.VL53L0X_writeReg) for VL53L0X_writeReg
-    vl53l0x.o(i.VL53L0X_readRangeSingleMillimeters) refers to vl53l0x.o(i.VL53L0X_checkTimeoutExpired) for VL53L0X_checkTimeoutExpired
-    vl53l0x.o(i.VL53L0X_readRangeSingleMillimeters) refers to vl53l0x.o(i.VL53L0X_readReg) for VL53L0X_readReg
-    vl53l0x.o(i.VL53L0X_readRangeSingleMillimeters) refers to vl53l0x.o(i.VL53L0X_readRangeContinuousMillimeters) for VL53L0X_readRangeContinuousMillimeters
-    vl53l0x.o(i.VL53L0X_readRangeSingleMillimeters) refers to vl53l0x.o(.data) for .data
-    vl53l0x.o(i.VL53L0X_readReg) refers to i2c.o(i.i2c_write) for i2c_write
-    vl53l0x.o(i.VL53L0X_readReg) refers to i2c.o(i.i2c_read) for i2c_read
-    vl53l0x.o(i.VL53L0X_readReg16Bit) refers to i2c.o(i.i2c_write) for i2c_write
-    vl53l0x.o(i.VL53L0X_readReg16Bit) refers to i2c.o(i.i2c_read) for i2c_read
-    vl53l0x.o(i.VL53L0X_readReg32Bit) refers to i2c.o(i.i2c_write) for i2c_write
-    vl53l0x.o(i.VL53L0X_readReg32Bit) refers to i2c.o(i.i2c_read) for i2c_read
-    vl53l0x.o(i.VL53L0X_setAddress) refers to vl53l0x.o(i.VL53L0X_writeReg) for VL53L0X_writeReg
-    vl53l0x.o(i.VL53L0X_setMeasurementTimingBudget) refers to vl53l0x.o(i.VL53L0X_getSequenceStepEnables) for VL53L0X_getSequenceStepEnables
-    vl53l0x.o(i.VL53L0X_setMeasurementTimingBudget) refers to vl53l0x.o(i.VL53L0X_getSequenceStepTimeouts) for VL53L0X_getSequenceStepTimeouts
-    vl53l0x.o(i.VL53L0X_setMeasurementTimingBudget) refers to vl53l0x.o(i.VL53L0X_timeoutMicrosecondsToMclks) for VL53L0X_timeoutMicrosecondsToMclks
-    vl53l0x.o(i.VL53L0X_setMeasurementTimingBudget) refers to vl53l0x.o(i.VL53L0X_encodeTimeout) for VL53L0X_encodeTimeout
-    vl53l0x.o(i.VL53L0X_setMeasurementTimingBudget) refers to vl53l0x.o(i.VL53L0X_writeReg16Bit) for VL53L0X_writeReg16Bit
-    vl53l0x.o(i.VL53L0X_setSignalRateLimit) refers to scalbnf.o(x$fpl$scalbnf) for __ARM_scalbnf
-    vl53l0x.o(i.VL53L0X_setSignalRateLimit) refers to ffixu.o(x$fpl$ffixu) for __aeabi_f2uiz
-    vl53l0x.o(i.VL53L0X_setSignalRateLimit) refers to vl53l0x.o(i.VL53L0X_writeReg16Bit) for VL53L0X_writeReg16Bit
-    vl53l0x.o(i.VL53L0X_setVcselPulsePeriod) refers to vl53l0x.o(i.VL53L0X_getSequenceStepEnables) for VL53L0X_getSequenceStepEnables
-    vl53l0x.o(i.VL53L0X_setVcselPulsePeriod) refers to vl53l0x.o(i.VL53L0X_getSequenceStepTimeouts) for VL53L0X_getSequenceStepTimeouts
-    vl53l0x.o(i.VL53L0X_setVcselPulsePeriod) refers to vl53l0x.o(i.VL53L0X_writeReg) for VL53L0X_writeReg
-    vl53l0x.o(i.VL53L0X_setVcselPulsePeriod) refers to vl53l0x.o(i.VL53L0X_timeoutMicrosecondsToMclks) for VL53L0X_timeoutMicrosecondsToMclks
-    vl53l0x.o(i.VL53L0X_setVcselPulsePeriod) refers to vl53l0x.o(i.VL53L0X_encodeTimeout) for VL53L0X_encodeTimeout
-    vl53l0x.o(i.VL53L0X_setVcselPulsePeriod) refers to vl53l0x.o(i.VL53L0X_writeReg16Bit) for VL53L0X_writeReg16Bit
-    vl53l0x.o(i.VL53L0X_setVcselPulsePeriod) refers to vl53l0x.o(i.VL53L0X_setMeasurementTimingBudget) for VL53L0X_setMeasurementTimingBudget
-    vl53l0x.o(i.VL53L0X_setVcselPulsePeriod) refers to vl53l0x.o(i.VL53L0X_readReg) for VL53L0X_readReg
-    vl53l0x.o(i.VL53L0X_setVcselPulsePeriod) refers to vl53l0x.o(i.VL53L0X_performSingleRefCalibration) for VL53L0X_performSingleRefCalibration
-    vl53l0x.o(i.VL53L0X_startContinuous) refers to vl53l0x.o(i.VL53L0X_writeReg) for VL53L0X_writeReg
-    vl53l0x.o(i.VL53L0X_startContinuous) refers to vl53l0x.o(i.VL53L0X_readReg16Bit) for VL53L0X_readReg16Bit
-    vl53l0x.o(i.VL53L0X_startContinuous) refers to vl53l0x.o(i.VL53L0X_writeReg32Bit) for VL53L0X_writeReg32Bit
-    vl53l0x.o(i.VL53L0X_startTimeout) refers to vl53l0x.o(.data) for .data
-    vl53l0x.o(i.VL53L0X_stopContinuous) refers to vl53l0x.o(i.VL53L0X_writeReg) for VL53L0X_writeReg
-    vl53l0x.o(i.VL53L0X_writeMulti) refers to i2c.o(i.i2c_write) for i2c_write
-    vl53l0x.o(i.VL53L0X_writeReg) refers to i2c.o(i.i2c_write) for i2c_write
-    vl53l0x.o(i.VL53L0X_writeReg16Bit) refers to i2c.o(i.i2c_write) for i2c_write
-    vl53l0x.o(i.VL53L0X_writeReg32Bit) refers to i2c.o(i.i2c_write) for i2c_write
-    i2c.o(i.i2c_read) refers to i2c.o(i.i2c1_check_error) for i2c1_check_error
-    i2c.o(i.i2c_read) refers to i2c.o(.data) for .data
-    i2c.o(i.i2c_write) refers to i2c.o(i.i2c1_check_error) for i2c1_check_error
-    i2c.o(i.i2c_write) refers to i2c.o(.data) for .data
-    init.o(i.SysTick_Handler) refers to init.o(.data) for .data
-    init.o(i.SystemInit) refers to init.o(.data) for .data
-    init.o(i.delay) refers to init.o(.data) for .data
     stm32f1xx_hal_adc.o(i.ADC_ConversionStop_Disable) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     stm32f1xx_hal_adc.o(i.ADC_DMAConvCplt) refers to stm32f1xx_hal_adc.o(i.HAL_ADC_ConvCpltCallback) for HAL_ADC_ConvCpltCallback
     stm32f1xx_hal_adc.o(i.ADC_DMAError) refers to stm32f1xx_hal_adc.o(i.HAL_ADC_ErrorCallback) for HAL_ADC_ErrorCallback
     stm32f1xx_hal_adc.o(i.ADC_DMAHalfConvCplt) refers to stm32f1xx_hal_adc.o(i.HAL_ADC_ConvHalfCpltCallback) for HAL_ADC_ConvHalfCpltCallback
     stm32f1xx_hal_adc.o(i.ADC_Enable) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
-    stm32f1xx_hal_adc.o(i.ADC_Enable) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc.o(i.ADC_Enable) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc.o(i.ADC_Enable) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc.o(i.ADC_Enable) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_adc.o(i.ADC_Enable) refers to system_stm32f1xx.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc.o(i.HAL_ADC_ConfigChannel) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc.o(i.HAL_ADC_ConfigChannel) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc.o(i.HAL_ADC_ConfigChannel) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc.o(i.HAL_ADC_ConfigChannel) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_adc.o(i.HAL_ADC_ConfigChannel) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_adc.o(i.HAL_ADC_DeInit) refers to stm32f1xx_hal_adc.o(i.ADC_ConversionStop_Disable) for ADC_ConversionStop_Disable
     stm32f1xx_hal_adc.o(i.HAL_ADC_DeInit) refers to stm32f1xx_hal_msp.o(i.HAL_ADC_MspDeInit) for HAL_ADC_MspDeInit
@@ -185,10 +561,6 @@ Section Cross References
     stm32f1xx_hal_adc.o(i.HAL_ADC_Init) refers to stm32f1xx_hal_adc.o(i.ADC_ConversionStop_Disable) for ADC_ConversionStop_Disable
     stm32f1xx_hal_adc.o(i.HAL_ADC_PollForConversion) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     stm32f1xx_hal_adc.o(i.HAL_ADC_PollForConversion) refers to stm32f1xx_hal_rcc_ex.o(i.HAL_RCCEx_GetPeriphCLKFreq) for HAL_RCCEx_GetPeriphCLKFreq
-    stm32f1xx_hal_adc.o(i.HAL_ADC_PollForConversion) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc.o(i.HAL_ADC_PollForConversion) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc.o(i.HAL_ADC_PollForConversion) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc.o(i.HAL_ADC_PollForConversion) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_adc.o(i.HAL_ADC_PollForConversion) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_adc.o(i.HAL_ADC_PollForEvent) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     stm32f1xx_hal_adc.o(i.HAL_ADC_Start) refers to stm32f1xx_hal_adc.o(i.ADC_Enable) for ADC_Enable
@@ -206,22 +578,10 @@ Section Cross References
     stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start) refers to stm32f1xx_hal_adc.o(i.ADC_Enable) for ADC_Enable
     stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start) refers to stm32f1xx_hal_rcc_ex.o(i.HAL_RCCEx_GetPeriphCLKFreq) for HAL_RCCEx_GetPeriphCLKFreq
     stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_Calibration_Start) refers to system_stm32f1xx.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedConfigChannel) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedConfigChannel) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedConfigChannel) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedConfigChannel) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedConfigChannel) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedPollForConversion) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedPollForConversion) refers to stm32f1xx_hal_rcc_ex.o(i.HAL_RCCEx_GetPeriphCLKFreq) for HAL_RCCEx_GetPeriphCLKFreq
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedPollForConversion) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedPollForConversion) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedPollForConversion) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedPollForConversion) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedPollForConversion) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedStart) refers to stm32f1xx_hal_adc.o(i.ADC_Enable) for ADC_Enable
     stm32f1xx_hal_adc_ex.o(i.HAL_ADCEx_InjectedStart_IT) refers to stm32f1xx_hal_adc.o(i.ADC_Enable) for ADC_Enable
@@ -250,10 +610,6 @@ Section Cross References
     stm32f1xx_hal.o(i.HAL_InitTick) refers to stm32f1xx_hal_cortex.o(i.HAL_SYSTICK_Config) for HAL_SYSTICK_Config
     stm32f1xx_hal.o(i.HAL_InitTick) refers to stm32f1xx_hal_cortex.o(i.HAL_NVIC_SetPriority) for HAL_NVIC_SetPriority
     stm32f1xx_hal.o(i.HAL_InitTick) refers to stm32f1xx_hal.o(.data) for .data
-    stm32f1xx_hal.o(i.HAL_InitTick) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal.o(i.HAL_InitTick) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal.o(i.HAL_InitTick) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal.o(i.HAL_InitTick) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal.o(i.HAL_InitTick) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal.o(i.HAL_SetTickFreq) refers to stm32f1xx_hal.o(i.HAL_InitTick) for HAL_InitTick
     stm32f1xx_hal.o(i.HAL_SetTickFreq) refers to stm32f1xx_hal.o(.data) for .data
@@ -261,45 +617,21 @@ Section Cross References
     stm32f1xx_hal_rcc.o(i.HAL_RCC_ClockConfig) refers to stm32f1xx_hal_rcc.o(i.HAL_RCC_GetSysClockFreq) for HAL_RCC_GetSysClockFreq
     stm32f1xx_hal_rcc.o(i.HAL_RCC_ClockConfig) refers to stm32f1xx_hal.o(i.HAL_InitTick) for HAL_InitTick
     stm32f1xx_hal_rcc.o(i.HAL_RCC_ClockConfig) refers to system_stm32f1xx.o(.constdata) for AHBPrescTable
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_ClockConfig) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_ClockConfig) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_ClockConfig) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_ClockConfig) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_rcc.o(i.HAL_RCC_ClockConfig) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_rcc.o(i.HAL_RCC_ClockConfig) refers to stm32f1xx_hal.o(.data) for uwTickPrio
     stm32f1xx_hal_rcc.o(i.HAL_RCC_DeInit) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     stm32f1xx_hal_rcc.o(i.HAL_RCC_DeInit) refers to stm32f1xx_hal.o(i.HAL_InitTick) for HAL_InitTick
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_DeInit) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_DeInit) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_DeInit) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_DeInit) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_rcc.o(i.HAL_RCC_DeInit) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_rcc.o(i.HAL_RCC_DeInit) refers to stm32f1xx_hal.o(.data) for uwTickPrio
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq) refers to system_stm32f1xx.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK1Freq) refers to system_stm32f1xx.o(.constdata) for APBPrescTable
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK2Freq) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK2Freq) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK2Freq) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK2Freq) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK2Freq) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK2Freq) refers to system_stm32f1xx.o(.constdata) for APBPrescTable
     stm32f1xx_hal_rcc.o(i.HAL_RCC_GetSysClockFreq) refers to stm32f1xx_hal_rcc.o(.constdata) for .constdata
     stm32f1xx_hal_rcc.o(i.HAL_RCC_MCOConfig) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_Init) for HAL_GPIO_Init
     stm32f1xx_hal_rcc.o(i.HAL_RCC_NMI_IRQHandler) refers to stm32f1xx_hal_rcc.o(i.HAL_RCC_CSSCallback) for HAL_RCC_CSSCallback
     stm32f1xx_hal_rcc.o(i.HAL_RCC_OscConfig) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_OscConfig) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_OscConfig) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_OscConfig) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_rcc.o(i.HAL_RCC_OscConfig) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_rcc.o(i.HAL_RCC_OscConfig) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_rcc_ex.o(i.HAL_RCCEx_GetPeriphCLKFreq) refers to stm32f1xx_hal_rcc.o(i.HAL_RCC_GetPCLK2Freq) for HAL_RCC_GetPCLK2Freq
     stm32f1xx_hal_rcc_ex.o(i.HAL_RCCEx_GetPeriphCLKFreq) refers to stm32f1xx_hal_rcc_ex.o(.constdata) for .constdata
@@ -381,49 +713,21 @@ Section Cross References
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive) refers to stm32f1xx_hal_i2c.o(i.I2C_WaitOnFlagUntilTimeout) for I2C_WaitOnFlagUntilTimeout
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive) refers to stm32f1xx_hal_i2c.o(i.I2C_MasterRequestRead) for I2C_MasterRequestRead
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive) refers to stm32f1xx_hal_i2c.o(i.I2C_WaitOnRXNEFlagUntilTimeout) for I2C_WaitOnRXNEFlagUntilTimeout
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_DMA) refers to stm32f1xx_hal_dma.o(i.HAL_DMA_Start_IT) for HAL_DMA_Start_IT
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_DMA) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_DMA) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_DMA) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_DMA) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_DMA) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAXferCplt) for I2C_DMAXferCplt
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAError) for I2C_DMAError
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_IT) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_IT) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_IT) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_IT) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive_IT) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_DMA) refers to stm32f1xx_hal_dma.o(i.HAL_DMA_Start_IT) for HAL_DMA_Start_IT
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_DMA) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_DMA) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_DMA) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_DMA) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_DMA) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAXferCplt) for I2C_DMAXferCplt
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAError) for I2C_DMAError
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_IT) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_IT) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_IT) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_IT) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Receive_IT) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_DMA) refers to stm32f1xx_hal_dma.o(i.HAL_DMA_Start_IT) for HAL_DMA_Start_IT
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_DMA) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_DMA) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_DMA) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_DMA) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_DMA) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAXferCplt) for I2C_DMAXferCplt
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAError) for I2C_DMAError
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_IT) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_IT) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_IT) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_IT) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Seq_Transmit_IT) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit) refers to stm32f1xx_hal_i2c.o(i.I2C_WaitOnFlagUntilTimeout) for I2C_WaitOnFlagUntilTimeout
@@ -431,42 +735,22 @@ Section Cross References
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit) refers to stm32f1xx_hal_i2c.o(i.I2C_WaitOnTXEFlagUntilTimeout) for I2C_WaitOnTXEFlagUntilTimeout
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit) refers to stm32f1xx_hal_i2c.o(i.I2C_WaitOnBTFFlagUntilTimeout) for I2C_WaitOnBTFFlagUntilTimeout
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_DMA) refers to stm32f1xx_hal_dma.o(i.HAL_DMA_Start_IT) for HAL_DMA_Start_IT
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_DMA) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_DMA) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_DMA) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_DMA) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_DMA) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAXferCplt) for I2C_DMAXferCplt
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAError) for I2C_DMAError
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_IT) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_IT) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_IT) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_IT) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit_IT) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read) refers to stm32f1xx_hal_i2c.o(i.I2C_WaitOnFlagUntilTimeout) for I2C_WaitOnFlagUntilTimeout
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read) refers to stm32f1xx_hal_i2c.o(i.I2C_RequestMemoryRead) for I2C_RequestMemoryRead
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read) refers to stm32f1xx_hal_i2c.o(i.I2C_WaitOnRXNEFlagUntilTimeout) for I2C_WaitOnRXNEFlagUntilTimeout
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_DMA) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_DMA) refers to stm32f1xx_hal_dma.o(i.HAL_DMA_Start_IT) for HAL_DMA_Start_IT
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_RequestMemoryRead) for I2C_RequestMemoryRead
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_DMA) refers to stm32f1xx_hal_dma.o(i.HAL_DMA_Abort_IT) for HAL_DMA_Abort_IT
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_DMA) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_DMA) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_DMA) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_DMA) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_DMA) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAXferCplt) for I2C_DMAXferCplt
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAError) for I2C_DMAError
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_IT) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_IT) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_IT) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_IT) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Read_IT) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write) refers to stm32f1xx_hal_i2c.o(i.I2C_WaitOnFlagUntilTimeout) for I2C_WaitOnFlagUntilTimeout
@@ -477,17 +761,9 @@ Section Cross References
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_DMA) refers to stm32f1xx_hal_dma.o(i.HAL_DMA_Start_IT) for HAL_DMA_Start_IT
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_RequestMemoryWrite) for I2C_RequestMemoryWrite
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_DMA) refers to stm32f1xx_hal_dma.o(i.HAL_DMA_Abort_IT) for HAL_DMA_Abort_IT
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_DMA) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_DMA) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_DMA) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_DMA) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_DMA) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAXferCplt) for I2C_DMAXferCplt
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAError) for I2C_DMAError
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_IT) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_IT) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_IT) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_IT) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Mem_Write_IT) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Slave_Receive) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Slave_Receive) refers to stm32f1xx_hal_i2c.o(i.I2C_WaitOnFlagUntilTimeout) for I2C_WaitOnFlagUntilTimeout
@@ -514,10 +790,6 @@ Section Cross References
     stm32f1xx_hal_i2c.o(i.HAL_I2C_Slave_Transmit_DMA) refers to stm32f1xx_hal_i2c.o(i.I2C_DMAError) for I2C_DMAError
     stm32f1xx_hal_i2c.o(i.I2C_DMAAbort) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_ErrorCallback) for HAL_I2C_ErrorCallback
     stm32f1xx_hal_i2c.o(i.I2C_DMAAbort) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_AbortCpltCallback) for HAL_I2C_AbortCpltCallback
-    stm32f1xx_hal_i2c.o(i.I2C_DMAAbort) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.I2C_DMAAbort) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.I2C_DMAAbort) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.I2C_DMAAbort) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.I2C_DMAAbort) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.I2C_DMAError) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_ErrorCallback) for HAL_I2C_ErrorCallback
     stm32f1xx_hal_i2c.o(i.I2C_DMAXferCplt) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_SlaveTxCpltCallback) for HAL_I2C_SlaveTxCpltCallback
@@ -535,10 +807,6 @@ Section Cross References
     stm32f1xx_hal_i2c.o(i.I2C_MasterReceive_RXNE) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_MasterRxCpltCallback) for HAL_I2C_MasterRxCpltCallback
     stm32f1xx_hal_i2c.o(i.I2C_MasterReceive_RXNE) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_ErrorCallback) for HAL_I2C_ErrorCallback
     stm32f1xx_hal_i2c.o(i.I2C_MasterReceive_RXNE) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_MemRxCpltCallback) for HAL_I2C_MemRxCpltCallback
-    stm32f1xx_hal_i2c.o(i.I2C_MasterReceive_RXNE) refers to main.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.I2C_MasterReceive_RXNE) refers to vl53l0x.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.I2C_MasterReceive_RXNE) refers to i2c.o(.data) for SystemCoreClock
-    stm32f1xx_hal_i2c.o(i.I2C_MasterReceive_RXNE) refers to init.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.I2C_MasterReceive_RXNE) refers to system_stm32f1xx.o(.data) for SystemCoreClock
     stm32f1xx_hal_i2c.o(i.I2C_MasterRequestRead) refers to stm32f1xx_hal_i2c.o(i.I2C_WaitOnFlagUntilTimeout) for I2C_WaitOnFlagUntilTimeout
     stm32f1xx_hal_i2c.o(i.I2C_MasterRequestRead) refers to stm32f1xx_hal_i2c.o(i.I2C_WaitOnMasterAddressFlagUntilTimeout) for I2C_WaitOnMasterAddressFlagUntilTimeout
@@ -764,7 +1032,27 @@ Section Cross References
     stm32f1xx_hal_tim_ex.o(i.TIM_DMAErrorCCxN) refers to stm32f1xx_hal_tim.o(i.HAL_TIM_ErrorCallback) for HAL_TIM_ErrorCallback
     system_stm32f1xx.o(i.SystemCoreClockUpdate) refers to system_stm32f1xx.o(.data) for .data
     system_stm32f1xx.o(i.SystemCoreClockUpdate) refers to system_stm32f1xx.o(.constdata) for .constdata
+    __2printf.o(.text) refers to _printf_char_file.o(.text) for _printf_char_file
+    __2printf.o(.text) refers to stdio_streams.o(.bss) for __stdout
+    noretval__2printf.o(.text) refers to _printf_char_file.o(.text) for _printf_char_file
+    noretval__2printf.o(.text) refers to stdio_streams.o(.bss) for __stdout
+    rt_memcpy_v6.o(.text) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
     __main.o(!!!main) refers to __rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
+    faddsub_clz.o(x$fpl$fadd) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    faddsub_clz.o(x$fpl$fadd) refers to faddsub_clz.o(x$fpl$fsub) for _fsub1
+    faddsub_clz.o(x$fpl$fadd) refers to fretinf.o(x$fpl$fretinf) for __fpl_fretinf
+    faddsub_clz.o(x$fpl$fadd) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    faddsub_clz.o(x$fpl$frsb) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    faddsub_clz.o(x$fpl$frsb) refers to faddsub_clz.o(x$fpl$fadd) for _fadd1
+    faddsub_clz.o(x$fpl$frsb) refers to faddsub_clz.o(x$fpl$fsub) for _fsub1
+    faddsub_clz.o(x$fpl$fsub) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    faddsub_clz.o(x$fpl$fsub) refers to faddsub_clz.o(x$fpl$fadd) for _fadd1
+    faddsub_clz.o(x$fpl$fsub) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    fdiv.o(x$fpl$frdiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fdiv.o(x$fpl$frdiv) refers to fdiv.o(x$fpl$fdiv) for _fdiv1
+    fdiv.o(x$fpl$fdiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fdiv.o(x$fpl$fdiv) refers to fretinf.o(x$fpl$fretinf) for __fpl_fretinf
+    fdiv.o(x$fpl$fdiv) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
     ffixu.o(x$fpl$ffixu) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     ffixu.o(x$fpl$ffixu) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
     ffixu.o(x$fpl$ffixur) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
@@ -772,17 +1060,26 @@ Section Cross References
     fflt_clz.o(x$fpl$ffltu) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     fflt_clz.o(x$fpl$fflt) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     fflt_clz.o(x$fpl$ffltn) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
-    scalbnf.o(x$fpl$scalbnf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
-    scalbnf.o(x$fpl$scalbnf) refers to fcheck1.o(x$fpl$fcheck1) for __fpl_fcheck_NaN1
+    fmul.o(x$fpl$fmul) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fmul.o(x$fpl$fmul) refers to fretinf.o(x$fpl$fretinf) for __fpl_fretinf
+    fmul.o(x$fpl$fmul) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for __rt_entry_li
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for __rt_entry_main
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000C) for __rt_entry_postli_1
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000009) for __rt_entry_postsh_1
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000002) for __rt_entry_presh_1
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for __rt_entry_sh
-    fcheck1.o(x$fpl$fcheck1) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
-    fcheck1.o(x$fpl$fcheck1) refers to retnan.o(x$fpl$retnan) for __fpl_return_NaN
+    _printf_char_file.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    _printf_char_file.o(.text) refers to ferror.o(.text) for ferror
+    _printf_char_file.o(.text) refers to fputc.o(i.fputc) for fputc
+    stdio_streams.o(.bss) refers (Special) to initio.o(.text) for _initio
+    stdio_streams.o(.bss) refers (Special) to initio.o(.text) for _initio
+    stdio_streams.o(.bss) refers (Special) to initio.o(.text) for _initio
+    stdio_streams.o(.data) refers (Special) to initio.o(.text) for _initio
+    stdio_streams.o(.data) refers (Special) to initio.o(.text) for _initio
+    stdio_streams.o(.data) refers (Special) to initio.o(.text) for _initio
     fnaninf.o(x$fpl$fnaninf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fretinf.o(x$fpl$fretinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
     __rtentry2.o(.ARM.Collect$$rtentry$$00000008) refers to boardinit2.o(.text) for _platform_post_stackheap_init
     __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) refers to libinit.o(.ARM.Collect$$libinit$$00000000) for __rt_lib_init
     __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) refers to boardinit3.o(.text) for _platform_post_lib_init
@@ -795,11 +1092,135 @@ Section Cross References
     __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for .ARM.Collect$$rtentry$$0000000D
     __rtentry4.o(.ARM.Collect$$rtentry$$00000004) refers to sys_stackheap_outer.o(.text) for __user_setup_stackheap
     __rtentry4.o(.ARM.exidx) refers to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for .ARM.Collect$$rtentry$$00000004
-    retnan.o(x$fpl$retnan) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
-    retnan.o(x$fpl$retnan) refers to trapv.o(x$fpl$trapveneer) for __fpl_cmpreturn
+    _printf_char_common.o(.text) refers to __printf_nopercent.o(.text) for __printf
+    fputc.o(i.fputc) refers to flsbuf.o(.text) for __flsbuf_byte
+    initio.o(.text) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000024) for __rt_lib_init_stdio_2
+    initio.o(.text) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000003) for __rt_lib_shutdown_stdio_2
+    initio.o(.text) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    initio.o(.text) refers to fopen.o(.text) for freopen
+    initio.o(.text) refers to defsig_rtred_outer.o(.text) for __rt_SIGRTRED
+    initio.o(.text) refers to setvbuf.o(.text) for setvbuf
+    initio.o(.text) refers to fclose.o(.text) for _fclose_internal
+    initio.o(.text) refers to h1_free.o(.text) for free
+    initio.o(.text) refers to stdio_streams.o(.bss) for __stdin
+    initio.o(.text) refers to stdio_streams.o(.bss) for __stdout
+    initio.o(.text) refers to stdio_streams.o(.bss) for __stderr
+    initio.o(.text) refers to stdio_streams.o(.data) for __aeabi_stdin
+    initio.o(.text) refers to stdio_streams.o(.data) for __aeabi_stdout
+    initio.o(.text) refers to stdio_streams.o(.data) for __aeabi_stderr
+    initio.o(.text) refers to sys_io.o(.constdata) for __stdin_name
+    initio.o(.text) refers to sys_io.o(.constdata) for __stdout_name
+    initio.o(.text) refers to sys_io.o(.constdata) for __stderr_name
+    initio_locked.o(.text) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000024) for __rt_lib_init_stdio_2
+    initio_locked.o(.text) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000003) for __rt_lib_shutdown_stdio_2
+    initio_locked.o(.text) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    initio_locked.o(.text) refers to fopen.o(.text) for freopen
+    initio_locked.o(.text) refers to defsig_rtred_outer.o(.text) for __rt_SIGRTRED
+    initio_locked.o(.text) refers to setvbuf.o(.text) for setvbuf
+    initio_locked.o(.text) refers to fclose.o(.text) for _fclose_internal
+    initio_locked.o(.text) refers to h1_free.o(.text) for free
+    initio_locked.o(.text) refers to stdio_streams.o(.bss) for __stdin
+    initio_locked.o(.text) refers to stdio_streams.o(.bss) for __stdout
+    initio_locked.o(.text) refers to stdio_streams.o(.bss) for __stderr
+    initio_locked.o(.text) refers to stdio_streams.o(.data) for __aeabi_stdin
+    initio_locked.o(.text) refers to stdio_streams.o(.data) for __aeabi_stdout
+    initio_locked.o(.text) refers to stdio_streams.o(.data) for __aeabi_stderr
+    initio_locked.o(.text) refers to streamlock.o(.data) for _stream_list_lock
+    initio_locked.o(.text) refers to sys_io.o(.constdata) for __stdin_name
+    initio_locked.o(.text) refers to sys_io.o(.constdata) for __stdout_name
+    initio_locked.o(.text) refers to sys_io.o(.constdata) for __stderr_name
+    sys_io.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_io.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_io.o(.text) refers to strlen.o(.text) for strlen
+    sys_io.o(.constdata) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_io.o(.constdata) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_io.o(.constdata) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_io.o(.constdata) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_io.o(.constdata) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_io.o(.constdata) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
     sys_stackheap_outer.o(.text) refers to libspace.o(.text) for __user_perproc_libspace
     sys_stackheap_outer.o(.text) refers to startup_stm32f103xb.o(.text) for __user_initial_stackheap
+    free.o(.text) refers (Special) to hguard.o(.text) for __heap$guard
+    free.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    free.o(.text) refers to heapstubs.o(.text) for __Heap_Free
+    h1_free.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    h1_free_mt.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._FDIterate) refers to heap2.o(.conststring) for .conststring
+    heap2.o(i.___Heap_ProvideMemory$realtime) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2.o(i.___Heap_ProvideMemory$realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i.___Heap_Stats$realtime) refers to heap2.o(i._Heap2_StatsIterate) for _Heap2_StatsIterate
+    heap2.o(i.___Heap_Valid$realtime) refers to heap2.o(i._FDIterate) for _FDIterate
+    heap2.o(i.___Heap_Valid$realtime) refers to heap2.o(.conststring) for .conststring
+    heap2.o(i._free$realtime) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._free$realtime) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2.o(i._free$realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i._malloc$realtime) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._malloc$realtime) refers to fdtree.o(i._FDTree_FindFirst) for _FDTree_FindFirst
+    heap2.o(i._malloc$realtime) refers to init_alloc.o(.text) for __Heap_Full
+    heap2.o(i._malloc$realtime) refers to fdtree.o(i._FDTree_RemoveNode) for _FDTree_RemoveNode
+    heap2.o(i._malloc$realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i._posix_memalign$realtime) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._posix_memalign$realtime) refers to fdtree.o(i._FDTree_FindFirst) for _FDTree_FindFirst
+    heap2.o(i._posix_memalign$realtime) refers to init_alloc.o(.text) for __Heap_Full
+    heap2.o(i._posix_memalign$realtime) refers to fdtree.o(i._FDTree_RemoveNode) for _FDTree_RemoveNode
+    heap2.o(i._posix_memalign$realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i._realloc$realtime) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2.o(i._realloc$realtime) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2.o(i._realloc$realtime) refers to h1_free.o(.text) for free
+    heap2.o(i._realloc$realtime) refers to h1_alloc.o(.text) for malloc
+    heap2.o(i._realloc$realtime) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2.o(i._realloc$realtime) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    heap2mt.o(i._FDIterate) refers to heap2mt.o(.conststring) for .conststring
+    heap2mt.o(i.___Heap_Initialize$realtime$concurrent) refers to mutex_dummy.o(.text) for _mutex_initialize
+    heap2mt.o(i.___Heap_ProvideMemory$realtime$concurrent) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2mt.o(i.___Heap_ProvideMemory$realtime$concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i.___Heap_Stats$realtime$concurrent) refers to heap2mt.o(i._Heap2_StatsIterate) for _Heap2_StatsIterate
+    heap2mt.o(i.___Heap_Valid$realtime$concurrent) refers to heap2mt.o(i._FDIterate) for _FDIterate
+    heap2mt.o(i.___Heap_Valid$realtime$concurrent) refers to heap2mt.o(.conststring) for .conststring
+    heap2mt.o(i._free$realtime$concurrent) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2mt.o(i._free$realtime$concurrent) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2mt.o(i._free$realtime$concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i._malloc$realtime$concurrent) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2mt.o(i._malloc$realtime$concurrent) refers to fdtree.o(i._FDTree_FindFirst) for _FDTree_FindFirst
+    heap2mt.o(i._malloc$realtime$concurrent) refers to init_alloc.o(.text) for __Heap_Full
+    heap2mt.o(i._malloc$realtime$concurrent) refers to fdtree.o(i._FDTree_RemoveNode) for _FDTree_RemoveNode
+    heap2mt.o(i._malloc$realtime$concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i._posix_memalign$realtime$concurrent) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2mt.o(i._posix_memalign$realtime$concurrent) refers to fdtree.o(i._FDTree_FindFirst) for _FDTree_FindFirst
+    heap2mt.o(i._posix_memalign$realtime$concurrent) refers to init_alloc.o(.text) for __Heap_Full
+    heap2mt.o(i._posix_memalign$realtime$concurrent) refers to fdtree.o(i._FDTree_RemoveNode) for _FDTree_RemoveNode
+    heap2mt.o(i._posix_memalign$realtime$concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i._realloc$realtime$concurrent) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    heap2mt.o(i._realloc$realtime$concurrent) refers to fdtree.o(i._FDTree_Insert) for _FDTree_Insert
+    heap2mt.o(i._realloc$realtime$concurrent) refers to h1_free.o(.text) for free
+    heap2mt.o(i._realloc$realtime$concurrent) refers to h1_alloc.o(.text) for malloc
+    heap2mt.o(i._realloc$realtime$concurrent) refers to fdtree.o(i._FDTree_Delete) for _FDTree_Delete
+    heap2mt.o(i._realloc$realtime$concurrent) refers to rt_memcpy_w.o(.text) for __aeabi_memcpy4
+    flsbuf.o(.text) refers to stdio.o(.text) for _deferredlazyseek
+    flsbuf.o(.text) refers to sys_io.o(.text) for _sys_flen
+    flsbuf.o(.text) refers to h1_alloc.o(.text) for malloc
+    streamlock.o(.data) refers (Special) to initio.o(.text) for _initio
+    fopen.o(.text) refers to fclose.o(.text) for _fclose_internal
+    fopen.o(.text) refers to sys_io.o(.text) for _sys_open
+    fopen.o(.text) refers to fseek.o(.text) for _fseek
+    fopen.o(.text) refers to h1_alloc.o(.text) for malloc
+    fopen.o(.text) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    fopen.o(.text) refers to stdio_streams.o(.bss) for __stdin
+    fclose.o(.text) refers to stdio.o(.text) for _fflush
+    fclose.o(.text) refers to sys_io.o(.text) for _sys_close
+    fclose.o(.text) refers to h1_free.o(.text) for free
+    fclose.o(.text) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    fopen_locked.o(.text) refers to fclose.o(.text) for _fclose_internal
+    fopen_locked.o(.text) refers to sys_io.o(.text) for _sys_open
+    fopen_locked.o(.text) refers to fseek.o(.text) for _fseek
+    fopen_locked.o(.text) refers to h1_alloc.o(.text) for malloc
+    fopen_locked.o(.text) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    fopen_locked.o(.text) refers to streamlock.o(.data) for _stream_list_lock
+    fopen_locked.o(.text) refers to stdio_streams.o(.bss) for __stdin
     exit.o(.text) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for __rt_exit
+    defsig_rtred_outer.o(.text) refers to defsig_rtred_inner.o(.text) for __rt_SIGRTRED_inner
+    defsig_rtred_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_rtred_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
     libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002E) for __rt_lib_init_alloca_1
     libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002C) for __rt_lib_init_argv_1
     libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001B) for __rt_lib_init_atexit_1
@@ -821,7 +1242,18 @@ Section Cross References
     libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001D) for __rt_lib_init_signal_1
     libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000025) for __rt_lib_init_stdio_1
     libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000C) for __rt_lib_init_user_alloc_1
-    trapv.o(x$fpl$trapveneer) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    libinit2.o(.ARM.Collect$$libinit$$00000005) refers (Weak) to init_alloc.o(.text) for _init_alloc
+    libinit2.o(.ARM.Collect$$libinit$$00000010) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000012) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000014) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000016) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000018) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000024) refers (Weak) to initio.o(.text) for _initio
+    libinit2.o(.ARM.Collect$$libinit$$00000026) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    libinit2.o(.ARM.Collect$$libinit$$00000027) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    libshutdown2.o(.ARM.Collect$$libshutdown$$00000003) refers (Weak) to initio.o(.text) for _terminateio
+    libshutdown2.o(.ARM.Collect$$libshutdown$$0000000D) refers (Weak) to term_alloc.o(.text) for _terminate_alloc
+    flsbuf_fwide.o(.text) refers to flsbuf.o(.text) for __flsbuf
     libspace.o(.text) refers to libspace.o(.bss) for __libspace_start
     rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
     rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
@@ -830,24 +1262,91 @@ Section Cross References
     rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
     rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
     rtexit.o(.ARM.exidx) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for .ARM.Collect$$rtexit$$00000000
-    libinit2.o(.ARM.Collect$$libinit$$00000010) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
-    libinit2.o(.ARM.Collect$$libinit$$00000012) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
-    libinit2.o(.ARM.Collect$$libinit$$00000014) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
-    libinit2.o(.ARM.Collect$$libinit$$00000016) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
-    libinit2.o(.ARM.Collect$$libinit$$00000018) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
-    libinit2.o(.ARM.Collect$$libinit$$00000026) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
-    libinit2.o(.ARM.Collect$$libinit$$00000027) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    rt_raise.o(.text) refers to __raise.o(.text) for __raise
+    rt_raise.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    rt_heap_descriptor.o(.text) refers to rt_heap_descriptor.o(.bss) for __rt_heap_descriptor_data
+    rt_heap_descriptor_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    init_alloc.o(.text) refers (Special) to hguard.o(.text) for __heap$guard
+    init_alloc.o(.text) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000005) for __rt_lib_init_heap_2
+    init_alloc.o(.text) refers (Special) to maybetermalloc1.o(.emb_text) for _maybe_terminate_alloc
+    init_alloc.o(.text) refers to h1_extend.o(.text) for __Heap_ProvideMemory
+    init_alloc.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    init_alloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    init_alloc.o(.text) refers to h1_init.o(.text) for __Heap_Initialize
+    malloc.o(.text) refers (Special) to hguard.o(.text) for __heap$guard
+    malloc.o(.text) refers (Special) to init_alloc.o(.text) for _init_alloc
+    malloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    malloc.o(.text) refers to heapstubs.o(.text) for __Heap_Alloc
+    h1_alloc.o(.text) refers (Special) to h1_init.o(.text) for __Heap_Initialize
+    h1_alloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    h1_alloc.o(.text) refers to init_alloc.o(.text) for __Heap_Full
+    h1_alloc_mt.o(.text) refers (Special) to h1_init.o(.text) for __Heap_Initialize
+    h1_alloc_mt.o(.text) refers to init_alloc.o(.text) for __Heap_Full
+    h1_alloc_mt.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    _printf_char_file_locked.o(.text) refers to _printf_char_common.o(.text) for _printf_char_common
+    _printf_char_file_locked.o(.text) refers to fputc.o(i._fputc$unlocked) for _fputc$unlocked
+    fseek.o(.text) refers to sys_io.o(.text) for _sys_istty
+    fseek.o(.text) refers to ftell.o(.text) for _ftell_internal
+    fseek.o(.text) refers to stdio.o(.text) for _seterr
+    stdio.o(.text) refers to sys_io.o(.text) for _sys_seek
+    fwritefast.o(.text) refers to stdio.o(.text) for _writebuf
+    fwritefast.o(.text) refers to flsbuf.o(.text) for __flsbuf_byte
+    fwritefast.o(.text) refers to rt_memcpy_v6.o(.text) for __aeabi_memcpy
+    fwritefast_locked.o(.text) refers to stdio.o(.text) for _writebuf
+    fwritefast_locked.o(.text) refers to flsbuf.o(.text) for __flsbuf_byte
+    fwritefast_locked.o(.text) refers to rt_memcpy_v6.o(.text) for __aeabi_memcpy
+    defsig_exit.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_rtred_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    assert_stdio.o(.text) refers to fputs.o(.text) for fputs
+    assert_stdio.o(.text) refers to fflush.o(.text) for fflush
+    assert_stdio.o(.text) refers to stdio_streams.o(.bss) for __stderr
+    argv_veneer.o(.emb_text) refers to no_argv.o(.text) for __ARM_get_argv
+    sys_exit.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_exit.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
     rtexit2.o(.ARM.Collect$$rtexit$$00000003) refers to libshutdown.o(.ARM.Collect$$libshutdown$$00000000) for __rt_lib_shutdown
     rtexit2.o(.ARM.Collect$$rtexit$$00000004) refers to sys_exit.o(.text) for _sys_exit
     rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000001) for .ARM.Collect$$rtexit$$00000001
     rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for .ARM.Collect$$rtexit$$00000003
     rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for .ARM.Collect$$rtexit$$00000004
-    argv_veneer.o(.emb_text) refers to no_argv.o(.text) for __ARM_get_argv
-    sys_exit.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
-    sys_exit.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    maybetermalloc2.o(.emb_text) refers (Special) to term_alloc.o(.text) for _terminate_alloc
+    h1_extend.o(.text) refers to h1_free.o(.text) for free
+    h1_init_mt.o(.text) refers to mutex_dummy.o(.text) for _mutex_initialize
+    h1_extend_mt.o(.text) refers to h1_free_mt.o(.text) for _free_internal
+    fflush.o(.text) refers to stdio.o(.text) for _fflush
+    fflush.o(.text) refers to fseek.o(.text) for _fseek
+    fflush.o(.text) refers to stdio_streams.o(.bss) for __stdin
+    fputs.o(.text) refers to fputc.o(i.fputc) for fputc
+    ftell.o(.text) refers to rt_errno_addr_intlibspace.o(.text) for __aeabi_errno_addr
+    fflush_locked.o(.text) refers to stdio.o(.text) for _fflush
+    fflush_locked.o(.text) refers to fseek.o(.text) for _fseek
+    fflush_locked.o(.text) refers to fflush.o(.text) for _do_fflush
+    fflush_locked.o(.text) refers to streamlock.o(.data) for _stream_list_lock
+    fflush_locked.o(.text) refers to stdio_streams.o(.bss) for __stdin
+    __raise.o(.text) refers to defsig.o(CL$$defsig) for __default_signal_handler
+    defsig_general.o(.text) refers to sys_wrch.o(.text) for _ttywrch
+    defsig_rtmem_outer.o(.text) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_rtmem_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_rtmem_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    heapauxa.o(.text) refers to heapauxa.o(.data) for .data
+    _get_argv.o(.text) refers (Special) to hrguard.o(.text) for __heap_region$guard
+    _get_argv.o(.text) refers to h1_alloc.o(.text) for malloc
+    _get_argv.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    _get_argv.o(.text) refers to sys_command.o(.text) for _sys_command_string
     _get_argv_nomalloc.o(.text) refers (Special) to hrguard.o(.text) for __heap_region$guard
     _get_argv_nomalloc.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
     _get_argv_nomalloc.o(.text) refers to sys_command.o(.text) for _sys_command_string
+    sys_wrch.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_wrch.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_command.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_command.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    rt_errno_addr.o(.text) refers to rt_errno_addr.o(.bss) for __aeabi_errno_addr_data
+    rt_errno_addr_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    term_alloc.o(.text) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000E) for __rt_lib_shutdown_heap_2
+    term_alloc.o(.text) refers to rt_heap_descriptor_intlibspace.o(.text) for __rt_heap_descriptor
+    term_alloc.o(.text) refers to h1_final.o(.text) for __Heap_Finalize
+    defsig_rtmem_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig.o(CL$$defsig) refers to defsig_rtred_inner.o(.text) for __rt_SIGRTRED_inner
+    defsig.o(CL$$defsig) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
     libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000002) for __rt_lib_shutdown_cpp_1
     libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000007) for __rt_lib_shutdown_fp_trap_1
     libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F) for __rt_lib_shutdown_heap_1
@@ -855,23 +1354,8 @@ Section Cross References
     libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A) for __rt_lib_shutdown_signal_1
     libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000004) for __rt_lib_shutdown_stdio_1
     libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C) for __rt_lib_shutdown_user_alloc_1
-    sys_command.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
-    sys_command.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
-    defsig_rtmem_outer.o(.text) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
-    defsig_rtmem_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
-    defsig_rtmem_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
-    rt_raise.o(.text) refers to __raise.o(.text) for __raise
-    rt_raise.o(.text) refers to sys_exit.o(.text) for _sys_exit
-    defsig_exit.o(.text) refers to sys_exit.o(.text) for _sys_exit
-    defsig_rtmem_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
-    __raise.o(.text) refers to defsig.o(CL$$defsig) for __default_signal_handler
-    defsig_general.o(.text) refers to sys_wrch.o(.text) for _ttywrch
-    sys_wrch.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
-    sys_wrch.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
-    defsig.o(CL$$defsig) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
     defsig_abrt_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
     defsig_fpe_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
-    defsig_rtred_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
     defsig_stak_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
     defsig_pvfn_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
     defsig_cppl_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
