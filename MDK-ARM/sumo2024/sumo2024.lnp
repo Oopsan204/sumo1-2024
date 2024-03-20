@@ -10,6 +10,7 @@
 "sumo2024\vl53l0x_platform.o"
 "sumo2024\vl53l0x_platform_log.o"
 "sumo2024\vl53l0x_tof.o"
+"sumo2024\aml_debugdevice.o"
 "sumo2024\main.o"
 "sumo2024\stm32f1xx_it.o"
 "sumo2024\stm32f1xx_hal_msp.o"

@@ -24,7 +24,7 @@
 #include "tim_pwm.h"
 #include "stm32f1xx.h"
 #include "AML_LaserSensor.h"
-
+#include "AML_DebugDevice.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -110,8 +110,15 @@ int main(void)
   MX_TIM1_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-  PWM_Start(&htim1, TIM_CHANNEL_1);
-  PWM_Start(&htim1, TIM_CHANNEL_2);
+  PWM_Start(&htim1,LPWM1);
+  PWM_Start(&htim1,RPWM1);
+  PWM_Start(&htim1,LPWM2);
+  PWM_Start(&htim1,RPWM2);
+  PWM_Write(&htim1,LPWM1,0);
+  PWM_Write(&htim1, LPWM2, 0);
+  PWM_Write(&htim1, RPWM1, 0);
+  PWM_Write(&htim1, RPWM2, 0);
+
   HAL_ADC_Start_DMA(&hadc1, &button, 1);
 
   /* USER CODE END 2 */

@@ -44,3 +44,4 @@ sumo2024\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 sumo2024\main.o: ../Core/Inc/vl53l0x_tof.h
 sumo2024\main.o: ../Core/Inc/KalmanFilter.h
 sumo2024\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+sumo2024\main.o: ../Core/Inc/AML_DebugDevice.h

@@ -58,6 +58,12 @@ Section Cross References
     aml_lasersensor.o(i.AML_LaserSensor_Setup) refers to aml_lasersensor.o(.bss) for .bss
     aml_lasersensor.o(i.AML_LaserSensor_Setup) refers to main.o(.bss) for hi2c1
     aml_lasersensor.o(i.AML_LaserSensor_Setup) refers to aml_lasersensor.o(.data) for .data
+    aml_lasersensor.o(i.AML_LaserSensor_TestLaser) refers to aml_lasersensor.o(i.AML_LaserSensor_ReadSingleWithoutFillter) for AML_LaserSensor_ReadSingleWithoutFillter
+    aml_lasersensor.o(i.AML_LaserSensor_TestLaser) refers to aml_lasersensor.o(i.AML_LaserSensor_ReadSingleWithFillter) for AML_LaserSensor_ReadSingleWithFillter
+    aml_lasersensor.o(i.AML_LaserSensor_TestLaser) refers to aml_debugdevice.o(i.AML_DebugDevice_BuzzBeep_TitTit) for AML_DebugDevice_BuzzBeep_TitTit
+    aml_lasersensor.o(i.AML_LaserSensor_TestLaser) refers to aml_debugdevice.o(i.AML_DebugDevice_BuzzBeep) for AML_DebugDevice_BuzzBeep
+    aml_lasersensor.o(i.AML_LaserSensor_TestLaser) refers to stm32f1xx_hal.o(i.HAL_Delay) for HAL_Delay
+    aml_lasersensor.o(i.AML_LaserSensor_TestLaser) refers to aml_lasersensor.o(.data) for .data
     kalmanfilter.o(i.SimpleKalmanFilter_updateEstimate) refers to faddsub_clz.o(x$fpl$fadd) for __aeabi_fadd
     kalmanfilter.o(i.SimpleKalmanFilter_updateEstimate) refers to fdiv.o(x$fpl$fdiv) for __aeabi_fdiv
     kalmanfilter.o(i.SimpleKalmanFilter_updateEstimate) refers to faddsub_clz.o(x$fpl$fsub) for __aeabi_fsub
@@ -491,6 +497,12 @@ Section Cross References
     vl53l0x_tof.o(i.VL53L0X_WriteMulti) refers to vl53l0x_tof.o(.bss) for .bss
     vl53l0x_tof.o(i._I2CRead) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Receive) for HAL_I2C_Master_Receive
     vl53l0x_tof.o(i._I2CWrite) refers to stm32f1xx_hal_i2c.o(i.HAL_I2C_Master_Transmit) for HAL_I2C_Master_Transmit
+    aml_debugdevice.o(i.AML_DebugDevice_BuzzBeep) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
+    aml_debugdevice.o(i.AML_DebugDevice_BuzzBeep) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
+    aml_debugdevice.o(i.AML_DebugDevice_BuzzBeep_TitTit) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
+    aml_debugdevice.o(i.AML_DebugDevice_BuzzBeep_TitTit) refers to stm32f1xx_hal.o(i.HAL_Delay) for HAL_Delay
+    aml_debugdevice.o(i.AML_DebugDevice_TurnOffIT) refers to stm32f1xx_hal_tim.o(i.HAL_TIM_Base_Stop_IT) for HAL_TIM_Base_Stop_IT
+    aml_debugdevice.o(i.AML_DebugDevice_TurnOnIT) refers to stm32f1xx_hal_tim.o(i.HAL_TIM_Base_Start_IT) for HAL_TIM_Base_Start_IT
     main.o(i.HAL_GPIO_EXTI_Callback) refers to main.o(.data) for .data
     main.o(i.MX_ADC1_Init) refers to stm32f1xx_hal_adc.o(i.HAL_ADC_Init) for HAL_ADC_Init
     main.o(i.MX_ADC1_Init) refers to stm32f1xx_hal_adc.o(i.HAL_ADC_ConfigChannel) for HAL_ADC_ConfigChannel
@@ -521,6 +533,7 @@ Section Cross References
     main.o(i.main) refers to main.o(i.MX_TIM1_Init) for MX_TIM1_Init
     main.o(i.main) refers to main.o(i.MX_ADC1_Init) for MX_ADC1_Init
     main.o(i.main) refers to stm32f1xx_hal_tim.o(i.HAL_TIM_PWM_Start) for HAL_TIM_PWM_Start
+    main.o(i.main) refers to main.o(i.PWM_Write) for PWM_Write
     main.o(i.main) refers to stm32f1xx_hal_adc.o(i.HAL_ADC_Start_DMA) for HAL_ADC_Start_DMA
     main.o(i.main) refers to main.o(.bss) for .bss
     main.o(i.main) refers to main.o(.data) for .data
