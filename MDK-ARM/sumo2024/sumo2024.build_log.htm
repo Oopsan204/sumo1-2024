@@ -22,29 +22,24 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 D:\back_up_sumo2024\MDK-ARM\sumo2024.uvprojx
-Project File Date:  03/16/2024
+Project File Date:  03/19/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'sumo2024'
-linking...
-sumo2024\sumo2024.axf: Error: L6200E: Symbol VL53L0X_RdByte multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol VL53L0X_RdDWord multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol VL53L0X_RdWord multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol VL53L0X_ReadMulti multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol VL53L0X_UpdateByte multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol VL53L0X_WrByte multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol VL53L0X_WrDWord multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol VL53L0X_WrWord multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol VL53L0X_WriteMulti multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol VL53L0X_PollingDelay multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol _I2CBuffer multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol _I2CRead multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-sumo2024\sumo2024.axf: Error: L6200E: Symbol _I2CWrite multiply defined (by vl53l0x_tof.o and vl53l0x_platform.o).
-Not enough information to list image symbols.
-Not enough information to list load addresses in the image map.
-Finished: 2 information, 0 warning and 13 error messages.
-"sumo2024\sumo2024.axf" - 13 Error(s), 0 Warning(s).
+compiling main.c...
+../Core/Inc/VL53L0X.h(123): warning:  #1295-D: Deprecated declaration VL53L0X_init - give arg types
+      bool VL53L0X_init();
+../Core/Inc/i2c.h(28): warning:  #1295-D: Deprecated declaration i2c1_check_error - give arg types
+  uint8_t i2c1_check_error();
+../Core/Inc/i2c.h(30): warning:  #1295-D: Deprecated declaration init_i2c1 - give arg types
+  void init_i2c1();
+../Core/Src/main.c(42): error:  #253: expected a ","
+  struct VL53L0X myTOFsensor = {.io_2v8 = true, .address = 0b0101001, .io_timeout = 500, .did_timeout = false};
+../Core/Src/main.c(175): warning:  #111-D: statement is unreachable
+    return 1;
+../Core/Src/main.c: 4 warnings, 1 error
+"sumo2024\sumo2024.axf" - 1 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -68,7 +63,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.4.0
 Target not created.
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
