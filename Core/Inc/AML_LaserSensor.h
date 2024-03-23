@@ -5,7 +5,7 @@
 #include "vl53l0x_api.h"
 #include "main.h"
 #include "KalmanFilter.h"
-#include "AML_DebugDevice.h"
+
 
 typedef enum
 {
@@ -23,6 +23,5 @@ void AML_LaserSensor_ReadAll(void);
 int32_t AML_LaserSensor_ReadSingleWithFillter(uint8_t name);
 int32_t AML_LaserSensor_ReadSingleWithoutFillter(uint8_t name);
 
-uint8_t AML_LaserSensor_WallFavor(void);
 
 #endif

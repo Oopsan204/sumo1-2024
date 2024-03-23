@@ -3,14 +3,18 @@
         {
             "name": "sumo2024",
             "includePath": [
-                "d:\\back_up_sumo2024\\Core\\Inc",
                 "d:\\back_up_sumo2024\\Drivers\\STM32F1xx_HAL_Driver\\Inc",
                 "d:\\back_up_sumo2024\\Drivers\\STM32F1xx_HAL_Driver\\Inc\\Legacy",
                 "d:\\back_up_sumo2024\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Include",
                 "d:\\back_up_sumo2024\\Drivers\\CMSIS\\Include",
+                "d:\\back_up_sumo2024\\Core\\Inc",
+                "d:\\back_up_sumo2024\\Drivers\\VL53L0X\\platform\\inc",
+                "d:\\back_up_sumo2024\\Drivers\\VL53L0X\\core\\inc",
                 "d:\\back_up_sumo2024\\MDK-ARM",
                 "d:\\back_up_sumo2024\\Core\\Src",
-                "d:\\back_up_sumo2024\\Drivers\\STM32F1xx_HAL_Driver\\Src"
+                "d:\\back_up_sumo2024\\Drivers\\STM32F1xx_HAL_Driver\\Src",
+                "d:\\back_up_sumo2024\\Drivers\\VL53L0X\\platform\\src",
+                "d:\\back_up_sumo2024\\Drivers\\VL53L0X\\core\\src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

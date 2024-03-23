@@ -18,7 +18,7 @@
           <Vendor>STMicroelectronics</Vendor>
           <PackID>Keil.STM32F1xx_DFP.2.3.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
-          <Cpu>IRAM(0x20000000-0x20004FFF) IROM(0x8000000-0x800FFFF)  CLOCK(8000000) CPUTYPE("Cortex-M3")</Cpu>
+          <Cpu>IRAM(0x20000000-0x20004FFF) IROM(0x8000000-0x800FFFF)   CLOCK(8000000) CPUTYPE("Cortex-M3")</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
           <FlashDriverDll></FlashDriverDll>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;../Core/Inc;../Drivers/VL53L0X/platform/inc;../Drivers/VL53L0X/core/inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -394,11 +394,6 @@
           <GroupName>Application/User/Core</GroupName>
           <Files>
             <File>
-              <FileName>tim_pwm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Core\Inc\tim_pwm.h</FilePath>
-            </File>
-            <File>
               <FileName>AML_LaserSensor.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\AML_LaserSensor.c</FilePath>
@@ -407,46 +402,6 @@
               <FileName>KalmanFilter.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\KalmanFilter.c</FilePath>
-            </File>
-            <File>
-              <FileName>vl53l0x_api.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\vl53l0x_api.c</FilePath>
-            </File>
-            <File>
-              <FileName>vl53l0x_api_calibration.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\vl53l0x_api_calibration.c</FilePath>
-            </File>
-            <File>
-              <FileName>vl53l0x_api_core.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\vl53l0x_api_core.c</FilePath>
-            </File>
-            <File>
-              <FileName>vl53l0x_api_ranging.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\vl53l0x_api_ranging.c</FilePath>
-            </File>
-            <File>
-              <FileName>vl53l0x_api_strings.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\vl53l0x_api_strings.c</FilePath>
-            </File>
-            <File>
-              <FileName>vl53l0x_platform.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\vl53l0x_platform.c</FilePath>
-            </File>
-            <File>
-              <FileName>vl53l0x_platform_log.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\vl53l0x_platform_log.c</FilePath>
-            </File>
-            <File>
-              <FileName>vl53l0x_tof.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\vl53l0x_tof.c</FilePath>
             </File>
             <File>
               <FileName>AML_DebugDevice.c</FileName>
@@ -715,6 +670,51 @@
               <FileName>system_stm32f1xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/system_stm32f1xx.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>D:\back_up_sumo2024\Drivers\VL53L0X\platform\src</GroupName>
+          <Files>
+            <File>
+              <FileName>vl53l0x_platform.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\VL53L0X\platform\src\vl53l0x_platform.c</FilePath>
+            </File>
+            <File>
+              <FileName>vl53l0x_platform_log.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\VL53L0X\platform\src\vl53l0x_platform_log.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>D:\back_up_sumo2024\Drivers\VL53L0X\core\src</GroupName>
+          <Files>
+            <File>
+              <FileName>vl53l0x_api.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\VL53L0X\core\src\vl53l0x_api.c</FilePath>
+            </File>
+            <File>
+              <FileName>vl53l0x_api_calibration.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\VL53L0X\core\src\vl53l0x_api_calibration.c</FilePath>
+            </File>
+            <File>
+              <FileName>vl53l0x_api_core.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\VL53L0X\core\src\vl53l0x_api_core.c</FilePath>
+            </File>
+            <File>
+              <FileName>vl53l0x_api_ranging.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\VL53L0X\core\src\vl53l0x_api_ranging.c</FilePath>
+            </File>
+            <File>
+              <FileName>vl53l0x_api_strings.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\VL53L0X\core\src\vl53l0x_api_strings.c</FilePath>
             </File>
           </Files>
         </Group>

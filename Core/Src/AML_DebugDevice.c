@@ -1,6 +1,6 @@
 #include "AML_DebugDevice.h"
 
-extern TIM_HandleTypeDef htim10;
+extern TIM_HandleTypeDef htim2;
 
 void AML_DebugDevice_BuzzBeep(uint16_t delay)
 {
@@ -22,6 +22,7 @@ void AML_DebugDevice_BuzzBeep_TitTit(uint8_t turn)
         HAL_GPIO_WritePin(Buzz_GPIO_Port,Buzz_Pin,GPIO_PIN_RESET);
         HAL_Delay(500);
         HAL_GPIO_WritePin(Buzz_GPIO_Port,Buzz_Pin,GPIO_PIN_SET);
+        HAL_Delay(500);
     }
 }
 
@@ -64,12 +65,12 @@ void AML_DebugDevice_Handle()
     // }
 }
 
-void AML_DebugDevice_TurnOnIT()
-{
-    HAL_TIM_Base_Start_IT(&htim10);
-}
+//void AML_DebugDevice_TurnOnIT()
+//{
+//    HAL_TIM_Base_Start_IT(&htim3);
+//}
 
-void AML_DebugDevice_TurnOffIT()
-{
-    HAL_TIM_Base_Stop_IT(&htim10);
-}
+//void AML_DebugDevice_TurnOffIT()
+//{
+//    HAL_TIM_Base_Stop_IT(&htim3);
+//}
