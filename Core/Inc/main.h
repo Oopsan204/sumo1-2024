@@ -59,13 +59,13 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define Buzz_Pin GPIO_PIN_2
+#define Buzz_Pin GPIO_PIN_8
 #define Buzz_GPIO_Port GPIOA
-#define XSHUT_BL_Pin GPIO_PIN_3
+#define XSHUT_BL_Pin GPIO_PIN_9
 #define XSHUT_BL_GPIO_Port GPIOA
-#define XSHUT_R_Pin GPIO_PIN_4
+#define XSHUT_R_Pin GPIO_PIN_10
 #define XSHUT_R_GPIO_Port GPIOA
-#define XSHUT_L_Pin GPIO_PIN_5
+#define XSHUT_L_Pin GPIO_PIN_11
 #define XSHUT_L_GPIO_Port GPIOA
 #define XSHUT_FR_Pin GPIO_PIN_15
 #define XSHUT_FR_GPIO_Port GPIOA

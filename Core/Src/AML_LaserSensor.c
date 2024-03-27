@@ -2,6 +2,10 @@
 #include <AML_DebugDevice.h>
 // #include "AML_DebugDevice.h"
 
+/**
+ * 
+*/
+
 // uint8_t LaserSensorAddress[] = {0x29, 0x59, 0x60, 0x32, 0x57};
 uint8_t LaserSensorAddress[] = {0x32, 0x57, 0x60, 0x29, 0x5, 0x72, 0x8F};
 
@@ -225,6 +229,17 @@ void AML_LaserSensor_ReadAll(void)
     }
 }
 
+void print_uart_sensorvalue(){
+    AML_LaserSensor_ReadAll();
+
+    for (int i = 0; i < 7; i++)
+    {
+        // Serial.print("Distance from sensor ");
+        // Serial.print(i);
+        // Serial.print(": ");
+        // Serial.println(SensorValue[i].RangeMilliMeter);
+    }
+}
 int32_t AML_LaserSensor_ReadSingleWithFillter(uint8_t name)
 {
     // VL53L0X_GetRangingMeasurementData(Laser[name], &SensorValue[name]);

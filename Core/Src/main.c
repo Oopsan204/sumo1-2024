@@ -26,6 +26,7 @@
 #include "tim_pwm.h"
 #include "AML_LaserSensor.h"
 #include "AML_DebugDevice.h"
+#include <stdbool.h>
 
 /* USER CODE END Includes */
 
@@ -45,11 +46,11 @@
 
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
-DMA_HandleTypeDef hdma_adc1;
 
 I2C_HandleTypeDef hi2c1;
 
 TIM_HandleTypeDef htim1;
+TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 
@@ -59,23 +60,67 @@ uint8_t u8_br = 1; // gpio_ext4
 uint8_t u8_bl = 1; // gpio_ext1
 uint32_t time;
 uint32_t button;
+// co interrupt
+bool flagInterrupt_fl = false;
+bool flagInterrupt_bl = false;
+bool flagInterrupt_br = false;
+bool flagInterrupt_fr = false;
+long timer1 = 0;
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_DMA_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_ADC1_Init(void);
+static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void AML_IRSensor_standby()
+{
+  unsigned tim = 700;
+  while (flagInterrupt_fl && HAL_GetTick() - timer1 < time)
+    ;
+  while (flagInterrupt_bl && HAL_GetTick() - timer1 < time)
+    ;
+  while (flagInterrupt_br && HAL_GetTick() - timer1 < time)
+    ;
+  while (flagInterrupt_fr && HAL_GetTick() - timer1 < time)
+    ;
+  // dat lai co
+  flagInterrupt_bl = false;
+  flagInterrupt_br = false;
+  flagInterrupt_fl = false;
+  flagInterrupt_fr = false;
+}
 
+void button_tatic()
+{
+  if (button == 0)
+  {
+  }
+  else if (125 <= button <= 133)
+  {
+  }
+  else if (2134 <= button < 2144)
+  {
+    /* code */
+  }
+  else if (470 <= button <= 480)
+  {
+    /* code */
+  }
+  else
+  {
+  }
+
+}
 /* USER CODE END 0 */
 
 /**
@@ -106,35 +151,16 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_I2C1_Init();
   MX_TIM1_Init();
   MX_ADC1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  // HAL_Delay(3000); // delay 3s
 
+  AML_LaserSensor_Setup();
   // button tatic
   HAL_ADC_Start_DMA(&hadc1, &button, 1);
-  if (button == 0)
-  {
-  }
-  else if (125 <= button <= 133)
-  {
-  }
-  else if (2134 <= button < 2144)
-  {
-    /* code */
-  }
-  else if (470 <= button <=480)
-  {
-    /* code */
-  }
-  else
-  {
-  
-  }
-  
-
-  
 
   /* USER CODE END 2 */
 
@@ -147,7 +173,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     AML_LaserSensor_ReadAll();
-    
+    AML_IRSensor_standby();
   }
 
   return 1;
@@ -217,7 +243,7 @@ static void MX_ADC1_Init(void)
    */
   hadc1.Instance = ADC1;
   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
-  hadc1.Init.ContinuousConvMode = ENABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
@@ -229,7 +255,7 @@ static void MX_ADC1_Init(void)
 
   /** Configure Regular Channel
    */
-  sConfig.Channel = ADC_CHANNEL_1;
+  sConfig.Channel = ADC_CHANNEL_2;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
@@ -288,8 +314,6 @@ static void MX_TIM1_Init(void)
 
   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-  TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
 
   /* USER CODE BEGIN TIM1_Init 1 */
 
@@ -310,70 +334,75 @@ static void MX_TIM1_Init(void)
   {
     Error_Handler();
   }
-  if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
   {
     Error_Handler();
   }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 500;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
-  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.Pulse = 0;
-  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
-  sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
-  sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
-  sBreakDeadTimeConfig.DeadTime = 0;
-  sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
-  sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
-  sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
-  if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
   /* USER CODE BEGIN TIM1_Init 2 */
 
   /* USER CODE END TIM1_Init 2 */
-  HAL_TIM_MspPostInit(&htim1);
 }
 
 /**
- * Enable DMA controller clock
+ * @brief TIM2 Initialization Function
+ * @param None
+ * @retval None
  */
-static void MX_DMA_Init(void)
+static void MX_TIM2_Init(void)
 {
 
-  /* DMA controller clock enable */
-  __HAL_RCC_DMA1_CLK_ENABLE();
+  /* USER CODE BEGIN TIM2_Init 0 */
 
-  /* DMA interrupt init */
-  /* DMA1_Channel1_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+  /* USER CODE END TIM2_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_OC_InitTypeDef sConfigOC = {0};
+
+  /* USER CODE BEGIN TIM2_Init 1 */
+
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 79;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 999;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.Pulse = 0;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM2_Init 2 */
+
+  /* USER CODE END TIM2_Init 2 */
+  HAL_TIM_MspPostInit(&htim2);
 }
 
 /**
@@ -393,14 +422,14 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, Buzz_Pin | XSHUT_BL_Pin | XSHUT_R_Pin | XSHUT_L_Pin | XSHUT_FR_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5 | XSHUT_BL_Pin | XSHUT_R_Pin | XSHUT_L_Pin | XSHUT_FR_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, XSHUT_FF_Pin | XSHUT_FL_Pin | XSHUT_BR_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : Buzz_Pin XSHUT_BL_Pin XSHUT_R_Pin XSHUT_L_Pin
+  /*Configure GPIO pins : PA5 XSHUT_BL_Pin XSHUT_R_Pin XSHUT_L_Pin
                            XSHUT_FR_Pin */
-  GPIO_InitStruct.Pin = Buzz_Pin | XSHUT_BL_Pin | XSHUT_R_Pin | XSHUT_L_Pin | XSHUT_FR_Pin;
+  GPIO_InitStruct.Pin = GPIO_PIN_5 | XSHUT_BL_Pin | XSHUT_R_Pin | XSHUT_L_Pin | XSHUT_FR_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -411,6 +440,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : Buzz_Pin */
+  GPIO_InitStruct.Pin = Buzz_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+  HAL_GPIO_Init(Buzz_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : XSHUT_FF_Pin XSHUT_FL_Pin XSHUT_BR_Pin */
   GPIO_InitStruct.Pin = XSHUT_FF_Pin | XSHUT_FL_Pin | XSHUT_BR_Pin;
@@ -437,6 +471,63 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+
+
+void interrupt_bl()
+{
+  PWM_Start(&htim2, LPWM1);
+  PWM_Start(&htim2, LPWM2);
+  PWM_Write(&htim2, LPWM1, 10);
+  PWM_Write(&htim2, LPWM2, 10);
+
+  flagInterrupt_bl = true; // bat co
+  timer1 = HAL_GetTick();  // moc thoi gian bat dau thoat hiem
+  flagInterrupt_br = false;
+  flagInterrupt_fl = false;
+  flagInterrupt_fr = false;
+}
+
+void interrupt_br()
+{
+  PWM_Start(&htim2, LPWM1);
+  PWM_Start(&htim2, LPWM2);
+  PWM_Write(&htim2, LPWM1, 10);
+  PWM_Write(&htim2, LPWM2, 10);
+
+  flagInterrupt_br = true; // bat co
+  timer1 = HAL_GetTick();  // moc thoi gian bat dau thoat hiem
+  flagInterrupt_bl = false;
+  flagInterrupt_fl = false;
+  flagInterrupt_fr = false;
+}
+
+void interrupt_fl()
+{
+  PWM_Start(&htim2, RPWM1);
+  PWM_Start(&htim2, RPWM2);
+  PWM_Write(&htim2, RPWM1, 10);
+  PWM_Write(&htim2, RPWM2, 10);
+
+  flagInterrupt_fl = true; // bat co
+  timer1 = HAL_GetTick();  // moc thoi gian bat dau thoat hiem
+  flagInterrupt_br = false;
+  flagInterrupt_bl = false;
+  flagInterrupt_fr = false;
+}
+void interrupt_fr()
+{
+  PWM_Start(&htim2, RPWM1);
+  PWM_Start(&htim2, RPWM1);
+  PWM_Write(&htim2, RPWM1, 10);
+  PWM_Write(&htim2, RPWM2, 10);
+
+  flagInterrupt_fr = true; // bat co
+  timer1 = HAL_GetTick();  // moc thoi gian bat dau thoat hiem
+  flagInterrupt_br = false;
+  flagInterrupt_fl = false;
+  flagInterrupt_bl = false;
+}
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   /* Prevent unused argument(s) compilation warning */
@@ -444,18 +535,22 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   if (GPIO_Pin == GPIO_PIN_0)
   {
     u8_fl = 0; // ir4
+    interrupt_fl();
   }
   if (GPIO_Pin == GPIO_PIN_1)
   {
     u8_bl = 0; // ir2
+    interrupt_bl();
   }
   if (GPIO_Pin == GPIO_PIN_4)
   {
     u8_br = 0; // ir1
+    interrupt_br();
   }
   if (GPIO_Pin == GPIO_PIN_3)
   {
     u8_fr = 0; // ir3
+    interrupt_fr();
   }
 }
 

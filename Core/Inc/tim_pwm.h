@@ -26,7 +26,7 @@ _VAR_ :do rong xung 0-100%
  }
  uint16_t PWM_Write(TIM_HandleTypeDef* __HANDLE__,uint32_t CHANNEL,uint8_t _VAR_)
  {
- uint32_t COMPARE = (((__HANDLE__)->Instance->ARR/100)*(_VAR_));
+ uint16_t COMPARE = (((__HANDLE__)->Instance->ARR/100)*(_VAR_));
 	 __HAL_TIM_SET_COMPARE(__HANDLE__,CHANNEL,COMPARE);
 	 return COMPARE;
  }
