@@ -3,8 +3,8 @@
 // #include "AML_DebugDevice.h"
 
 /**
- * 
-*/
+ *
+ */
 
 // uint8_t LaserSensorAddress[] = {0x29, 0x59, 0x60, 0x32, 0x57};
 uint8_t LaserSensorAddress[] = {0x32, 0x57, 0x60, 0x29, 0x5, 0x72, 0x8F};
@@ -229,15 +229,42 @@ void AML_LaserSensor_ReadAll(void)
     }
 }
 
-void print_uart_sensorvalue(){
+void print_sensorvalue()
+{
     AML_LaserSensor_ReadAll();
 
     for (int i = 0; i < 7; i++)
     {
-        // Serial.print("Distance from sensor ");
-        // Serial.print(i);
-        // Serial.print(": ");
-        // Serial.println(SensorValue[i].RangeMilliMeter);
+        uint16_t size = sizeof(SensorValue) / sizeof(SensorValue[0]); // kiem tra so luong phan tu trong mang
+        uint16_t FF, FL, FR, BL, BR, R, L;                            // khoi tao cac bien luu gia tri
+        // dung for de truy va luu lai du lieu tu trong mang
+        for (uint16_t i = 0; i < size; i++)
+        {
+            switch (i)
+            {
+            case 0:
+                FF = SensorValue[i].RangeMilliMeter;
+                break;
+            case 1:
+                FL = SensorValue[i].RangeMilliMeter;
+                break;
+            case 2:
+                FR =SensorValue[i].RangeMilliMeter;
+                break;
+            case 3:
+                BL= SensorValue[i].RangeMilliMeter;
+                break;
+            case 4:
+                BR =SensorValue[i].RangeDMaxMilliMeter;
+                break;
+            case 5:
+                R =SensorValue[i].RangeDMaxMilliMeter;
+                break;
+            case 6:
+                L =SensorValue[i].RangeMilliMeter;
+                break;
+            }
+        }
     }
 }
 int32_t AML_LaserSensor_ReadSingleWithFillter(uint8_t name)

@@ -6,7 +6,6 @@
 #include "main.h"
 #include "KalmanFilter.h"
 
-
 typedef enum
 {
     FL,
@@ -20,8 +19,8 @@ typedef enum
 
 void AML_LaserSensor_Setup(void);
 void AML_LaserSensor_ReadAll(void);
+void print_sensorvalue(void);
 int32_t AML_LaserSensor_ReadSingleWithFillter(uint8_t name);
 int32_t AML_LaserSensor_ReadSingleWithoutFillter(uint8_t name);
-
 
 #endif
