@@ -24,6 +24,14 @@ uint8_t PhaseCal;
 
 uint16_t delay = 5000;
 
+uint16_t Ff;
+uint16_t Fr; // khoi tao cac bien luu gia tri
+uint16_t Fl;
+uint16_t Br;
+uint16_t Bl;
+uint16_t r;
+uint16_t l;
+
 void AML_LaserSensor_Init(uint8_t i)
 {
     VL53L0X_WaitDeviceBooted(Laser[i]);
@@ -231,41 +239,40 @@ void AML_LaserSensor_ReadAll(void)
 
 void print_sensorvalue()
 {
-    AML_LaserSensor_ReadAll();
+    uint16_t size = sizeof(SensorValue) / sizeof(SensorValue[0]); // kiem tra so luong phan tu trong mang
 
-    for (int i = 0; i < 7; i++)
+    // dung for de truy va luu lai du lieu tu trong mang
+    for (uint16_t i = 0; i < size; i++)
     {
-        uint16_t size = sizeof(SensorValue) / sizeof(SensorValue[0]); // kiem tra so luong phan tu trong mang
-        uint16_t FF, FL, FR, BL, BR, R, L;                            // khoi tao cac bien luu gia tri
-        // dung for de truy va luu lai du lieu tu trong mang
-        for (uint16_t i = 0; i < size; i++)
+        switch (i)
         {
-            switch (i)
-            {
-            case 0:
-                FF = SensorValue[i].RangeMilliMeter;
-                break;
-            case 1:
-                FL = SensorValue[i].RangeMilliMeter;
-                break;
-            case 2:
-                FR =SensorValue[i].RangeMilliMeter;
-                break;
-            case 3:
-                BL= SensorValue[i].RangeMilliMeter;
-                break;
-            case 4:
-                BR =SensorValue[i].RangeDMaxMilliMeter;
-                break;
-            case 5:
-                R =SensorValue[i].RangeDMaxMilliMeter;
-                break;
-            case 6:
-                L =SensorValue[i].RangeMilliMeter;
-                break;
-            }
+        case 0:
+            Fl = SensorValue[i].RangeMilliMeter;
+            break;
+        case 1:
+            Ff = SensorValue[i].RangeMilliMeter;
+            break;
+        case 2:
+            Fr = SensorValue[i].RangeMilliMeter;
+            break;
+        case 3:
+            Br = SensorValue[i].RangeMilliMeter;
+            break;
+        case 4:
+            Bl = SensorValue[i].RangeDMaxMilliMeter;
+            break;
+        case 5:
+            r = SensorValue[i].RangeDMaxMilliMeter;
+            break;
+        case 6:
+            l = SensorValue[i].RangeMilliMeter;
+            break;
         }
     }
+}
+void seach1()
+{
+    
 }
 int32_t AML_LaserSensor_ReadSingleWithFillter(uint8_t name)
 {

@@ -423,6 +423,11 @@
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f1xx_hal_msp.c</FilePath>
             </File>
+            <File>
+              <FileName>AML_Key_ADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\AML_Key_ADC.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

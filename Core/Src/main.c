@@ -26,6 +26,7 @@
 #include "tim_pwm.h"
 #include "AML_LaserSensor.h"
 #include "AML_DebugDevice.h"
+#include "AML_Key_ADC.h"
 #include <stdbool.h>
 
 /* USER CODE END Includes */
@@ -67,6 +68,7 @@ bool flagInterrupt_bl = false;
 bool flagInterrupt_br = false;
 bool flagInterrupt_fr = false;
 long timer1 = 0;
+const int tim = 700;
 
 /* USER CODE END PV */
 
@@ -86,7 +88,6 @@ static void MX_TIM2_Init(void);
 /* USER CODE BEGIN 0 */
 void AML_IRSensor_standby()
 {
-  unsigned tim = 700;
   while (flagInterrupt_fl && HAL_GetTick() - timer1 < time)
     ;
   while (flagInterrupt_bl && HAL_GetTick() - timer1 < time)
@@ -102,26 +103,26 @@ void AML_IRSensor_standby()
   flagInterrupt_fr = false;
 }
 
-void button_tatic()
-{
-  if (button == 0)
-  {
-  }
-  else if (125 <= button <= 133)
-  {
-  }
-  else if (2134 <= button < 2144)
-  {
-    /* code */
-  }
-  else if (470 <= button <= 480)
-  {
-    /* code */
-  }
-  else
-  {
-  }
-}
+// void button_tatic()
+// {
+//   if (button == 0)
+//   {
+//   }
+//   else if (125 <= button <= 133)
+//   {
+//   }
+//   else if (2134 <= button < 2144)
+//   {
+//     /* code */
+//   }
+//   else if (470 <= button <= 480)
+//   {
+//     /* code */
+//   }
+//   else
+//   {
+//   }
+// }
 /* USER CODE END 0 */
 
 /**
@@ -161,8 +162,13 @@ int main(void)
   // HAL_Delay(3000); // delay 3s
 
   AML_LaserSensor_Setup();
-  // button tatic
   HAL_ADC_Start_DMA(&hadc1, &button, 1);
+  PWM_Start(&htim2,LPWM1);
+  PWM_Write(&htim2,LPWM1,50);
+  PWM_Start(&htim2,RPWM1);
+  PWM_Write(&htim2,RPWM1,0);
+
+  // button tatic
 
   /* USER CODE END 2 */
 
@@ -176,6 +182,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
     AML_LaserSensor_ReadAll();
     print_sensorvalue();
+    // AML_LaserSensor_TestLaser();
     AML_IRSensor_standby();
   }
 
@@ -246,7 +253,7 @@ static void MX_ADC1_Init(void)
    */
   hadc1.Instance = ADC1;
   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
