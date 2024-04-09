@@ -59,6 +59,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define XSHUT_FL_Pin GPIO_PIN_13
+#define XSHUT_FL_GPIO_Port GPIOB
+#define XSHUT_FF_Pin GPIO_PIN_14
+#define XSHUT_FF_GPIO_Port GPIOB
+#define XSHUT_FR_Pin GPIO_PIN_15
+#define XSHUT_FR_GPIO_Port GPIOB
 #define Buzz_Pin GPIO_PIN_8
 #define Buzz_GPIO_Port GPIOA
 #define XSHUT_BL_Pin GPIO_PIN_9
@@ -67,12 +73,6 @@ void Error_Handler(void);
 #define XSHUT_R_GPIO_Port GPIOA
 #define XSHUT_L_Pin GPIO_PIN_11
 #define XSHUT_L_GPIO_Port GPIOA
-#define XSHUT_FR_Pin GPIO_PIN_15
-#define XSHUT_FR_GPIO_Port GPIOA
-#define XSHUT_FF_Pin GPIO_PIN_5
-#define XSHUT_FF_GPIO_Port GPIOB
-#define XSHUT_FL_Pin GPIO_PIN_8
-#define XSHUT_FL_GPIO_Port GPIOB
 #define XSHUT_BR_Pin GPIO_PIN_9
 #define XSHUT_BR_GPIO_Port GPIOB
 

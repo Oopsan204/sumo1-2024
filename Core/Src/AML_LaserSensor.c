@@ -1,6 +1,5 @@
 #include "AML_LaserSensor.h"
 #include <AML_DebugDevice.h>
-// #include "AML_DebugDevice.h"
 
 /**
  *
@@ -31,6 +30,10 @@ uint16_t Br;
 uint16_t Bl;
 uint16_t r;
 uint16_t l;
+
+uint16_t mark[]; // danh so thu tu cua laser
+const uint16_t upperBlock = 600;
+uint16_t minindex = 0;
 
 void AML_LaserSensor_Init(uint8_t i)
 {
@@ -270,9 +273,85 @@ void print_sensorvalue()
         }
     }
 }
-void seach1()
+void swap(uint16_t *pointer1, uint16_t *pointer2)
 {
-    
+    uint16_t x;
+    x = *pointer1;
+    *pointer1 = *pointer2;
+    *pointer2 = x;
+}
+
+void sortSensorValuesByRange()
+{
+    bool haveSwap = false;
+
+    // Khởi tạo mảng mark để theo dõi vị trí ban đầu của các sensor
+    for (uint16_t i = 0; i < 7; i++)
+    {
+        mark[i] = i;
+    }
+
+    // Sắp xếp mảng SensorValue và cập nhật mảng mark tương ứng
+    for (uint16_t i = 0; i < 7 - 1; i++)
+    {
+        haveSwap = false;
+        for (uint16_t j = 0; j < 7 - i - 1; j++)
+        {
+            if (SensorValue[j].RangeMilliMeter > SensorValue[j + 1].RangeMilliMeter)
+            {
+                swap(&SensorValue[j].RangeMilliMeter, &SensorValue[j + 1].RangeMilliMeter);
+                swap(&mark[j], &mark[j + 1]); // Hoán đổi các giá trị trong mảng mark
+                haveSwap = true;
+            }
+        }
+        if (!haveSwap)
+        {
+            break;
+        }
+    }
+}
+int16_t minSensorValue()
+{
+    int16_t minValue = 20000;
+    int16_t upperBlock = 500;
+    int16_t markedSensor = 0;
+    for (uint16_t i = 0; i < 7; i++)
+    {
+        if (SensorValue[i].RangeMilliMeter < minValue)
+        {
+            minValue = SensorValue[i].RangeMilliMeter;
+            markedSensor = i;
+        }
+    }
+    if (minValue < upperBlock)
+    {
+        return markedSensor;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int16_t searchNearest()
+{
+    const int16_t upperBlock = 600;
+    sortSensorValuesByRange();
+    if (SensorValue[1].RangeMilliMeter < upperBlock)
+    {
+        return mark[1];
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void seach1(int16_t target)
+{
+    if(target == 0){
+        
+    }
 }
 int32_t AML_LaserSensor_ReadSingleWithFillter(uint8_t name)
 {

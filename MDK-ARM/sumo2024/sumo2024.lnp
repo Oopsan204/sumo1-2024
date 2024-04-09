@@ -6,7 +6,6 @@
 "sumo2024\main.o"
 "sumo2024\stm32f1xx_it.o"
 "sumo2024\stm32f1xx_hal_msp.o"
-"sumo2024\aml_key_adc.o"
 "sumo2024\stm32f1xx_hal_gpio_ex.o"
 "sumo2024\stm32f1xx_hal_adc.o"
 "sumo2024\stm32f1xx_hal_adc_ex.o"

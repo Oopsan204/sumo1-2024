@@ -4,5 +4,8 @@
 #include "main.h"
 #include "stm32f1xx.h"
 
+int AML_keyboard_getKey(int inputValue);
+int AML_keyboard_readKeyLoop(int);
+void AML_Keyboard_readResetKey(void);
 
 #endif
