@@ -6,7 +6,7 @@
  */
 
 // uint8_t LaserSensorAddress[] = {0x29, 0x59, 0x60, 0x32, 0x57};
-uint8_t LaserSensorAddress[] = {0x32, 0x57, 0x60, 0x29, 0x5, 0x72, 0x8F};
+uint8_t LaserSensorAddress[] = {0x32, 0x57, 0x60, 0x29, 0x5, 0x72, 0x59};
 
 SimpleKalmanFilter KalmanFilter[7];
 
@@ -31,7 +31,7 @@ uint16_t Bl;
 uint16_t r;
 uint16_t l;
 
-uint16_t mark[]; // danh so thu tu cua laser
+uint16_t mark[8]; // danh so thu tu cua laser
 const uint16_t upperBlock = 600;
 uint16_t minindex = 0;
 
@@ -240,7 +240,7 @@ void AML_LaserSensor_ReadAll(void)
     }
 }
 
-void print_sensorvalue()
+void print_sensorvalue(void)
 {
     uint16_t size = sizeof(SensorValue) / sizeof(SensorValue[0]); // kiem tra so luong phan tu trong mang
 
@@ -262,10 +262,10 @@ void print_sensorvalue()
             Br = SensorValue[i].RangeMilliMeter;
             break;
         case 4:
-            Bl = SensorValue[i].RangeDMaxMilliMeter;
+            Bl = SensorValue[i].RangeMilliMeter;
             break;
         case 5:
-            r = SensorValue[i].RangeDMaxMilliMeter;
+            r = SensorValue[i].RangeMilliMeter;
             break;
         case 6:
             l = SensorValue[i].RangeMilliMeter;
@@ -286,7 +286,7 @@ void sortSensorValuesByRange()
     bool haveSwap = false;
 
     // Khởi tạo mảng mark để theo dõi vị trí ban đầu của các sensor
-    for (uint16_t i = 0; i < 7; i++)
+    for (uint16_t i = 1; i < 8; i++)
     {
         mark[i] = i;
     }
@@ -312,10 +312,11 @@ void sortSensorValuesByRange()
 }
 int16_t minSensorValue()
 {
+    AML_LaserSensor_ReadAll();
     int16_t minValue = 20000;
     int16_t upperBlock = 500;
     int16_t markedSensor = 0;
-    for (uint16_t i = 0; i < 7; i++)
+    for (uint16_t i = 1; i < 8; i++)
     {
         if (SensorValue[i].RangeMilliMeter < minValue)
         {
@@ -334,12 +335,12 @@ int16_t minSensorValue()
 }
 
 int16_t searchNearest()
-{
+{   AML_LaserSensor_ReadAll();
     const int16_t upperBlock = 600;
     sortSensorValuesByRange();
-    if (SensorValue[1].RangeMilliMeter < upperBlock)
+    if (SensorValue[0].RangeMilliMeter < upperBlock)
     {
-        return mark[1];
+        return mark[0];
     }
     else
     {
@@ -347,12 +348,7 @@ int16_t searchNearest()
     }
 }
 
-void seach1(int16_t target)
-{
-    if(target == 0){
-        
-    }
-}
+
 int32_t AML_LaserSensor_ReadSingleWithFillter(uint8_t name)
 {
     // VL53L0X_GetRangingMeasurementData(Laser[name], &SensorValue[name]);

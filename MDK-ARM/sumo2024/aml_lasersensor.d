@@ -43,5 +43,6 @@ sumo2024\aml_lasersensor.o: ../Core/Inc/main.h
 sumo2024\aml_lasersensor.o: ../Core/Inc/KalmanFilter.h
 sumo2024\aml_lasersensor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 sumo2024\aml_lasersensor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
+sumo2024\aml_lasersensor.o: ../Core/Inc/parameter.h
 sumo2024\aml_lasersensor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 sumo2024\aml_lasersensor.o: ../Core/Inc/AML_DebugDevice.h
