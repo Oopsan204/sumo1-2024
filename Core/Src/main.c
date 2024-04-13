@@ -61,7 +61,8 @@ uint8_t u8_fr = 1; // gpio_ext3
 uint8_t u8_fl = 1; // gpio_ext0
 uint8_t u8_br = 1; // gpio_ext4
 uint8_t u8_bl = 1; // gpio_ext1
-uint16_t button[3];
+uint16_t button[Array_Size_Button];
+uint16_t currentIndex = 1;
 // co interrupt
 bool flagInterrupt_fl = false;
 bool flagInterrupt_bl = false;
@@ -91,9 +92,34 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void AML_motor_stop()
+{
+  PWM_Start(&htim2, LPWM1);
+  PWM_Start(&htim2, LPWM2);
+  PWM_Start(&htim2, RPWM1);
+  PWM_Start(&htim2, RPWM2);
+  PWM_Write(&htim2, LPWM1, 0);
+  PWM_Write(&htim2, LPWM2, 0);
+  PWM_Write(&htim2, RPWM1, 0);
+  PWM_Write(&htim2, RPWM2, 0);
+}
+void AML_motor_forward()
+{
+  PWM_Start(&htim2, RPWM1);
+  PWM_Start(&htim2, RPWM2);
+  PWM_Write(&htim2, RPWM1, 100);
+  PWM_Write(&htim2, RPWM2, 100);
+}
+void AML_motor_lef()
+{
+}
+void AML_motor_right()
+{
+}
+void AML_motor_back() {}
 void AML_IRSensor_standby()
 {
-  const uint32_t time1 = 700;
+  const uint32_t time1 = 1000;
 
   while (flagInterrupt_fl && HAL_GetTick() - timer1 < time1)
     ;
@@ -108,16 +134,8 @@ void AML_IRSensor_standby()
   flagInterrupt_br = false;
   flagInterrupt_fl = false;
   flagInterrupt_fr = false;
-  PWM_Start(&htim2, LPWM1);
-  PWM_Start(&htim2, LPWM2);
-  PWM_Start(&htim2, RPWM1);
-  PWM_Start(&htim2, RPWM2);
-  PWM_Write(&htim2, LPWM1, 0);
-  PWM_Write(&htim2, LPWM2, 0);
-  PWM_Write(&htim2, RPWM1, 0);
-  PWM_Write(&htim2, RPWM2, 0);
+  AML_motor_stop();
 }
-
 void search(int16_t target)
 {
   if (target == 0)
@@ -235,6 +253,39 @@ void search(int16_t target)
     PWM_Write(&htim2, LPWM2, 100);
   }
 }
+void search_2()
+{
+  if (AML_LaserSensor_ReadSingleWithFillter(FF) < 100)
+  {
+    PWM_Start(&htim2, RPWM1);
+    PWM_Start(&htim2, RPWM2);
+    PWM_Write(&htim2, RPWM1, 100);
+    PWM_Write(&htim2, RPWM2, 100);
+  }
+  else
+  {
+    PWM_Start(&htim2, LPWM1);
+    PWM_Start(&htim2, RPWM2);
+    PWM_Write(&htim2, LPWM1, 90);
+    PWM_Write(&htim2, RPWM2, 90);
+    HAL_Delay(delay1);
+  }
+}
+
+void readADCStore()
+{
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
+  uint16_t adcvalue = button[1];
+  if (currentIndex < Array_Size_Button)
+  {
+    button[currentIndex] = adcvalue;
+    currentIndex++;
+  }
+  else
+  {
+    currentIndex = 2;
+  }
+}
 
 /* USER CODE END 0 */
 
@@ -273,10 +324,9 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   // HAL_Delay(3000); // delay 3s
-
   AML_LaserSensor_Setup();
-  HAL_ADC_Start_DMA(&hadc1, (uint32_t*)button, 2);
   HAL_TIM_Base_Start(&htim2);
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
   // button tatic
 
   /* USER CODE END 2 */
@@ -289,24 +339,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+    // readADCStore();
+
     AML_IRSensor_standby();
-    if (button[0] == 4095)
-    {
-      PWM_Start(&htim2, LPWM1);
-      PWM_Start(&htim2, LPWM2);
-      PWM_Start(&htim2, RPWM1);
-      PWM_Start(&htim2, RPWM2);
-      PWM_Write(&htim2, LPWM1, 0);
-      PWM_Write(&htim2, LPWM2, 0);
-      PWM_Write(&htim2, RPWM1, 0);
-      PWM_Write(&htim2, RPWM2, 0);
-    }
-    else if (button[1] == 0)
-    {
-      index = searchNearest();
-      search(index);
-      print_sensorvalue();
-    }
+    index = searchNearest();
+    search(index);
+    // search_2();
+    print_sensorvalue();
   }
 
   /* USER CODE END 3 */
