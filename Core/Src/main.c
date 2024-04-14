@@ -165,24 +165,6 @@ void AML_IRSensor_standby()
   flagInterrupt_fr = false;
   AML_motor_stop();
 }
-void plan_begin()
-{
-  if (AML_LaserSensor_ReadSingleWithFillter(R) < 100)
-  {
-    AML_motor_forward(70);
-    delay_timer_3(2000);
-    AML_motor_right(90, 40);
-    delay_timer_3(500);
-  }
-  else if (AML_LaserSensor_ReadSingleWithFillter(FF) < 100)
-  {
-    AML_motor_forward(100);
-  }
-  else
-  {
-    search();
-  }
-}
 void search()
 {
   AML_LaserSensor_ReadAll();
@@ -294,6 +276,24 @@ void search()
     PWM_Start(&htim2, LPWM2);
     PWM_Write(&htim2, LPWM1, 100);
     PWM_Write(&htim2, LPWM2, 100);
+  }
+}
+void plan_begin()
+{
+  if (AML_LaserSensor_ReadSingleWithFillter(R) < 100)
+  {
+    AML_motor_forward(70);
+    delay_timer_3(2000);
+    AML_motor_right(90, 40);
+    delay_timer_3(500);
+  }
+  else if (AML_LaserSensor_ReadSingleWithFillter(FF) < 100)
+  {
+    AML_motor_forward(100);
+  }
+  else
+  {
+    search();
   }
 }
 
