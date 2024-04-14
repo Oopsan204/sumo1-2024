@@ -11,7 +11,7 @@
 #define PWM_Attack2 50
 #define PWM_Attack1 50
 #define Array_Size_Button 5
-#define delay1 100 // delay cua ham search
+#define delay1 10 // delay cua ham search
 
 
 #endif

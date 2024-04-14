@@ -27,8 +27,8 @@
 #include "AML_LaserSensor.h"
 #include "AML_DebugDevice.h"
 #include "parameter.h"
-// #include <stdbool.h>;
-// #include "AML_Key_ADC.h"
+#include "AML_Key_ADC.h"
+#include <stdbool.h>
 
 /* USER CODE END Includes */
 
@@ -54,6 +54,7 @@ I2C_HandleTypeDef hi2c1;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 
@@ -71,11 +72,8 @@ bool flagInterrupt_fr = false;
 int32_t timer1 = 0;
 uint8_t i = 0;
 int16_t index = 0;
-// volatile uint8_t PWM_Driver_Left_F = 40;
-// volatile uint8_t PWM_Driver_Right_F = 40;
-// volatile uint8_t PWM_Driver_Right_B = 40;
-// volatile uint8_t PWM_Driver_Left_B = 40;
-
+void (*func)(uint16_t);
+void (*plan)(void);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -86,6 +84,7 @@ static void MX_I2C1_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -103,20 +102,50 @@ void AML_motor_stop()
   PWM_Write(&htim2, RPWM1, 0);
   PWM_Write(&htim2, RPWM2, 0);
 }
-void AML_motor_forward()
+void AML_motor_forward(int8_t speed)
 {
   PWM_Start(&htim2, RPWM1);
   PWM_Start(&htim2, RPWM2);
-  PWM_Write(&htim2, RPWM1, 100);
-  PWM_Write(&htim2, RPWM2, 100);
+  PWM_Write(&htim2, RPWM1, speed);
+  PWM_Write(&htim2, RPWM2, speed);
 }
-void AML_motor_lef()
+void AML_motor_lef(int8_t speed_L, int8_t speed_R)
 {
+  PWM_Start(&htim2, RPWM2);
+  PWM_Start(&htim2, LPWM1);
+  PWM_Write(&htim2, RPWM2, speed_L);
+  PWM_Write(&htim2, LPWM1, speed_R);
 }
-void AML_motor_right()
+void AML_motor_right(int8_t speed_L, int8_t speed_R)
 {
+  PWM_Start(&htim2, LPWM2);
+  PWM_Start(&htim2, RPWM1);
+  PWM_Write(&htim2, LPWM2, speed_L);
+  PWM_Write(&htim2, RPWM1, speed_R);
 }
-void AML_motor_back() {}
+void AML_motor_back()
+{
+  PWM_Start(&htim2, LPWM1);
+  PWM_Start(&htim2, LPWM2);
+  PWM_Write(&htim2, LPWM1, 100);
+  PWM_Write(&htim2, LPWM2, 100);
+}
+void AML_motor_rote()
+{
+  PWM_Start(&htim2, LPWM1);
+  PWM_Start(&htim2, RPWM2);
+  PWM_Write(&htim2, LPWM1, 90);
+  PWM_Write(&htim2, RPWM2, 90);
+}
+void delay_timer_3(uint16_t ms)
+{
+  for (uint16_t i = 0; i < ms; i++)
+  {
+    TIM3->CNT = 0;
+    while (TIM3->CNT < 1000)
+      ;
+  }
+}
 void AML_IRSensor_standby()
 {
   const uint32_t time1 = 1000;
@@ -136,18 +165,35 @@ void AML_IRSensor_standby()
   flagInterrupt_fr = false;
   AML_motor_stop();
 }
-void search(int16_t target)
+void plan_begin()
 {
+  if (AML_LaserSensor_ReadSingleWithFillter(R) < 100)
+  {
+    AML_motor_forward(70);
+    delay_timer_3(2000);
+    AML_motor_right(90, 40);
+    delay_timer_3(500);
+  }
+  else if (AML_LaserSensor_ReadSingleWithFillter(FF) < 100)
+  {
+    AML_motor_forward(100);
+  }
+  else
+  {
+    search();
+  }
+}
+void search()
+{
+  AML_LaserSensor_ReadAll();
+  uint16_t target = searchNearest();
   if (target == 0)
   {
     /*
     khong tim thay doi thu
     xoay tron tim doi thu
     */
-    PWM_Start(&htim2, LPWM1);
-    PWM_Start(&htim2, RPWM2);
-    PWM_Write(&htim2, LPWM1, 90);
-    PWM_Write(&htim2, RPWM2, 90);
+    AML_motor_rote();
     HAL_Delay(delay1);
   }
   if (target == 2)
@@ -155,10 +201,7 @@ void search(int16_t target)
     // FF dam dau
     if (AML_LaserSensor_ReadSingleWithFillter(FF) < 100)
     {
-      PWM_Start(&htim2, RPWM1);
-      PWM_Start(&htim2, RPWM2);
-      PWM_Write(&htim2, RPWM1, 100);
-      PWM_Write(&htim2, RPWM2, 100);
+      AML_motor_forward(60);
     }
     else
     {
@@ -253,39 +296,21 @@ void search(int16_t target)
     PWM_Write(&htim2, LPWM2, 100);
   }
 }
-void search_2()
-{
-  if (AML_LaserSensor_ReadSingleWithFillter(FF) < 100)
-  {
-    PWM_Start(&htim2, RPWM1);
-    PWM_Start(&htim2, RPWM2);
-    PWM_Write(&htim2, RPWM1, 100);
-    PWM_Write(&htim2, RPWM2, 100);
-  }
-  else
-  {
-    PWM_Start(&htim2, LPWM1);
-    PWM_Start(&htim2, RPWM2);
-    PWM_Write(&htim2, LPWM1, 90);
-    PWM_Write(&htim2, RPWM2, 90);
-    HAL_Delay(delay1);
-  }
-}
 
-void readADCStore()
-{
-  HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
-  uint16_t adcvalue = button[1];
-  if (currentIndex < Array_Size_Button)
-  {
-    button[currentIndex] = adcvalue;
-    currentIndex++;
-  }
-  else
-  {
-    currentIndex = 2;
-  }
-}
+// void readADCStore()
+// {
+//   HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
+//   uint16_t adcvalue = button[1];
+//   if (currentIndex < Array_Size_Button)
+//   {
+//     button[currentIndex] = adcvalue;
+//     currentIndex++;
+//   }
+//   else
+//   {
+//     currentIndex = 2;
+//   }
+// }
 
 /* USER CODE END 0 */
 
@@ -322,11 +347,13 @@ int main(void)
   MX_TIM1_Init();
   MX_ADC1_Init();
   MX_TIM2_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   // HAL_Delay(3000); // delay 3s
   AML_LaserSensor_Setup();
   HAL_TIM_Base_Start(&htim2);
-  HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
+  plan_begin();
+  // HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
   // button tatic
 
   /* USER CODE END 2 */
@@ -340,12 +367,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-    // readADCStore();
-
     AML_IRSensor_standby();
-    index = searchNearest();
-    search(index);
-    // search_2();
     print_sensorvalue();
   }
 
@@ -585,6 +607,50 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 2 */
   HAL_TIM_MspPostInit(&htim2);
+}
+
+/**
+ * @brief TIM3 Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 0;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 65535;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
 }
 
 /**
