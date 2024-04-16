@@ -71,7 +71,7 @@ bool flagInterrupt_br = false;
 bool flagInterrupt_fr = false;
 int32_t timer1 = 0;
 uint8_t i = 0;
-int16_t index = 0;
+uint16_t target = 0;
 void (*func)(uint16_t);
 void (*plan)(void);
 /* USER CODE END PV */
@@ -102,21 +102,21 @@ void AML_motor_stop()
   PWM_Write(&htim2, RPWM1, 0);
   PWM_Write(&htim2, RPWM2, 0);
 }
-void AML_motor_forward(int8_t speed)
+void AML_motor_forward(uint8_t speed)
 {
   PWM_Start(&htim2, RPWM1);
   PWM_Start(&htim2, RPWM2);
   PWM_Write(&htim2, RPWM1, speed);
   PWM_Write(&htim2, RPWM2, speed);
 }
-void AML_motor_lef(int8_t speed_L, int8_t speed_R)
+void AML_motor_lef(uint8_t speed_L, uint8_t speed_R)
 {
   PWM_Start(&htim2, RPWM2);
   PWM_Start(&htim2, LPWM1);
   PWM_Write(&htim2, RPWM2, speed_L);
   PWM_Write(&htim2, LPWM1, speed_R);
 }
-void AML_motor_right(int8_t speed_L, int8_t speed_R)
+void AML_motor_right(uint8_t speed_L, uint8_t speed_R)
 {
   PWM_Start(&htim2, LPWM2);
   PWM_Start(&htim2, RPWM1);
@@ -134,8 +134,8 @@ void AML_motor_rote()
 {
   PWM_Start(&htim2, LPWM1);
   PWM_Start(&htim2, RPWM2);
-  PWM_Write(&htim2, LPWM1, 90);
-  PWM_Write(&htim2, RPWM2, 90);
+  PWM_Write(&htim2, LPWM1, 100);
+  PWM_Write(&htim2, RPWM2, 80);
 }
 void delay_timer_3(uint16_t ms)
 {
@@ -167,8 +167,7 @@ void AML_IRSensor_standby()
 }
 void search()
 {
-  AML_LaserSensor_ReadAll();
-  uint16_t target = searchNearest();
+  target = searchNearest();
   if (target == 0)
   {
     /*
@@ -176,6 +175,7 @@ void search()
     xoay tron tim doi thu
     */
     AML_motor_rote();
+    i = 1;
     HAL_Delay(delay1);
   }
   if (target == 2)
@@ -183,7 +183,7 @@ void search()
     // FF dam dau
     if (AML_LaserSensor_ReadSingleWithFillter(FF) < 100)
     {
-      AML_motor_forward(60);
+      AML_motor_forward(100);
     }
     else
     {
@@ -191,18 +191,25 @@ void search()
       PWM_Start(&htim2, RPWM2);
       PWM_Write(&htim2, RPWM1, 60);
       PWM_Write(&htim2, RPWM2, 60);
+      i = 1;
     }
     HAL_Delay(delay1);
   }
-  if (target == 1)
+  if (target == 3)
   {
     // FL re trai
     if (AML_LaserSensor_ReadSingleWithFillter(FL) < 30)
     {
+      // PWM_Start(&htim2, RPWM2);
+      // PWM_Start(&htim2, LPWM1);
+      // PWM_Write(&htim2, RPWM2, PWM_Attack2 + 20);
+      // PWM_Write(&htim2, LPWM1, PWM_Attack1);
+      // i = 1;
       PWM_Start(&htim2, RPWM2);
       PWM_Start(&htim2, LPWM1);
       PWM_Write(&htim2, RPWM2, PWM_Attack2 + 20);
       PWM_Write(&htim2, LPWM1, PWM_Attack1);
+      i = 1;
     }
 
     else
@@ -211,10 +218,11 @@ void search()
       PWM_Start(&htim2, LPWM1);
       PWM_Write(&htim2, RPWM2, PWM_Attack2 + 10);
       PWM_Write(&htim2, LPWM1, PWM_Attack1);
+      i = 1;
     }
     HAL_Delay(delay1);
   }
-  if (target == 3)
+  if (target == 1)
   {
     if (AML_LaserSensor_ReadSingleWithFillter(FR) < 30)
     {
@@ -222,6 +230,7 @@ void search()
       PWM_Start(&htim2, RPWM1);
       PWM_Write(&htim2, LPWM2, PWM_Attack2);
       PWM_Write(&htim2, RPWM2, PWM_Attack1 + 20);
+      i = 1;
     }
     else
     {
@@ -229,72 +238,69 @@ void search()
       PWM_Start(&htim2, RPWM1);
       PWM_Write(&htim2, LPWM2, PWM_Attack2);
       PWM_Write(&htim2, RPWM1, PWM_Attack1 + 10);
+      i = 1;
     }
     HAL_Delay(delay1);
   }
   if (target == 6)
   {
     // R quay sang phai
-    if (AML_LaserSensor_ReadSingleWithFillter(R) < 20)
+    if (AML_LaserSensor_ReadSingleWithFillter(R) < 100)
     {
       PWM_Start(&htim2, LPWM2);
       PWM_Start(&htim2, RPWM1);
       PWM_Write(&htim2, LPWM2, PWM_Attack2);
       PWM_Write(&htim2, RPWM1, PWM_Attack1 + 30);
+      i = 1;
     }
     else
     {
       PWM_Start(&htim2, LPWM2);
       PWM_Start(&htim2, RPWM1);
       PWM_Write(&htim2, LPWM2, PWM_Attack2);
-      PWM_Write(&htim2, RPWM1, PWM_Attack1 + 10);
+      PWM_Write(&htim2, RPWM1, PWM_Attack1 + 30);
+      i = 1;
     }
     HAL_Delay(delay1);
   }
   if (target == 7)
   {
     // L quay sang trai
-    if (AML_LaserSensor_ReadSingleWithFillter(L) < 20)
+    if (AML_LaserSensor_ReadSingleWithFillter(L) < 100)
     {
       PWM_Start(&htim2, RPWM2);
       PWM_Start(&htim2, LPWM1);
       PWM_Write(&htim2, RPWM2, PWM_Attack2 + 30);
       PWM_Write(&htim2, LPWM1, PWM_Attack1);
+      i = 1;
     }
     else
     {
       PWM_Start(&htim2, RPWM2);
       PWM_Start(&htim2, LPWM1);
-      PWM_Write(&htim2, RPWM2, PWM_Attack2 + 10);
+      PWM_Write(&htim2, RPWM2, PWM_Attack2 + 30);
       PWM_Write(&htim2, LPWM1, PWM_Attack1);
+      i = 1;
     }
     HAL_Delay(delay1);
   }
-  if (target == 4 || target == 5)
+  if ((target == 4 && target == 5) || (target == 4 || target == 5))
   {
     PWM_Start(&htim2, LPWM1);
     PWM_Start(&htim2, LPWM2);
     PWM_Write(&htim2, LPWM1, 100);
     PWM_Write(&htim2, LPWM2, 100);
+    i = 1;
+    HAL_Delay(delay1);
   }
 }
 void plan_begin()
 {
-  if (AML_LaserSensor_ReadSingleWithFillter(R) < 100)
-  {
-    AML_motor_forward(70);
-    delay_timer_3(2000);
-    AML_motor_right(90, 40);
-    delay_timer_3(500);
-  }
-  else if (AML_LaserSensor_ReadSingleWithFillter(FF) < 100)
-  {
-    AML_motor_forward(100);
-  }
-  else
-  {
-    search();
-  }
+  PWM_Start(&htim2, RPWM1);
+  PWM_Start(&htim2, RPWM2);
+  PWM_Write(&htim2, RPWM1, 100);
+  PWM_Write(&htim2, RPWM2, 100);
+  HAL_Delay(1000);
 }
 
 // void readADCStore()
@@ -364,11 +370,11 @@ int main(void)
   {
 
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
-
-    AML_IRSensor_standby();
+    AML_LaserSensor_ReadAll();
     print_sensorvalue();
+    search();
+    AML_IRSensor_standby();
   }
 
   /* USER CODE END 3 */

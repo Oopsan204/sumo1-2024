@@ -300,7 +300,7 @@ void sortSensorValuesByRange()
             if (SensorValue[j].RangeMilliMeter > SensorValue[j + 1].RangeMilliMeter)
             {
                 swap(&SensorValue[j].RangeMilliMeter, &SensorValue[j + 1].RangeMilliMeter);
-                swap(&mark[j], &mark[j + 1]); // Hoán đổi các giá trị trong mảng mark
+                swap(&mark[j+1], &mark[j + 2]); // Hoán đổi các giá trị trong mảng mark
                 haveSwap = true;
             }
         }
@@ -310,44 +310,44 @@ void sortSensorValuesByRange()
         }
     }
 }
-int16_t minSensorValue()
-{
-    AML_LaserSensor_ReadAll();
-    int16_t minValue = 20000;
-    int16_t upperBlock = 500;
-    int16_t markedSensor = 0;
-    for (uint16_t i = 1; i < 8; i++)
-    {
-        if (SensorValue[i].RangeMilliMeter < minValue)
-        {
-            minValue = SensorValue[i].RangeMilliMeter;
-            markedSensor = i;
-        }
-    }
-    if (minValue < upperBlock)
-    {
-        return markedSensor;
-    }
-    else
-    {
-        return 0;
-    }
-}
+// int16_t minSensorValue()
+// {
+//     AML_LaserSensor_ReadAll();
+//     int16_t minValue = 20000;
+//     int16_t upperBlock = 500;
+//     int16_t markedSensor = 0;
+//     for (uint16_t i = 1; i < 8; i++)
+//     {
+//         if (SensorValue[i].RangeMilliMeter < minValue)
+//         {
+//             minValue = SensorValue[i].RangeMilliMeter;
+//             markedSensor = i;
+//         }
+//     }
+//     if (minValue < upperBlock)
+//     {
+//         return markedSensor;
+//     }
+//     else
+//     {
+//         return 0;
+//     }
+// }
 
 int16_t searchNearest()
-{   AML_LaserSensor_ReadAll();
-    const int16_t upperBlock = 600;
+{
+    const int16_t upperBlock = 300;
+    // AML_LaserSensor_ReadAll();
     sortSensorValuesByRange();
     if (SensorValue[0].RangeMilliMeter < upperBlock)
     {
-        return mark[0];
+        return mark[1];
     }
     else
     {
         return 0;
     }
 }
-
 
 int32_t AML_LaserSensor_ReadSingleWithFillter(uint8_t name)
 {
