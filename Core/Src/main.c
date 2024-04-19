@@ -27,7 +27,6 @@
 #include "AML_LaserSensor.h"
 #include "AML_DebugDevice.h"
 #include "parameter.h"
-#include "AML_Key_ADC.h"
 #include <stdbool.h>
 
 /* USER CODE END Includes */
@@ -71,6 +70,7 @@ bool flagInterrupt_br = false;
 bool flagInterrupt_fr = false;
 int32_t timer1 = 0;
 uint8_t i = 0;
+
 uint16_t target = 0;
 void (*func)(uint16_t);
 void (*plan)(void);
@@ -113,7 +113,7 @@ void AML_motor_lef(uint8_t speed_L, uint8_t speed_R)
 {
   PWM_Start(&htim2, RPWM2);
   PWM_Start(&htim2, LPWM1);
-  PWM_Write(&htim2, RPWM2, speed_L);
+  PWM_Write(&htim2, RPWM2, speed_L - 50);
   PWM_Write(&htim2, LPWM1, speed_R);
 }
 void AML_motor_right(uint8_t speed_L, uint8_t speed_R)
@@ -121,21 +121,21 @@ void AML_motor_right(uint8_t speed_L, uint8_t speed_R)
   PWM_Start(&htim2, LPWM2);
   PWM_Start(&htim2, RPWM1);
   PWM_Write(&htim2, LPWM2, speed_L);
-  PWM_Write(&htim2, RPWM1, speed_R);
+  PWM_Write(&htim2, RPWM1, speed_R - 50);
 }
-void AML_motor_back()
+void AML_motor_back(uint8_t speed)
 {
   PWM_Start(&htim2, LPWM1);
   PWM_Start(&htim2, LPWM2);
-  PWM_Write(&htim2, LPWM1, 100);
-  PWM_Write(&htim2, LPWM2, 100);
+  PWM_Write(&htim2, LPWM1, speed);
+  PWM_Write(&htim2, LPWM2, speed);
 }
-void AML_motor_rote()
+void AML_motor_rote(uint8_t speed_L, uint8_t speed_R)
 {
   PWM_Start(&htim2, LPWM1);
   PWM_Start(&htim2, RPWM2);
-  PWM_Write(&htim2, LPWM1, 100);
-  PWM_Write(&htim2, RPWM2, 80);
+  PWM_Write(&htim2, LPWM1, speed_L);
+  PWM_Write(&htim2, RPWM2, speed_R);
 }
 void delay_timer_3(uint16_t ms)
 {
@@ -174,8 +174,8 @@ void search()
     khong tim thay doi thu
     xoay tron tim doi thu
     */
-    AML_motor_rote();
-    i = 1;
+    // AML_motor_rote(PWM_speed_L, PWM_speed_R);
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     HAL_Delay(delay1);
   }
   if (target == 2)
@@ -183,63 +183,42 @@ void search()
     // FF dam dau
     if (AML_LaserSensor_ReadSingleWithFillter(FF) < 100)
     {
-      AML_motor_forward(100);
+      AML_motor_forward(PWM_speed);
     }
     else
     {
-      PWM_Start(&htim2, RPWM1);
-      PWM_Start(&htim2, RPWM2);
-      PWM_Write(&htim2, RPWM1, 60);
-      PWM_Write(&htim2, RPWM2, 60);
-      i = 1;
+      AML_motor_forward(PWM_speed - 40);
     }
-    HAL_Delay(delay1);
-  }
-  if (target == 3)
-  {
-    // FL re trai
-    if (AML_LaserSensor_ReadSingleWithFillter(FL) < 30)
-    {
-      // PWM_Start(&htim2, RPWM2);
-      // PWM_Start(&htim2, LPWM1);
-      // PWM_Write(&htim2, RPWM2, PWM_Attack2 + 20);
-      // PWM_Write(&htim2, LPWM1, PWM_Attack1);
-      // i = 1;
-      PWM_Start(&htim2, RPWM2);
-      PWM_Start(&htim2, LPWM1);
-      PWM_Write(&htim2, RPWM2, PWM_Attack2 + 20);
-      PWM_Write(&htim2, LPWM1, PWM_Attack1);
-      i = 1;
-    }
-
-    else
-    {
-      PWM_Start(&htim2, RPWM2);
-      PWM_Start(&htim2, LPWM1);
-      PWM_Write(&htim2, RPWM2, PWM_Attack2 + 10);
-      PWM_Write(&htim2, LPWM1, PWM_Attack1);
-      i = 1;
-    }
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     HAL_Delay(delay1);
   }
   if (target == 1)
   {
-    if (AML_LaserSensor_ReadSingleWithFillter(FR) < 30)
+    // FL re trai
+    if (AML_LaserSensor_ReadSingleWithFillter(FL) < 100)
     {
-      PWM_Start(&htim2, LPWM2);
-      PWM_Start(&htim2, RPWM1);
-      PWM_Write(&htim2, LPWM2, PWM_Attack2);
-      PWM_Write(&htim2, RPWM2, PWM_Attack1 + 20);
-      i = 1;
+      AML_motor_lef(PWM_speed_L - 50, PWM_speed_R);
+      
+    }
+
+    else
+    {
+      AML_motor_lef(PWM_speed_L - 50, PWM_speed_R);
+    }
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+    HAL_Delay(delay1);
+  }
+  if (target == 3)
+  {
+    if (AML_LaserSensor_ReadSingleWithFillter(FR) < 100)
+    {
+      AML_motor_right(PWM_speed_L, PWM_speed_R - 50);
     }
     else
     {
-      PWM_Start(&htim2, LPWM2);
-      PWM_Start(&htim2, RPWM1);
-      PWM_Write(&htim2, LPWM2, PWM_Attack2);
-      PWM_Write(&htim2, RPWM1, PWM_Attack1 + 10);
-      i = 1;
+      AML_motor_right(PWM_speed_L, PWM_speed_R - 50);
     }
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     HAL_Delay(delay1);
   }
   if (target == 6)
@@ -247,60 +226,55 @@ void search()
     // R quay sang phai
     if (AML_LaserSensor_ReadSingleWithFillter(R) < 100)
     {
-      PWM_Start(&htim2, LPWM2);
-      PWM_Start(&htim2, RPWM1);
-      PWM_Write(&htim2, LPWM2, PWM_Attack2);
-      PWM_Write(&htim2, RPWM1, PWM_Attack1 + 30);
-      i = 1;
+      AML_motor_right(PWM_speed_L, PWM_speed_R - 50);
     }
     else
     {
-      PWM_Start(&htim2, LPWM2);
-      PWM_Start(&htim2, RPWM1);
-      PWM_Write(&htim2, LPWM2, PWM_Attack2);
-      PWM_Write(&htim2, RPWM1, PWM_Attack1 + 30);
-      i = 1;
+      AML_motor_right(PWM_speed_L - 50, PWM_speed_R - 50);
     }
-    HAL_Delay(delay1);
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+    HAL_Delay(100);
   }
   if (target == 7)
   {
     // L quay sang trai
     if (AML_LaserSensor_ReadSingleWithFillter(L) < 100)
     {
-      PWM_Start(&htim2, RPWM2);
-      PWM_Start(&htim2, LPWM1);
-      PWM_Write(&htim2, RPWM2, PWM_Attack2 + 30);
-      PWM_Write(&htim2, LPWM1, PWM_Attack1);
-      i = 1;
+      AML_motor_lef(PWM_speed_L - 50, PWM_speed_R);
     }
     else
     {
-      PWM_Start(&htim2, RPWM2);
-      PWM_Start(&htim2, LPWM1);
-      PWM_Write(&htim2, RPWM2, PWM_Attack2 + 30);
-      PWM_Write(&htim2, LPWM1, PWM_Attack1);
-      i = 1;
+      AML_motor_lef(PWM_speed_L - 50, PWM_speed_R - 50);
     }
-    HAL_Delay(delay1);
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+    HAL_Delay(100);
   }
-  if ((target == 4 && target == 5) || (target == 4 || target == 5))
+  if (target == 4 || target == 5)
   {
-    PWM_Start(&htim2, LPWM1);
-    PWM_Start(&htim2, LPWM2);
-    PWM_Write(&htim2, LPWM1, 100);
-    PWM_Write(&htim2, LPWM2, 100);
-    i = 1;
+    if (AML_LaserSensor_ReadSingleWithFillter(BL) < 40 || AML_LaserSensor_ReadSingleWithFillter(BR) < 40)
+    {
+      AML_motor_back(150);
+    }
+    else
+    {
+      AML_motor_back(100);
+    }
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     HAL_Delay(delay1);
   }
 }
 void plan_begin()
 {
-  PWM_Start(&htim2, RPWM1);
-  PWM_Start(&htim2, RPWM2);
-  PWM_Write(&htim2, RPWM1, 100);
-  PWM_Write(&htim2, RPWM2, 100);
-  HAL_Delay(1000);
+  AML_motor_forward(150);
+  // HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
+  // HAL_Delay(900);
+  // AML_motor_right(150, 100);
+  // HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_SET);
+  // HAL_Delay(500);
+}
+void plan_stop()
+{
+  AML_motor_stop();
 }
 
 // void readADCStore()
@@ -358,8 +332,20 @@ int main(void)
   // HAL_Delay(3000); // delay 3s
   AML_LaserSensor_Setup();
   HAL_TIM_Base_Start(&htim2);
+  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
   plan_begin();
   // HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
+  // switch (button[0])   
+  // {
+  // case 0:
+  //   plan = &plan_begin;
+  //   break;
+  // case 127:
+  //   plan = &plan_stop;
+  // default:
+  //   break;
+  // }
+  // plan();
   // button tatic
 
   /* USER CODE END 2 */
@@ -370,7 +356,9 @@ int main(void)
   {
 
     /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
+
     AML_LaserSensor_ReadAll();
     print_sensorvalue();
     search();
@@ -686,15 +674,26 @@ static void MX_GPIO_Init(void)
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, XSHUT_FL_Pin | XSHUT_FF_Pin | XSHUT_FR_Pin | XSHUT_BR_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, XSHUT_BL_Pin | XSHUT_R_Pin | XSHUT_L_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : Led_Pin */
+  GPIO_InitStruct.Pin = Led_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(Led_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PB0 PB1 PB3 PB4 */
   GPIO_InitStruct.Pin = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_3 | GPIO_PIN_4;

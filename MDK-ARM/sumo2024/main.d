@@ -47,4 +47,3 @@ sumo2024\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
 sumo2024\main.o: ../Core/Inc/parameter.h
 sumo2024\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 sumo2024\main.o: ../Core/Inc/AML_DebugDevice.h
-sumo2024\main.o: ../Core/Inc/AML_Key_ADC.h

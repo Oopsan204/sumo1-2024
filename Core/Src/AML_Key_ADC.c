@@ -10,7 +10,7 @@ extern DMA_HandleTypeDef hdma_adc1;
 uint16_t adc_key_val[Array_Size_Button] = {0, 127, 2141, 475, 307};
 uint8_t NUM_KEY = 5;
 uint8_t adc_key_in;
-uint8_t oldkey = -1;
+uint16_t oldkey = -1;
 uint8_t keyValue; // luu nut bam
 uint8_t key = -1;
 

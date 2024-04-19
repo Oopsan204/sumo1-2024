@@ -1,5 +1,7 @@
 sumo2024\aml_key_adc.o: ..\Core\Src\AML_Key_ADC.c
 sumo2024\aml_key_adc.o: ../Core/Inc/AML_Key_ADC.h
+sumo2024\aml_key_adc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+sumo2024\aml_key_adc.o: ../Core/Inc/parameter.h
 sumo2024\aml_key_adc.o: ../Core/Inc/main.h
 sumo2024\aml_key_adc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 sumo2024\aml_key_adc.o: ../Core/Inc/stm32f1xx_hal_conf.h
@@ -31,4 +33,3 @@ sumo2024\aml_key_adc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 sumo2024\aml_key_adc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 sumo2024\aml_key_adc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 sumo2024\aml_key_adc.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
-sumo2024\aml_key_adc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

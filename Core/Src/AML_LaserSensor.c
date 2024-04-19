@@ -400,6 +400,7 @@ void AML_LaserSensor_TestLaser(void)
         if ((AML_LaserSensor_ReadSingleWithFillter(FL) - t0) != 0)
         {
             AML_DebugDevice_BuzzBeep_TitTit(0);
+            
         }
         else
         {

@@ -7,7 +7,7 @@ _TIM_ :ex: &htim1
 CHANNEL: ex: CH1
 _PRESCALER_:tan so
 _MAX_:gia tri dem max
-_VAR_ :do rong xung 0-100%
+_VAR_ :do rong xung 0-100% tinh sai max 150%
 
 */
 #define LPWM1 TIM_CHANNEL_1

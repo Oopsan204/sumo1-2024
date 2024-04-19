@@ -20,9 +20,11 @@ void AML_DebugDevice_BuzzBeep_TitTit(uint8_t turn)
     for (int i = 0; i <= turn; i++)
     {
         HAL_GPIO_WritePin(Buzz_GPIO_Port,Buzz_Pin,GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(Led_GPIO_Port,Led_Pin,GPIO_PIN_RESET);
         HAL_Delay(500);
         HAL_GPIO_WritePin(Buzz_GPIO_Port,Buzz_Pin,GPIO_PIN_SET);
         HAL_Delay(500);
+        HAL_GPIO_WritePin(Led_GPIO_Port,Led_Pin,GPIO_PIN_SET);
     }
 }
 
