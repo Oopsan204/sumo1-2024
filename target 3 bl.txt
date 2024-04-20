@@ -1,5 +1,0 @@
-target 3 bl
-target 1 ff
-target 2 fl
-target 4 fr
-target 5 r

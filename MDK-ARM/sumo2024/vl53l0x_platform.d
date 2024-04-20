@@ -3,11 +3,11 @@ sumo2024\vl53l0x_platform.o: ../Drivers/VL53L0X/platform/inc/vl53l0x_platform.h
 sumo2024\vl53l0x_platform.o: ../Drivers/VL53L0X/core/inc/vl53l0x_def.h
 sumo2024\vl53l0x_platform.o: ../Drivers/VL53L0X/core/inc/vl53l0x_device.h
 sumo2024\vl53l0x_platform.o: ../Drivers/VL53L0X/platform/inc/vl53l0x_types.h
-sumo2024\vl53l0x_platform.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-sumo2024\vl53l0x_platform.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+sumo2024\vl53l0x_platform.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+sumo2024\vl53l0x_platform.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 sumo2024\vl53l0x_platform.o: ../Drivers/VL53L0X/platform/inc/vl53l0x_platform_log.h
-sumo2024\vl53l0x_platform.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-sumo2024\vl53l0x_platform.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+sumo2024\vl53l0x_platform.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+sumo2024\vl53l0x_platform.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 sumo2024\vl53l0x_platform.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 sumo2024\vl53l0x_platform.o: ../Core/Inc/stm32f1xx_hal_conf.h
 sumo2024\vl53l0x_platform.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h
@@ -36,5 +36,6 @@ sumo2024\vl53l0x_platform.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i
 sumo2024\vl53l0x_platform.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 sumo2024\vl53l0x_platform.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 sumo2024\vl53l0x_platform.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+sumo2024\vl53l0x_platform.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 sumo2024\vl53l0x_platform.o: ../Drivers/VL53L0X/core/inc/vl53l0x_api.h
 sumo2024\vl53l0x_platform.o: ../Drivers/VL53L0X/core/inc/vl53l0x_api_strings.h
