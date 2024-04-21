@@ -25,7 +25,7 @@
 #include "stm32f1xx.h"
 #include "tim_pwm.h"
 #include "AML_LaserSensor.h"
-#include "AML_DebugDevice.h"
+#include "AML_MPUSensor.h"
 #include "parameter.h"
 #include <stdbool.h>
 
@@ -47,6 +47,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
+DMA_HandleTypeDef hdma_adc1;
 
 I2C_HandleTypeDef hi2c1;
 
@@ -55,6 +56,7 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 
 UART_HandleTypeDef huart2;
+DMA_HandleTypeDef hdma_usart2_rx;
 
 /* USER CODE BEGIN PV */
 
@@ -71,7 +73,8 @@ bool flagInterrupt_br = false;
 bool flagInterrupt_fr = false;
 int32_t timer1 = 0;
 uint8_t i = 0;
-
+uint8_t data_mpu[11];
+double testAnge;
 uint16_t target = 0;
 void (*func)(uint16_t);
 void (*plan)(void);
@@ -80,6 +83,7 @@ void (*plan)(void);
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_ADC1_Init(void);
@@ -199,7 +203,6 @@ void search()
     if (AML_LaserSensor_ReadSingleWithFillter(FL) < 100)
     {
       AML_motor_lef(PWM_speed_L - 50, PWM_speed_R);
-      
     }
 
     else
@@ -267,11 +270,11 @@ void search()
 void plan_begin()
 {
   AML_motor_forward(150);
-  // HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
-  // HAL_Delay(900);
-  // AML_motor_right(150, 100);
-  // HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_SET);
-  // HAL_Delay(500);
+  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
+  HAL_Delay(900);
+  AML_motor_right(150, 100);
+  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_SET);
+  HAL_Delay(500);
 }
 void plan_stop()
 {
@@ -323,6 +326,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_I2C1_Init();
   MX_TIM1_Init();
   MX_ADC1_Init();
@@ -331,12 +335,13 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   // HAL_Delay(3000); // delay 3s
+  HAL_TIM_Base_Start(&htim2); 
   AML_LaserSensor_Setup();
-  HAL_TIM_Base_Start(&htim2);
+  AML_MPUSensor_Setup();
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
+  // HAL_ADC_Start_DMA(&hadc1,(uint32_t*)button,1);
   plan_begin();
-  // HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
-  // switch (button[0])   
+  // switch (button[0])
   // {
   // case 0:
   //   plan = &plan_begin;
@@ -360,6 +365,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
+    testAnge =AML_MPUSensor_GetAngle();
     AML_LaserSensor_ReadAll();
     print_sensorvalue();
     search();
@@ -384,7 +390,11 @@ void SystemClock_Config(void)
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -394,17 +404,17 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSE;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
-  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV2;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
@@ -433,7 +443,7 @@ static void MX_ADC1_Init(void)
   */
   hadc1.Instance = ADC1;
   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
@@ -447,7 +457,7 @@ static void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_5;
   sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -594,6 +604,14 @@ static void MX_TIM2_Init(void)
   {
     Error_Handler();
   }
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
+  {
+    Error_Handler();
+  }
   /* USER CODE BEGIN TIM2_Init 2 */
 
   /* USER CODE END TIM2_Init 2 */
@@ -680,6 +698,25 @@ static void MX_USART2_UART_Init(void)
 }
 
 /**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+  /* DMA1_Channel6_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel6_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel6_IRQn);
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -758,11 +795,7 @@ static void MX_GPIO_Init(void)
 
 void interrupt_bl()
 {
-  PWM_Start(&htim2, RPWM1);
-  PWM_Start(&htim2, RPWM2);
-  PWM_Write(&htim2, RPWM1, PWM_Driver_Left_B);
-  PWM_Write(&htim2, RPWM2, PWM_Driver_Right_B);
-
+  AML_motor_forward(150);
   flagInterrupt_bl = true; // bat co
   timer1 = HAL_GetTick();  // moc thoi gian bat dau thoat hiem
   flagInterrupt_br = false;
@@ -772,11 +805,7 @@ void interrupt_bl()
 
 void interrupt_br()
 {
-  PWM_Start(&htim2, RPWM1);
-  PWM_Start(&htim2, RPWM2);
-  PWM_Write(&htim2, RPWM1, PWM_Driver_Left_F);
-  PWM_Write(&htim2, RPWM2, PWM_Driver_Right_F);
-
+  AML_motor_forward(150);
   flagInterrupt_br = true; // bat co
   timer1 = HAL_GetTick();  // moc thoi gian bat dau thoat hiem
   flagInterrupt_bl = false;
@@ -786,11 +815,7 @@ void interrupt_br()
 
 void interrupt_fl()
 {
-  PWM_Start(&htim2, LPWM1);
-  PWM_Start(&htim2, LPWM2);
-  PWM_Write(&htim2, LPWM1, PWM_Driver_Left_B);
-  PWM_Write(&htim2, LPWM2, PWM_Driver_Right_B);
-
+  AML_motor_back(150);
   flagInterrupt_fl = true; // bat co
   timer1 = HAL_GetTick();  // moc thoi gian bat dau thoat hiem
   flagInterrupt_br = false;
@@ -799,17 +824,14 @@ void interrupt_fl()
 }
 void interrupt_fr()
 {
-  PWM_Start(&htim2, LPWM1);
-  PWM_Start(&htim2, LPWM2);
-  PWM_Write(&htim2, LPWM1, PWM_Driver_Left_F);
-  PWM_Write(&htim2, LPWM2, PWM_Driver_Right_F);
-
+  AML_motor_back(150);
   flagInterrupt_fr = true; // bat co
   timer1 = HAL_GetTick();  // moc thoi gian bat dau thoat hiem
   flagInterrupt_br = false;
   flagInterrupt_fl = false;
   flagInterrupt_bl = false;
 }
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   /* Prevent unused argument(s) compilation warning */
