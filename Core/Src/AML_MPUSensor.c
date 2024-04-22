@@ -3,7 +3,7 @@
 uint8_t ResetCommand[] = {0xFF, 0xAA, 0x52};
 
 extern UART_HandleTypeDef huart2;
-extern DMA_HandleTypeDef hdma_usart2_rx;
+// extern DMA_HandleTypeDef hdma_usart2_rx;
 
 volatile uint8_t MPUData[36];
 volatile uint8_t buffer = 119;
@@ -16,7 +16,7 @@ void HAL_UART_TxHalfCpltCallback(UART_HandleTypeDef *huart)
 {
     UNUSED(huart);
 
-    if (huart->Instance == USART3)
+    if (huart->Instance == USART2)
     {
     }
 }
@@ -36,23 +36,23 @@ void AML_MPUSensor_ResetAngle(void)
     Angle = 0;
     HAL_Delay(5);
 
-    HAL_UART_Receive_DMA(&huart2, MPUData, 33);
+    HAL_UART_Receive_DMA(&huart2, (uint8_t *)MPUData, 33);
 }
 
 void AML_MPUSensor_Setup(void)
 {
     AML_MPUSensor_ResetAngle();
-    HAL_UART_Receive_DMA(&huart2, MPUData, 33);
+    HAL_UART_Receive_DMA(&huart2, (uint8_t *)MPUData, 33);
 }
 
 void handle(void)
 {
     while (buffer != 85) // wait 0x55
     {
-        HAL_UART_Receive(&huart2, &buffer, 1, 1000);
+        HAL_UART_Receive(&huart2, (uint8_t *)buffer, 1, 1000);
     }
     buffer = 100;
-    HAL_UART_Receive_DMA(&huart2, MPUData, 33);
+    HAL_UART_Receive_DMA(&huart2, (uint8_t *)MPUData, 33);
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
@@ -78,9 +78,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
             SaveAngle -= 360.0f;
         }
 
-        HAL_UART_Receive_DMA(&huart2, MPUData, 33);
+        HAL_UART_Receive_DMA(&huart2, (uint8_t *)MPUData, 33);
     }
-
 }
 
 double AML_MPUSensor_GetAngle(void)

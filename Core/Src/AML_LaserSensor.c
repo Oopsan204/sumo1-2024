@@ -336,7 +336,7 @@ void sortSensorValuesByRange()
 
 int16_t searchNearest()
 {
-    const int16_t upperBlock = 300;
+    const int16_t upperBlock = 500;
     // AML_LaserSensor_ReadAll();
     sortSensorValuesByRange();
     if (SensorValue[0].RangeMilliMeter < upperBlock)

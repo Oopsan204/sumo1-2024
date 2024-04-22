@@ -222,7 +222,7 @@ ARM Macro Assembler    Page 4
   137 00000008                 ENDP
   138 00000008         
   139 00000008         ; Dummy Exception Handlers (infinite loops which can be 
-                       modified)
+                       modified)8
   140 00000008         
   141 00000008         NMI_Handler
                                PROC
