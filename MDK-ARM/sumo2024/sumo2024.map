@@ -2148,7 +2148,7 @@ Image Symbol Table
     i.MX_TIM1_Init                           0x08002cd4   Section        0  main.o(i.MX_TIM1_Init)
     MX_TIM1_Init                             0x08002cd5   Thumb Code    96  main.o(i.MX_TIM1_Init)
     i.MX_TIM2_Init                           0x08002d3c   Section        0  main.o(i.MX_TIM2_Init)
-    MX_TIM2_Init                             0x08002d3d   Thumb Code   194  main.o(i.MX_TIM2_Init)
+    MX_TIM2_Init                             0x08002d3d   Thumb Code   196  main.o(i.MX_TIM2_Init)
     i.MX_TIM3_Init                           0x08002e04   Section        0  main.o(i.MX_TIM3_Init)
     MX_TIM3_Init                             0x08002e05   Thumb Code    92  main.o(i.MX_TIM3_Init)
     i.MemManage_Handler                      0x08002e68   Section        0  stm32f1xx_it.o(i.MemManage_Handler)
@@ -2561,7 +2561,7 @@ Image Symbol Table
     HAL_UART_DMAStop                         0x0800238b   Thumb Code   112  stm32f1xx_hal_uart.o(i.HAL_UART_DMAStop)
     HAL_UART_ErrorCallback                   0x080023fb   Thumb Code     2  stm32f1xx_hal_uart.o(i.HAL_UART_ErrorCallback)
     HAL_UART_Init                            0x080023fd   Thumb Code   100  stm32f1xx_hal_uart.o(i.HAL_UART_Init)
-    HAL_UART_MspInit                         0x08002461   Thumb Code   140  stm32f1xx_hal_msp.o(i.HAL_UART_MspInit)
+    HAL_UART_MspInit                         0x08002461   Thumb Code   138  stm32f1xx_hal_msp.o(i.HAL_UART_MspInit)
     HAL_UART_Receive                         0x08002501   Thumb Code   172  stm32f1xx_hal_uart.o(i.HAL_UART_Receive)
     HAL_UART_Receive_DMA                     0x080025ad   Thumb Code    28  stm32f1xx_hal_uart.o(i.HAL_UART_Receive_DMA)
     HAL_UART_RxCpltCallback                  0x080025c9   Thumb Code   160  aml_mpusensor.o(i.HAL_UART_RxCpltCallback)
@@ -3146,7 +3146,7 @@ Image component sizes
       1338         92          0         31       3208     470514   aml_lasersensor.o
        408         74          0         32         36       3260   aml_mpusensor.o
        122          0          0          0          0       1490   kalmanfilter.o
-      2162        162          0         24        556      14038   main.o
+      2162        160          0         24        556      14042   main.o
         64         26        236          0       1536        780   startup_stm32f103xb.o
        164         28          0         12          0       5645   stm32f1xx_hal.o
        622         24          0          0          0       3172   stm32f1xx_hal_adc.o
@@ -3154,7 +3154,7 @@ Image component sizes
        656         32          0          0          0       4071   stm32f1xx_hal_dma.o
        530         40          0          0          0       3940   stm32f1xx_hal_gpio.o
       2338         54          0          0          0      12194   stm32f1xx_hal_i2c.o
-       672         92          0          0          0       4297   stm32f1xx_hal_msp.o
+       672         94          0          0          0       4297   stm32f1xx_hal_msp.o
       1240         84         18          0          0       4920   stm32f1xx_hal_rcc.o
        236         12          0          0          0       1316   stm32f1xx_hal_rcc_ex.o
       1406         60          0          0          0      12417   stm32f1xx_hal_tim.o
@@ -3168,7 +3168,7 @@ Image component sizes
        468         24          0          0         64       8525   vl53l0x_platform.o
 
     ----------------------------------------------------------------------
-     23624        948        310        804       5400     671083   Object Totals
+     23624        948        310        804       5400     671087   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         32          0          0          4          0          0   (incl. Padding)
 
@@ -3242,8 +3242,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     27554       1100        310        804       5500     661363   Grand Totals
-     27554       1100        310        680       5500     661363   ELF Image Totals (compressed)
+     27554       1100        310        804       5500     661367   Grand Totals
+     27554       1100        310        680       5500     661367   ELF Image Totals (compressed)
      27554       1100        310        680          0          0   ROM Totals
 
 ==============================================================================
