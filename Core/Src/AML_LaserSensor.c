@@ -322,7 +322,7 @@ void sortSensorValuesByRange()
 //         {
 //             minValue = SensorValue[i].RangeMilliMeter;
 //             markedSensor = i;
-//         }
+//         
 //     }
 //     if (minValue < upperBlock)
 //     {

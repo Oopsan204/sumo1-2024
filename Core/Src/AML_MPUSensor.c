@@ -29,13 +29,11 @@ void AML_MPUSensor_ResetAngle(void)
     PreviousAngle = 0;
     Angle = 0;
     HAL_Delay(5);
-
     HAL_UART_Transmit(&huart2, ResetCommand, 3, 1000);
     SaveAngle = 0;
     PreviousAngle = 0;
     Angle = 0;
     HAL_Delay(5);
-
     HAL_UART_Receive_DMA(&huart2, (uint8_t *)MPUData, 33);
 }
 
@@ -49,7 +47,7 @@ void handle(void)
 {
     while (buffer != 85) // wait 0x55
     {
-        HAL_UART_Receive(&huart2, (uint8_t *)buffer, 1, 1000);
+        HAL_UART_Receive(&huart2,(uint8_t*)buffer, 1, 1000);
     }
     buffer = 100;
     HAL_UART_Receive_DMA(&huart2, (uint8_t *)MPUData, 33);
@@ -58,7 +56,7 @@ void handle(void)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     UNUSED(huart);
-    if (huart->Instance == USART3)
+    if (huart->Instance == USART2)
     {
         if (MPUData[0] != 83)
         {
