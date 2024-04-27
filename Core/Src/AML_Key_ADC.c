@@ -2,123 +2,76 @@
 #include <stdbool.h>
 #include "parameter.h"
 
+
 extern ADC_HandleTypeDef hadc1;
-extern DMA_HandleTypeDef hdma_adc1;
+// extern DMA_HandleTypeDef hdma_adc1;
 
-// ADCkeyboar Module
+// Biến lưu trữ giá trị analog cũ
 
-uint16_t adc_key_val[Array_Size_Button] = {0, 127, 2141, 475, 307};
-uint8_t NUM_KEY = 5;
-uint8_t adc_key_in;
-uint16_t oldkey = -1;
-uint8_t keyValue; // luu nut bam
-uint8_t key = -1;
-
-void (*resetFunc)(void) = 0;
-
-uint16_t AML_keyboard_getKey(uint8_t inputValue)
+// Hàm đọc giá trị analog
+int16_t read_analog_value(int new_value)
 {
-    uint8_t k;
-    for (k = 0; k < NUM_KEY; k++)
+    // Nếu giá trị mới là 4095, bỏ qua
+    if (new_value == 4095)
     {
-        if (inputValue < adc_key_val[k])
-        {
-            return k;
-        }
+        return old_analog_value;
     }
-    if (k >= NUM_KEY)
-        k = -1;
-    return k;
+
+    // Lưu giá trị cũ
+    int temp = old_analog_value;
+
+    // Cập nhật giá trị cũ
+    old_analog_value = new_value;
+
+    // Tính toán sự thay đổi
+    int difference = new_value - temp;
+
+    return difference;
 }
 
-// doc nut cho den khi phat hien bam nut
-uint16_t AML_keyboard_readKeyLoop()
+int main()
 {
-    bool flagPressButton = false;
-    adc_key_in = HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adc_key_val, 1);
-    key = AML_keyboard_getKey(adc_key_in);
-    if (key != oldkey)
+    // Giả sử bạn đã đọc giá trị analog từ ADC
+    int new_analog_value = 4095; // Giá trị mới
+
+    // Gọi hàm đọc giá trị analog
+    int change = read_analog_value(new_analog_value);
+
+    if (change != 0)
     {
-        HAL_Delay(50);
-        adc_key_in = HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adc_key_val, 1);
-        key = AML_keyboard_getKey(adc_key_in);
-        if (key != oldkey)
-        {
-            oldkey = key;
-            if (key >= 0)
-            {
-                switch (key)
-                {
-                case 0:
-                    keyValue = 0;
-                    break;
-                case 1:
-                    keyValue = 1;
-                    break;
-                case 2:
-                    keyValue = 2;
-                    break;
-                case 3:
-                    keyValue = 3;
-                    break;
-                case 4:
-                    keyValue = 4;
-                    break;
-                }
-                flagPressButton = true;
-            }
-        }
-    }
-    if (!flagPressButton)
-    {
-        AML_keyboard_readKeyLoop();
     }
     else
     {
-        return keyValue;
     }
+
+    return 0;
 }
-
-// Đọc nút reset
-void AML_Keyboard_readResetKey()
+void readADCStore()
 {
-    adc_key_in = HAL_ADC_Start_DMA(&hadc1,(uint32_t *)adc_key_val, 1); // read the value from the sensor pin A0
-    key = AML_keyboard_getKey(adc_key_in);                              // convert into key press
-
-    if (key != oldkey) // if keypress is detected
+    HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
+    adcvalue = button[0];
+    if (adcvalue == 0)
     {
-        HAL_Delay(25);                                        // wait for debounce time
-        adc_key_in = HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adc_key_val, 1); // read the value from the sensor
-        key = AML_keyboard_getKey(adc_key_in);                // convert into key press
-        if (key != oldkey)
-        {
-            oldkey = key;
-            if (key >= 0)
-            {
-                switch (key)
-                {
-                case 0:
-                    keyValue = 0;
-                    break;
-                case 1:
-                    keyValue = 1;
-                    break;
-                case 2:
-                    keyValue = 2;
-                    break;
-                case 3:
-                    keyValue = 3;
-                    break;
-                case 4:
-                    keyValue = 4;
-                    break;
-                }
-
-                if (keyValue == 1) // Nút B
-                {
-                    resetFunc(); // Lệnh reset
-                }
-            }
-        }
+        // HAL_Delay(3000);
+        plan_begin();
+        HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+    }
+    else if (adcvalue > 400 && adcvalue < 500)
+    {
+        AML_motor_stop();
+        HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+    }
+    else if (adcvalue < 700 && adcvalue > 600)
+    {
+        plan = &search2;
+        HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+    }
+    else if (adcvalue < 2800 && adcvalue > 2700)
+    {
+        HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+    }
+    else
+    {
+        AML_motor_stop();
     }
 }
