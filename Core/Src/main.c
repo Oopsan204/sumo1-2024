@@ -78,8 +78,9 @@ int16_t new_ADC_value = 4095; // Giá trị mới
 uint16_t button[Array_Size_Button];
 uint16_t adcvalue;
 uint16_t temp;
-void (*func)(void);
-void (*plan)(void);
+static uint8_t plan_begin_called = 0;
+void (*func)(); // tro den ham chien thuat
+void (*plan)(void) =NULL; // tro den ham bat dau
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -350,8 +351,12 @@ void readADCStore()
   }
   else if (400 < updated_ADC_value && updated_ADC_value < 500)
   {
-    plan = &plan_begin;
-    func = &search2;
+    if (!plan_begin_called)
+    {
+      plan = &plan_begin;
+      plan_begin_called = 1;
+    }
+    search2();
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
   }
   else if (600 < updated_ADC_value && updated_ADC_value < 700)
@@ -411,7 +416,8 @@ int main(void)
   // HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
   AML_motor_stop();
-  // plan();
+  // plan = &plan_begin;
+
   // plan_begin();
 
   /* USER CODE END 2 */
@@ -425,9 +431,14 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     readADCStore();
+    if (plan != NULL)
+    {
+      (*plan)();
+      plan = NULL;
+    }
     AML_LaserSensor_ReadAll();
     print_sensorvalue();
-    func();
+    // func();
     // search2();
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     AML_IRSensor_standby();
