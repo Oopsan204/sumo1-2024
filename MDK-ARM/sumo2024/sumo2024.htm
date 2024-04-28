@@ -3,7 +3,7 @@
 <title>Static Call Graph - [sumo2024\sumo2024.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image sumo2024\sumo2024.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Apr 28 15:37:58 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Apr 28 16:00:33 2024
 <BR><P>
 <H3>Maximum Stack Usage =        720 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -715,6 +715,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;search2
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readADCStore
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;plan_begin
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AML_LaserSensor_Setup
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VL53L0X_PollingDelay
@@ -2011,14 +2012,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[10a]"></a>readADCStore</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, main.o(i.readADCStore))
-<BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = readADCStore &rArr; HAL_ADC_Start_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
+<P><STRONG><a name="[10a]"></a>readADCStore</STRONG> (Thumb, 98 bytes, Stack size 24 bytes, main.o(i.readADCStore))
+<BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = readADCStore &rArr; HAL_ADC_Start_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_TogglePin
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Start_DMA
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;search2
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_analog_value
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AML_motor_stop
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>

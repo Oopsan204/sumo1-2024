@@ -79,6 +79,7 @@ uint16_t button[Array_Size_Button];
 uint16_t adcvalue;
 uint16_t temp;
 static uint8_t plan_begin_called = 0;
+static uint8_t delay_done = 0;
 void (*func)(); // tro den ham chien thuat
 void (*plan)(void) =NULL; // tro den ham bat dau
 /* USER CODE END PV */
@@ -351,6 +352,11 @@ void readADCStore()
   }
   else if (400 < updated_ADC_value && updated_ADC_value < 500)
   {
+    if (!delay_done)
+    {
+      HAL_Delay(2900);
+      delay_done =1;
+    }
     if (!plan_begin_called)
     {
       plan = &plan_begin;

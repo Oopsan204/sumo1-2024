@@ -197,6 +197,7 @@ Section Cross References
     main.o(i.readADCStore) refers to stm32f1xx_hal_adc.o(i.HAL_ADC_Start_DMA) for HAL_ADC_Start_DMA
     main.o(i.readADCStore) refers to main.o(i.read_analog_value) for read_analog_value
     main.o(i.readADCStore) refers to main.o(i.AML_motor_stop) for AML_motor_stop
+    main.o(i.readADCStore) refers to stm32f1xx_hal.o(i.HAL_Delay) for HAL_Delay
     main.o(i.readADCStore) refers to main.o(i.search2) for search2
     main.o(i.readADCStore) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_TogglePin) for HAL_GPIO_TogglePin
     main.o(i.readADCStore) refers to main.o(.bss) for .bss
@@ -1896,55 +1897,55 @@ Image Symbol Table
     ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c 0x00000000   Number         0  stm32f1xx_hal_tim.o ABSOLUTE
     ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c 0x00000000   Number         0  stm32f1xx_hal_tim_ex.o ABSOLUTE
     ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c 0x00000000   Number         0  stm32f1xx_hal_uart.o ABSOLUTE
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
     ../clib/angel/dclz77c.s                  0x00000000   Number         0  __dclz77c.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
     ../clib/angel/scatter.s                  0x00000000   Number         0  __scatter.o ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
-    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../clib/longlong.s                       0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/memcpset.s                       0x00000000   Number         0  rt_memcpy_v6.o ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  rt_memcpy_w.o ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  rt_memclr_w.o ABSOLUTE
-    ../clib/memcpset.s                       0x00000000   Number         0  rt_memcpy_v6.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  exit.o ABSOLUTE
     ../clib/string.c                         0x00000000   Number         0  strcpy.o ABSOLUTE
@@ -2288,34 +2289,35 @@ Image Symbol Table
     i.plan_begin                             0x080057c4   Section        0  main.o(i.plan_begin)
     i.print_sensorvalue                      0x08005808   Section        0  aml_lasersensor.o(i.print_sensorvalue)
     i.readADCStore                           0x08005890   Section        0  main.o(i.readADCStore)
-    i.read_analog_value                      0x080058f0   Section        0  main.o(i.read_analog_value)
-    i.search2                                0x08005910   Section        0  main.o(i.search2)
-    i.searchNearest                          0x08005990   Section        0  aml_lasersensor.o(i.searchNearest)
-    i.sequence_step_enabled                  0x080059b8   Section        0  vl53l0x_api.o(i.sequence_step_enabled)
-    i.set_ref_spad_map                       0x080059f0   Section        0  vl53l0x_api_calibration.o(i.set_ref_spad_map)
-    i.set_sequence_step_timeout              0x080059fa   Section        0  vl53l0x_api_core.o(i.set_sequence_step_timeout)
-    i.sortSensorValuesByRange                0x08005afc   Section        0  aml_lasersensor.o(i.sortSensorValuesByRange)
-    i.swap                                   0x08005b68   Section        0  aml_lasersensor.o(i.swap)
-    x$fpl$fadd                               0x08005b74   Section      196  faddsub_clz.o(x$fpl$fadd)
-    _fadd1                                   0x08005b83   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
-    x$fpl$fdiv                               0x08005c38   Section      388  fdiv.o(x$fpl$fdiv)
-    _fdiv1                                   0x08005c39   Thumb Code     0  fdiv.o(x$fpl$fdiv)
-    x$fpl$ffixu                              0x08005dbc   Section       62  ffixu.o(x$fpl$ffixu)
-    x$fpl$ffltu                              0x08005dfc   Section       38  fflt_clz.o(x$fpl$ffltu)
-    x$fpl$fmul                               0x08005e24   Section      258  fmul.o(x$fpl$fmul)
-    x$fpl$fnaninf                            0x08005f26   Section      140  fnaninf.o(x$fpl$fnaninf)
-    x$fpl$fretinf                            0x08005fb2   Section       10  fretinf.o(x$fpl$fretinf)
-    x$fpl$fsub                               0x08005fbc   Section      234  faddsub_clz.o(x$fpl$fsub)
-    _fsub1                                   0x08005fcb   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
-    .constdata                               0x080060a6   Section       18  stm32f1xx_hal_rcc.o(.constdata)
-    x$fpl$usenofp                            0x080060a6   Section        0  usenofp.o(x$fpl$usenofp)
-    aPredivFactorTable                       0x080060a6   Data           2  stm32f1xx_hal_rcc.o(.constdata)
-    aPLLMULFactorTable                       0x080060a8   Data          16  stm32f1xx_hal_rcc.o(.constdata)
-    .constdata                               0x080060b8   Section       16  system_stm32f1xx.o(.constdata)
-    .constdata                               0x080060c8   Section        8  system_stm32f1xx.o(.constdata)
+    i.read_analog_value                      0x08005904   Section        0  main.o(i.read_analog_value)
+    i.search2                                0x08005924   Section        0  main.o(i.search2)
+    i.searchNearest                          0x080059a4   Section        0  aml_lasersensor.o(i.searchNearest)
+    i.sequence_step_enabled                  0x080059cc   Section        0  vl53l0x_api.o(i.sequence_step_enabled)
+    i.set_ref_spad_map                       0x08005a04   Section        0  vl53l0x_api_calibration.o(i.set_ref_spad_map)
+    i.set_sequence_step_timeout              0x08005a0e   Section        0  vl53l0x_api_core.o(i.set_sequence_step_timeout)
+    i.sortSensorValuesByRange                0x08005b10   Section        0  aml_lasersensor.o(i.sortSensorValuesByRange)
+    i.swap                                   0x08005b7c   Section        0  aml_lasersensor.o(i.swap)
+    x$fpl$fadd                               0x08005b88   Section      196  faddsub_clz.o(x$fpl$fadd)
+    _fadd1                                   0x08005b97   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
+    x$fpl$fdiv                               0x08005c4c   Section      388  fdiv.o(x$fpl$fdiv)
+    _fdiv1                                   0x08005c4d   Thumb Code     0  fdiv.o(x$fpl$fdiv)
+    x$fpl$ffixu                              0x08005dd0   Section       62  ffixu.o(x$fpl$ffixu)
+    x$fpl$ffltu                              0x08005e10   Section       38  fflt_clz.o(x$fpl$ffltu)
+    x$fpl$fmul                               0x08005e38   Section      258  fmul.o(x$fpl$fmul)
+    x$fpl$fnaninf                            0x08005f3a   Section      140  fnaninf.o(x$fpl$fnaninf)
+    x$fpl$fretinf                            0x08005fc6   Section       10  fretinf.o(x$fpl$fretinf)
+    x$fpl$fsub                               0x08005fd0   Section      234  faddsub_clz.o(x$fpl$fsub)
+    _fsub1                                   0x08005fdf   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
+    .constdata                               0x080060ba   Section       18  stm32f1xx_hal_rcc.o(.constdata)
+    x$fpl$usenofp                            0x080060ba   Section        0  usenofp.o(x$fpl$usenofp)
+    aPredivFactorTable                       0x080060ba   Data           2  stm32f1xx_hal_rcc.o(.constdata)
+    aPLLMULFactorTable                       0x080060bc   Data          16  stm32f1xx_hal_rcc.o(.constdata)
+    .constdata                               0x080060cc   Section       16  system_stm32f1xx.o(.constdata)
+    .constdata                               0x080060dc   Section        8  system_stm32f1xx.o(.constdata)
     .data                                    0x20000000   Section       31  aml_lasersensor.o(.data)
     .data                                    0x20000020   Section       28  main.o(.data)
     plan_begin_called                        0x20000028   Data           1  main.o(.data)
+    delay_done                               0x20000029   Data           1  main.o(.data)
     .data                                    0x2000003c   Section       12  stm32f1xx_hal.o(.data)
     .data                                    0x20000048   Section        4  system_stm32f1xx.o(.data)
     .data                                    0x2000004c   Section      681  vl53l0x_api.o(.data)
@@ -2656,34 +2658,34 @@ Image Symbol Table
     perform_ref_signal_measurement           0x08005761   Thumb Code   100  vl53l0x_api_calibration.o(i.perform_ref_signal_measurement)
     plan_begin                               0x080057c5   Thumb Code    62  main.o(i.plan_begin)
     print_sensorvalue                        0x08005809   Thumb Code   126  aml_lasersensor.o(i.print_sensorvalue)
-    readADCStore                             0x08005891   Thumb Code    80  main.o(i.readADCStore)
-    read_analog_value                        0x080058f1   Thumb Code    26  main.o(i.read_analog_value)
-    search2                                  0x08005911   Thumb Code   120  main.o(i.search2)
-    searchNearest                            0x08005991   Thumb Code    30  aml_lasersensor.o(i.searchNearest)
-    sequence_step_enabled                    0x080059b9   Thumb Code    56  vl53l0x_api.o(i.sequence_step_enabled)
-    set_ref_spad_map                         0x080059f1   Thumb Code    10  vl53l0x_api_calibration.o(i.set_ref_spad_map)
-    set_sequence_step_timeout                0x080059fb   Thumb Code   258  vl53l0x_api_core.o(i.set_sequence_step_timeout)
-    sortSensorValuesByRange                  0x08005afd   Thumb Code   100  aml_lasersensor.o(i.sortSensorValuesByRange)
-    swap                                     0x08005b69   Thumb Code    10  aml_lasersensor.o(i.swap)
-    __aeabi_fadd                             0x08005b75   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
-    _fadd                                    0x08005b75   Thumb Code   196  faddsub_clz.o(x$fpl$fadd)
-    __aeabi_fdiv                             0x08005c39   Thumb Code     0  fdiv.o(x$fpl$fdiv)
-    _fdiv                                    0x08005c39   Thumb Code   384  fdiv.o(x$fpl$fdiv)
-    __aeabi_f2uiz                            0x08005dbd   Thumb Code     0  ffixu.o(x$fpl$ffixu)
-    _ffixu                                   0x08005dbd   Thumb Code    62  ffixu.o(x$fpl$ffixu)
-    __aeabi_ui2f                             0x08005dfd   Thumb Code     0  fflt_clz.o(x$fpl$ffltu)
-    _ffltu                                   0x08005dfd   Thumb Code    38  fflt_clz.o(x$fpl$ffltu)
-    __aeabi_fmul                             0x08005e25   Thumb Code     0  fmul.o(x$fpl$fmul)
-    _fmul                                    0x08005e25   Thumb Code   258  fmul.o(x$fpl$fmul)
-    __fpl_fnaninf                            0x08005f27   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
-    __fpl_fretinf                            0x08005fb3   Thumb Code    10  fretinf.o(x$fpl$fretinf)
-    __aeabi_fsub                             0x08005fbd   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
-    _fsub                                    0x08005fbd   Thumb Code   234  faddsub_clz.o(x$fpl$fsub)
-    __I$use$fp                               0x080060a6   Number         0  usenofp.o(x$fpl$usenofp)
-    AHBPrescTable                            0x080060b8   Data          16  system_stm32f1xx.o(.constdata)
-    APBPrescTable                            0x080060c8   Data           8  system_stm32f1xx.o(.constdata)
-    Region$$Table$$Base                      0x080060d0   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080060f0   Number         0  anon$$obj.o(Region$$Table)
+    readADCStore                             0x08005891   Thumb Code    98  main.o(i.readADCStore)
+    read_analog_value                        0x08005905   Thumb Code    26  main.o(i.read_analog_value)
+    search2                                  0x08005925   Thumb Code   120  main.o(i.search2)
+    searchNearest                            0x080059a5   Thumb Code    30  aml_lasersensor.o(i.searchNearest)
+    sequence_step_enabled                    0x080059cd   Thumb Code    56  vl53l0x_api.o(i.sequence_step_enabled)
+    set_ref_spad_map                         0x08005a05   Thumb Code    10  vl53l0x_api_calibration.o(i.set_ref_spad_map)
+    set_sequence_step_timeout                0x08005a0f   Thumb Code   258  vl53l0x_api_core.o(i.set_sequence_step_timeout)
+    sortSensorValuesByRange                  0x08005b11   Thumb Code   100  aml_lasersensor.o(i.sortSensorValuesByRange)
+    swap                                     0x08005b7d   Thumb Code    10  aml_lasersensor.o(i.swap)
+    __aeabi_fadd                             0x08005b89   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
+    _fadd                                    0x08005b89   Thumb Code   196  faddsub_clz.o(x$fpl$fadd)
+    __aeabi_fdiv                             0x08005c4d   Thumb Code     0  fdiv.o(x$fpl$fdiv)
+    _fdiv                                    0x08005c4d   Thumb Code   384  fdiv.o(x$fpl$fdiv)
+    __aeabi_f2uiz                            0x08005dd1   Thumb Code     0  ffixu.o(x$fpl$ffixu)
+    _ffixu                                   0x08005dd1   Thumb Code    62  ffixu.o(x$fpl$ffixu)
+    __aeabi_ui2f                             0x08005e11   Thumb Code     0  fflt_clz.o(x$fpl$ffltu)
+    _ffltu                                   0x08005e11   Thumb Code    38  fflt_clz.o(x$fpl$ffltu)
+    __aeabi_fmul                             0x08005e39   Thumb Code     0  fmul.o(x$fpl$fmul)
+    _fmul                                    0x08005e39   Thumb Code   258  fmul.o(x$fpl$fmul)
+    __fpl_fnaninf                            0x08005f3b   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
+    __fpl_fretinf                            0x08005fc7   Thumb Code    10  fretinf.o(x$fpl$fretinf)
+    __aeabi_fsub                             0x08005fd1   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
+    _fsub                                    0x08005fd1   Thumb Code   234  faddsub_clz.o(x$fpl$fsub)
+    __I$use$fp                               0x080060ba   Number         0  usenofp.o(x$fpl$usenofp)
+    AHBPrescTable                            0x080060cc   Data          16  system_stm32f1xx.o(.constdata)
+    APBPrescTable                            0x080060dc   Data           8  system_stm32f1xx.o(.constdata)
+    Region$$Table$$Base                      0x080060e4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08006104   Number         0  anon$$obj.o(Region$$Table)
     isApertureSpads                          0x20000000   Data           1  aml_lasersensor.o(.data)
     VhvSettings                              0x20000001   Data           1  aml_lasersensor.o(.data)
     PhaseCal                                 0x20000002   Data           1  aml_lasersensor.o(.data)
@@ -2743,9 +2745,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000063f8, Max: 0x00010000, ABSOLUTE, COMPRESSED[0x00006390])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000640c, Max: 0x00010000, ABSOLUTE, COMPRESSED[0x000063a4])
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000060f0, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00006104, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -3020,34 +3022,34 @@ Memory Map of the image
     0x08005760   0x08005760   0x00000064   Code   RO         4633    i.perform_ref_signal_measurement  vl53l0x_api_calibration.o
     0x080057c4   0x080057c4   0x00000044   Code   RO          426    i.plan_begin        main.o
     0x08005808   0x08005808   0x00000088   Code   RO           19    i.print_sensorvalue  aml_lasersensor.o
-    0x08005890   0x08005890   0x00000060   Code   RO          427    i.readADCStore      main.o
-    0x080058f0   0x080058f0   0x00000020   Code   RO          428    i.read_analog_value  main.o
-    0x08005910   0x08005910   0x00000080   Code   RO          430    i.search2           main.o
-    0x08005990   0x08005990   0x00000028   Code   RO           20    i.searchNearest     aml_lasersensor.o
-    0x080059b8   0x080059b8   0x00000038   Code   RO         4092    i.sequence_step_enabled  vl53l0x_api.o
-    0x080059f0   0x080059f0   0x0000000a   Code   RO         4634    i.set_ref_spad_map  vl53l0x_api_calibration.o
-    0x080059fa   0x080059fa   0x00000102   Code   RO         4792    i.set_sequence_step_timeout  vl53l0x_api_core.o
-    0x08005afc   0x08005afc   0x0000006c   Code   RO           21    i.sortSensorValuesByRange  aml_lasersensor.o
-    0x08005b68   0x08005b68   0x0000000a   Code   RO           22    i.swap              aml_lasersensor.o
-    0x08005b72   0x08005b72   0x00000002   PAD
-    0x08005b74   0x08005b74   0x000000c4   Code   RO         5042    x$fpl$fadd          fz_ws.l(faddsub_clz.o)
-    0x08005c38   0x08005c38   0x00000184   Code   RO         5049    x$fpl$fdiv          fz_ws.l(fdiv.o)
-    0x08005dbc   0x08005dbc   0x0000003e   Code   RO         5052    x$fpl$ffixu         fz_ws.l(ffixu.o)
-    0x08005dfa   0x08005dfa   0x00000002   PAD
-    0x08005dfc   0x08005dfc   0x00000026   Code   RO         5056    x$fpl$ffltu         fz_ws.l(fflt_clz.o)
-    0x08005e22   0x08005e22   0x00000002   PAD
-    0x08005e24   0x08005e24   0x00000102   Code   RO         5062    x$fpl$fmul          fz_ws.l(fmul.o)
-    0x08005f26   0x08005f26   0x0000008c   Code   RO         5075    x$fpl$fnaninf       fz_ws.l(fnaninf.o)
-    0x08005fb2   0x08005fb2   0x0000000a   Code   RO         5077    x$fpl$fretinf       fz_ws.l(fretinf.o)
-    0x08005fbc   0x08005fbc   0x000000ea   Code   RO         5044    x$fpl$fsub          fz_ws.l(faddsub_clz.o)
-    0x080060a6   0x080060a6   0x00000000   Code   RO         5079    x$fpl$usenofp       fz_ws.l(usenofp.o)
-    0x080060a6   0x080060a6   0x00000012   Data   RO         1280    .constdata          stm32f1xx_hal_rcc.o
-    0x080060b8   0x080060b8   0x00000010   Data   RO         3844    .constdata          system_stm32f1xx.o
-    0x080060c8   0x080060c8   0x00000008   Data   RO         3845    .constdata          system_stm32f1xx.o
-    0x080060d0   0x080060d0   0x00000020   Data   RO         5236    Region$$Table       anon$$obj.o
+    0x08005890   0x08005890   0x00000074   Code   RO          427    i.readADCStore      main.o
+    0x08005904   0x08005904   0x00000020   Code   RO          428    i.read_analog_value  main.o
+    0x08005924   0x08005924   0x00000080   Code   RO          430    i.search2           main.o
+    0x080059a4   0x080059a4   0x00000028   Code   RO           20    i.searchNearest     aml_lasersensor.o
+    0x080059cc   0x080059cc   0x00000038   Code   RO         4092    i.sequence_step_enabled  vl53l0x_api.o
+    0x08005a04   0x08005a04   0x0000000a   Code   RO         4634    i.set_ref_spad_map  vl53l0x_api_calibration.o
+    0x08005a0e   0x08005a0e   0x00000102   Code   RO         4792    i.set_sequence_step_timeout  vl53l0x_api_core.o
+    0x08005b10   0x08005b10   0x0000006c   Code   RO           21    i.sortSensorValuesByRange  aml_lasersensor.o
+    0x08005b7c   0x08005b7c   0x0000000a   Code   RO           22    i.swap              aml_lasersensor.o
+    0x08005b86   0x08005b86   0x00000002   PAD
+    0x08005b88   0x08005b88   0x000000c4   Code   RO         5042    x$fpl$fadd          fz_ws.l(faddsub_clz.o)
+    0x08005c4c   0x08005c4c   0x00000184   Code   RO         5049    x$fpl$fdiv          fz_ws.l(fdiv.o)
+    0x08005dd0   0x08005dd0   0x0000003e   Code   RO         5052    x$fpl$ffixu         fz_ws.l(ffixu.o)
+    0x08005e0e   0x08005e0e   0x00000002   PAD
+    0x08005e10   0x08005e10   0x00000026   Code   RO         5056    x$fpl$ffltu         fz_ws.l(fflt_clz.o)
+    0x08005e36   0x08005e36   0x00000002   PAD
+    0x08005e38   0x08005e38   0x00000102   Code   RO         5062    x$fpl$fmul          fz_ws.l(fmul.o)
+    0x08005f3a   0x08005f3a   0x0000008c   Code   RO         5075    x$fpl$fnaninf       fz_ws.l(fnaninf.o)
+    0x08005fc6   0x08005fc6   0x0000000a   Code   RO         5077    x$fpl$fretinf       fz_ws.l(fretinf.o)
+    0x08005fd0   0x08005fd0   0x000000ea   Code   RO         5044    x$fpl$fsub          fz_ws.l(faddsub_clz.o)
+    0x080060ba   0x080060ba   0x00000000   Code   RO         5079    x$fpl$usenofp       fz_ws.l(usenofp.o)
+    0x080060ba   0x080060ba   0x00000012   Data   RO         1280    .constdata          stm32f1xx_hal_rcc.o
+    0x080060cc   0x080060cc   0x00000010   Data   RO         3844    .constdata          system_stm32f1xx.o
+    0x080060dc   0x080060dc   0x00000008   Data   RO         3845    .constdata          system_stm32f1xx.o
+    0x080060e4   0x080060e4   0x00000020   Data   RO         5236    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080060f0, Size: 0x00001820, Max: 0x00005000, ABSOLUTE, COMPRESSED[0x000002a0])
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08006104, Size: 0x00001820, Max: 0x00005000, ABSOLUTE, COMPRESSED[0x000002a0])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -3079,7 +3081,7 @@ Image component sizes
 
       1318         86          0         31       3208     470122   aml_lasersensor.o
        122          0          0          0          0       1490   kalmanfilter.o
-      2070        182          0         28        494      15042   main.o
+      2090        184          0         28        494      15090   main.o
         64         26        236          0       1536        780   startup_stm32f103xb.o
        164         28          0         12          0       5645   stm32f1xx_hal.o
       1134         56          0          0          0       8138   stm32f1xx_hal_adc.o
@@ -3101,7 +3103,7 @@ Image component sizes
        468         24          0          0         64       8525   vl53l0x_platform.o
 
     ----------------------------------------------------------------------
-     22436        902        310        776       5304     663139   Object Totals
+     22456        904        310        776       5304     663187   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         30          0          0          4          2          0   (incl. Padding)
 
@@ -3163,15 +3165,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     24506       1014        310        776       5400     653551   Grand Totals
-     24506       1014        310        672       5400     653551   ELF Image Totals (compressed)
-     24506       1014        310        672          0          0   ROM Totals
+     24526       1016        310        776       5400     653599   Grand Totals
+     24526       1016        310        672       5400     653599   ELF Image Totals (compressed)
+     24526       1016        310        672          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                24816 (  24.23kB)
+    Total RO  Size (Code + RO Data)                24836 (  24.25kB)
     Total RW  Size (RW Data + ZI Data)              6176 (   6.03kB)
-    Total ROM Size (Code + RO Data + RW Data)      25488 (  24.89kB)
+    Total ROM Size (Code + RO Data + RW Data)      25508 (  24.91kB)
 
 ==============================================================================
 
