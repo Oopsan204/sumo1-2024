@@ -53,6 +53,7 @@ I2C_HandleTypeDef hi2c1;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 
 UART_HandleTypeDef huart2;
 DMA_HandleTypeDef hdma_usart2_rx;
@@ -78,7 +79,7 @@ int16_t new_ADC_value = 4095; // Giá trị mới
 uint16_t button[Array_Size_Button];
 uint16_t adcvalue;
 uint16_t temp;
-static uint8_t plan_begin_called = 0;
+static uint8_t plan_begin_danh_trai_called = 0;
 static uint8_t delay_done = 0;
 void (*func)(); // tro den ham chien thuat
 void (*plan)(void) =NULL; // tro den ham bat dau
@@ -93,6 +94,7 @@ static void MX_TIM1_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_USART2_UART_Init(void);
+static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -145,7 +147,16 @@ void AML_motor_rote(uint8_t speed_L, uint8_t speed_R)
   PWM_Write(&htim2, LPWM1, speed_L);
   PWM_Write(&htim2, RPWM2, speed_R);
 }
-
+void delay_ms(uint32_t milliseconds)
+{
+  HAL_TIM_Base_Start(&htim3); // Start TIM3
+  uint32_t start_time = HAL_GetTick();
+  while (HAL_GetTick() - start_time < milliseconds)
+  {
+    // Wait
+  }
+  HAL_TIM_Base_Stop(&htim3); // Stop TIM3
+}
 void AML_IRSensor_standby()
 {
   const uint32_t time1 = 1000;
@@ -308,13 +319,13 @@ void search2()
     break;
   }
 }
-void plan_begin()
+void plan_begin_danh_trai()
 {
   AML_motor_forward(150);
+  delay_ms(500);
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
-  HAL_Delay(500);
   AML_motor_rote(150, 100);
-  HAL_Delay(900);
+  delay_ms(900);
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_SET);
 }
 uint16_t read_analog_value(uint16_t new_value)
@@ -348,7 +359,7 @@ void readADCStore()
   {
     AML_motor_stop();
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
-    plan_begin_called =0;
+    plan_begin_danh_trai_called =0;
     delay_done =0;
 
   }
@@ -356,17 +367,13 @@ void readADCStore()
   {
     if (!delay_done)
     {
-      uint32_t start_time = HAL_GetTick();
-      while (HAL_GetTick() - start_time < 3000)
-      {
-        // Wait
-      }
+      delay_ms(3000);
       delay_done = 1;
     }
-    if (!plan_begin_called)
+    if (!plan_begin_danh_trai_called)
     {
-      plan = &plan_begin;
-      plan_begin_called = 1;
+      plan = &plan_begin_danh_trai;
+      plan_begin_danh_trai_called = 1;
     }
     search2();
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
@@ -420,6 +427,7 @@ int main(void)
   MX_ADC1_Init();
   MX_TIM2_Init();
   MX_USART2_UART_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   // HAL_Delay(3000); // delay 3s
   HAL_TIM_Base_Start(&htim2);
@@ -428,9 +436,9 @@ int main(void)
   // HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
   AML_motor_stop();
-  // plan = &plan_begin;
+  // plan = &plan_begin_danh_trai;
 
-  // plan_begin();
+  // plan_begin_danh_trai();
 
   /* USER CODE END 2 */
 
@@ -700,6 +708,51 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 2 */
   HAL_TIM_MspPostInit(&htim2);
+
+}
+
+/**
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 7200-1;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 1000-1;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
 
 }
 
