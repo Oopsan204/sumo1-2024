@@ -130,7 +130,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=267,149,643,385,0)(1009=0,155,258,743,1)</Name>
+          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=267,149,643,385,0)(1009=-1386,146,-1128,734,1)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -299,6 +299,11 @@
           <count>28</count>
           <WinNumber>1</WinNumber>
           <ItemText>adcvalue,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>29</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>old_ADC_value,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>

@@ -73,7 +73,7 @@ int32_t timer1 = 0;
 uint8_t i = 0;
 double testAnge;
 uint16_t target = 0;
-int16_t old_ADC_value = 0;
+int16_t old_ADC_value ;
 int16_t new_ADC_value = 4095; // Giá trị mới
 uint16_t button[Array_Size_Button];
 uint16_t adcvalue;
@@ -336,7 +336,7 @@ void readADCStore()
 {
   // Assume you have read the ADC value and stored it in adcvalue
   HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
-  uint16_t adcvalue = button[0]; // Replace with your actual ADC reading
+  adcvalue = button[0]; // Replace with your actual ADC reading
 
   // Call the function to update the old ADC value
   uint16_t updated_ADC_value = read_analog_value(adcvalue);
@@ -344,18 +344,21 @@ void readADCStore()
   // Example logic based on the updated ADC value
   if (updated_ADC_value == 0)
   {
-    plan = &plan_begin;
-    func = &search2;
+    AML_motor_stop();
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+
   }
   else if (400 < updated_ADC_value && updated_ADC_value < 500)
   {
-    // Stop motor
+    plan = &plan_begin;
+    func = &search2;
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
   }
   else if (600 < updated_ADC_value && updated_ADC_value < 700)
   {
     // Set plan to search2
   }
-  else if (2700 < updated_ADC_value && updated_ADC_value < 2800)
+  else if (3000 < updated_ADC_value && updated_ADC_value < 3100)
   {
     // Toggle LED
   }
@@ -408,7 +411,7 @@ int main(void)
   // HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
   AML_motor_stop();
-  plan();
+  // plan();
   // plan_begin();
 
   /* USER CODE END 2 */
