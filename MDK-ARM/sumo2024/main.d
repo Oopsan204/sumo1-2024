@@ -48,4 +48,3 @@ sumo2024\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
 sumo2024\main.o: ../Core/Inc/parameter.h
 sumo2024\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 sumo2024\main.o: ../Core/Inc/AML_MPUSensor.h
-sumo2024\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

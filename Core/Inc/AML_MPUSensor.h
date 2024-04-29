@@ -2,13 +2,10 @@
 #define AML_MPUSensor_H
 
 #include "stm32f1xx_hal.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
+#include "main.h"
+#include "parameter.h"
 // #include "stm32f4xx_hal_uart.h"
 
-void AML_MPUSensor_Setup(void);
-void AML_MPUSensor_ResetAngle(void);
-double AML_MPUSensor_GetAngle(void);
+int16_t math_PID(double Angle_PID);
 
 #endif /* test_h */

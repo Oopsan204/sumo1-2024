@@ -1,86 +1,50 @@
 #include "AML_MPUSensor.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
-uint8_t ResetCommand[] = {0xFF, 0xAA, 0x52};
+// Constants for PID control
+#define Kp 1.0  // Proportional gain
+#define Ki 0.1  // Integral gain
+#define Kd 0.01 // Derivative gain
 
-extern UART_HandleTypeDef huart2;
-// extern DMA_HandleTypeDef hdma_usart2_rx;
+// Initialize variables
+double target_angle = 0.0; // Target angle (usually 0 degrees for straight line)
+double integral = 0.0;
+double previous_error = 0.0;
+double speed1;
+double speed2;
 
-volatile uint8_t MPUData[36];
-volatile uint8_t buffer = 119;
-// volatile uint8_t index = 0;
-// extern int16_t debug[100];
-volatile double Angle, PreviousAngle = 0, SaveAngle = 0;
-volatile uint8_t error = 0;
-
-void HAL_UART_TxHalfCpltCallback(UART_HandleTypeDef *huart)
+// Function to compute PID control output
+double compute_pid_output(double current_angle)
 {
-    UNUSED(huart);
-
-    if (huart->Instance == USART2)
-    {
-    }
+    double error = target_angle - current_angle;
+    integral += error;
+    double derivative = error - previous_error;
+    double output = Kp * error + Ki * integral + Kd * derivative;
+    previous_error = error;
+    return output;
 }
 
-void AML_MPUSensor_ResetAngle(void)
+// Simulate reading angle from MPU6050 (replace with actual sensor data)
+double read_mpu6050_angle()
 {
-    HAL_UART_DMAStop(&huart2);
-    HAL_UART_Transmit(&huart2, ResetCommand, 3, 1000);
-    SaveAngle = 0;
-    PreviousAngle = 0;
-    Angle = 0;
-    HAL_Delay(5);
-    HAL_UART_Transmit(&huart2, ResetCommand, 3, 1000);
-    SaveAngle = 0;
-    PreviousAngle = 0;
-    Angle = 0;
-    HAL_Delay(5);
-    HAL_UART_Receive_DMA(&huart2, (uint8_t *)MPUData, 33);
+   
+    // Simulate reading angle (replace with actual sensor data)
+    return 10.0; // Example: 10 degrees
 }
 
-void AML_MPUSensor_Setup(void)
+int16_t math_PID(double Angle_PID)
 {
-    AML_MPUSensor_ResetAngle();
-    HAL_UART_Receive_DMA(&huart2, (uint8_t *)MPUData, 33);
-}
+    double current_angle;
+    double pid_output;
 
-void handle(void)
-{
-    while (buffer != 85) // wait 0x55
-    {
-        HAL_UART_Receive(&huart2,(uint8_t*)buffer, 1, 1000);
-    }
-    buffer = 100;
-    HAL_UART_Receive_DMA(&huart2, (uint8_t *)MPUData, 33);
-}
+        current_angle = Angle_PID;
+        pid_output = compute_pid_output(current_angle);
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-    UNUSED(huart);
-    if (huart->Instance == USART2)
-    {
-        if (MPUData[0] != 83)
-        {
-            handle();
-            return;
-        }
+        // Apply PID output to motor control (adjust motor speeds)
+        speed2 = 100.0 + pid_output;
+        speed1 = 100.0 - pid_output;
 
-        PreviousAngle = Angle;
-        Angle = (((MPUData[6] << 8) | MPUData[5]) / 32768.0) * 180;
-
-        if (Angle - PreviousAngle > 250.0f) // 0 -> 360 degree
-        {
-            SaveAngle += 360.0f;
-        }
-        else if (Angle - PreviousAngle < -250.0f) // 360 -> 0 degree
-        {
-            SaveAngle -= 360.0f;
-        }
-
-        HAL_UART_Receive_DMA(&huart2, (uint8_t *)MPUData, 33);
-    }
-}
-
-double AML_MPUSensor_GetAngle(void)
-{
-    return Angle - SaveAngle;
+    
 }
