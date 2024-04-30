@@ -81,6 +81,8 @@ uint16_t button[Array_Size_Button];
 uint16_t adcvalue;
 uint16_t temp;
 static uint8_t plan_begin_danh_trai_called = 0;
+static uint8_t plan_begin_danh_phai_called = 0;
+static uint8_t plan_begin_dam_thang_called = 0;
 static uint8_t delay_done = 0;
 #define RX_SIZE 36
 uint8_t rxBuffer[RX_SIZE] = {119};
@@ -347,9 +349,23 @@ void plan_begin_danh_trai()
   AML_motor_forward(150);
   delay_ms(500);
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
-  AML_motor_rote(150, 100);
+  AML_motor_rote(150, 150);
   delay_ms(900);
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_SET);
+}
+void plan_begin_danh_phai()
+{
+  AML_motor_forward(150);
+  delay_ms(500);
+  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
+  AML_motor_right(150, 150);
+  delay_ms(900);
+  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_SET);
+}
+void plan_begin_dam_thang()
+{
+  AML_motor_forward(150);
+  delay_ms(300);
 }
 uint16_t read_analog_value(uint16_t new_value)
 {
@@ -383,6 +399,8 @@ void readADCStore()
     AML_motor_stop();
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     plan_begin_danh_trai_called = 0;
+    plan_begin_dam_thang_called = 0;
+    plan_begin_danh_phai_called = 0;
     delay_done = 0;
   }
   else if (400 < updated_ADC_value && updated_ADC_value < 500)
@@ -401,18 +419,33 @@ void readADCStore()
     search2();
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
   }
-  else if (600 < updated_ADC_value && updated_ADC_value < 700)
+  else if (700 < updated_ADC_value && updated_ADC_value < 800)
   {
     if (!delay_done)
     {
       delay_ms(3000);
       delay_done = 1;
     }
+    if (!plan_begin_danh_phai_called)
+    {
+      plan_begin_danh_phai();
+      plan_begin_danh_phai_called = 1;
+    }
     search1();
   }
-  else if (3000 < updated_ADC_value && updated_ADC_value < 3100)
+  else if (3100 < updated_ADC_value && updated_ADC_value < 3200)
   {
-    // Toggle LED
+    if (!delay_done)
+    {
+      delay_ms(3000);
+      delay_done = 1;
+    }
+    if (!plan_begin_dam_thang_called)
+    {
+      plan_begin_dam_thang();
+      plan_begin_dam_thang_called = 1;
+    }
+    search2();
   }
   else
   {
@@ -433,8 +466,8 @@ int main(void)
 
   /* MCU Configuration--------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */+
-  HAL_Init();
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */ 
+	HAL_Init();
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
