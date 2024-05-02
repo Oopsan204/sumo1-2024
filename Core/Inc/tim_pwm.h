@@ -10,9 +10,9 @@ _MAX_:gia tri dem max
 _VAR_ :do rong xung 0-100% tinh sai max 150%
 
 */
-#define LPWM1 TIM_CHANNEL_1
+#define LPWM1 TIM_CHANNEL_1 // ben phai
 #define RPWM1 TIM_CHANNEL_2
-#define LPWM2 TIM_CHANNEL_3
+#define LPWM2 TIM_CHANNEL_3 // ben trai
 #define RPWM2 TIM_CHANNEL_4
 
 #define PWM_Get(_TIM_,CHANNEL)                  __HAL_TIM_GET_COMPARE(_TIM_,CHANNEL)

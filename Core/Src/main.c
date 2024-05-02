@@ -57,7 +57,6 @@ TIM_HandleTypeDef htim3;
 
 UART_HandleTypeDef huart2;
 DMA_HandleTypeDef hdma_usart2_rx;
-DMA_HandleTypeDef hdma_usart2_tx;
 
 /* USER CODE BEGIN PV */
 
@@ -66,11 +65,14 @@ uint8_t u8_fl = 1; // gpio_ext0
 uint8_t u8_br = 1; // gpio_ext4
 uint8_t u8_bl = 1; // gpio_ext1
 uint16_t currentIndex = 1;
+uint32_t timer_exit = 0;
 // co interrupt
 bool flagInterrupt_fl = false;
 bool flagInterrupt_bl = false;
 bool flagInterrupt_br = false;
 bool flagInterrupt_fr = false;
+bool flag_exit_R = false;
+bool flag_exit_L = false;
 int32_t timer1 = 0;
 uint8_t i = 0;
 double testAnge;
@@ -165,12 +167,19 @@ void AML_motor_back(uint8_t speed)
   PWM_Write(&htim2, LPWM1, speed);
   PWM_Write(&htim2, LPWM2, speed);
 }
-void AML_motor_rote(uint8_t speed_L, uint8_t speed_R)
+void AML_motor_turn_left(uint8_t speed_L, uint8_t speed_R)
 {
   PWM_Start(&htim2, LPWM1);
   PWM_Start(&htim2, RPWM2);
   PWM_Write(&htim2, LPWM1, speed_L);
   PWM_Write(&htim2, RPWM2, speed_R);
+}
+void AML_motor_turn_right(uint8_t speed_R, uint8_t speed_L)
+{
+  PWM_Start(&htim2, RPWM1);
+  PWM_Start(&htim2, LPWM2);
+  PWM_Write(&htim2, RPWM1, speed_R);
+  PWM_Write(&htim2, LPWM2, speed_L);
 }
 void delay_ms(uint32_t milliseconds)
 {
@@ -184,7 +193,7 @@ void delay_ms(uint32_t milliseconds)
 }
 void AML_IRSensor_standby()
 {
-  const uint32_t time1 = 1000;
+  const uint32_t time1 = 500;
 
   while (flagInterrupt_fl && HAL_GetTick() - timer1 < time1)
     ;
@@ -200,6 +209,24 @@ void AML_IRSensor_standby()
   flagInterrupt_fl = false;
   flagInterrupt_fr = false;
   AML_motor_stop();
+}
+void exit_R()
+{
+  uint32_t timer_exit_r = 1000;
+  while (flag_exit_R && HAL_GetTick() - timer_exit < timer_exit_r)
+    ;
+  PWM_Start(&htim2, LPWM2);
+  PWM_Write(&htim2, LPWM2, 150);
+  flag_exit_R = false;
+}
+void exit_L()
+{
+  uint32_t timer_exit_l = 1000;
+  while (flag_exit_L && HAL_GetTick() - timer_exit < timer_exit_l)
+    ;
+  PWM_Start(&htim2, LPWM1);
+  PWM_Write(&htim2, LPWM1, 150);
+  flag_exit_L = false;
 }
 void search1()
 {
@@ -259,28 +286,17 @@ void search1()
   if (target == 6)
   {
     // R quay sang phai
-    if (AML_LaserSensor_ReadSingleWithFillter(R) < 100)
-    {
-      AML_motor_right(PWM_speed_L, PWM_speed_R - 50);
-    }
-    else
-    {
-      AML_motor_right(PWM_speed_L - 50, PWM_speed_R - 50);
-    }
+    AML_motor_right(PWM_speed_L, PWM_speed_R - 50);
+    timer_exit = HAL_GetTick();
+    flag_exit_R = true;
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     HAL_Delay(100);
   }
   if (target == 7)
   {
-    // L quay sang trai
-    if (AML_LaserSensor_ReadSingleWithFillter(L) < 100)
-    {
-      AML_motor_lef(PWM_speed_L - 50, PWM_speed_R);
-    }
-    else
-    {
-      AML_motor_lef(PWM_speed_L - 50, PWM_speed_R - 50);
-    }
+    AML_motor_lef(PWM_speed_L - 50, PWM_speed_R);
+    timer_exit = HAL_GetTick();
+    flag_exit_L = true;
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     HAL_Delay(100);
   }
@@ -349,7 +365,7 @@ void plan_begin_danh_trai()
   AML_motor_forward(150);
   delay_ms(500);
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
-  AML_motor_rote(150, 150);
+  AML_motor_turn_left(150, 150);
   delay_ms(900);
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_SET);
 }
@@ -358,7 +374,7 @@ void plan_begin_danh_phai()
   AML_motor_forward(150);
   delay_ms(500);
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_RESET);
-  AML_motor_right(150, 150);
+  AML_motor_turn_right(150, 150);
   delay_ms(900);
   HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_SET);
 }
@@ -447,7 +463,11 @@ void readADCStore()
     }
     search2();
   }
-  else
+  else if (200 < updated_ADC_value && updated_ADC_value > 300)
+  {
+    search1();
+  }
+
   {
     // Stop motor
   }
@@ -466,8 +486,9 @@ int main(void)
 
   /* MCU Configuration--------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */ 
-	HAL_Init();
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -913,6 +934,19 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI0_IRQn, 1, 0);
+  HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI1_IRQn, 1, 0);
+  HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI3_IRQn, 1, 0);
+  HAL_NVIC_EnableIRQ(EXTI3_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI4_IRQn, 1, 0);
+  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
   /* USER CODE END MX_GPIO_Init_2 */
