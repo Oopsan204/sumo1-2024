@@ -85,6 +85,7 @@ uint16_t temp;
 static uint8_t plan_begin_danh_trai_called = 0;
 static uint8_t plan_begin_danh_phai_called = 0;
 static uint8_t plan_begin_dam_thang_called = 0;
+static uint8_t plan_begin_Rote_callled = 0;
 static uint8_t delay_done = 0;
 #define RX_SIZE 36
 uint8_t rxBuffer[RX_SIZE] = {119};
@@ -350,11 +351,14 @@ void search2()
     break;
   case 6:
     AML_motor_right(PWM_speed_L, PWM_speed_R - 50);
+    timer_exit = HAL_GetTick();
+    flag_exit_R = true;
     HAL_Delay(120);
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     break;
   case 7:
     AML_motor_lef(PWM_speed_L - 50, PWM_speed_R);
+
     HAL_Delay(120);
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     break;
@@ -381,7 +385,12 @@ void plan_begin_danh_phai()
 void plan_begin_dam_thang()
 {
   AML_motor_forward(150);
-  delay_ms(300);
+  delay_ms(400);
+}
+void plan_begin_Rote()
+{
+  AML_motor_turn_left(150, 150);
+  delay_ms(1000);
 }
 uint16_t read_analog_value(uint16_t new_value)
 {
@@ -423,7 +432,7 @@ void readADCStore()
   {
     if (!delay_done)
     {
-      delay_ms(3000);
+      delay_ms(time_delay_begin);
       delay_done = 1;
     }
     if (!plan_begin_danh_trai_called)
@@ -439,7 +448,7 @@ void readADCStore()
   {
     if (!delay_done)
     {
-      delay_ms(3000);
+      delay_ms(time_delay_begin);
       delay_done = 1;
     }
     if (!plan_begin_danh_phai_called)
@@ -453,7 +462,7 @@ void readADCStore()
   {
     if (!delay_done)
     {
-      delay_ms(3000);
+      delay_ms(time_delay_begin);
       delay_done = 1;
     }
     if (!plan_begin_dam_thang_called)
@@ -465,11 +474,17 @@ void readADCStore()
   }
   else if (200 < updated_ADC_value && updated_ADC_value > 300)
   {
-    search1();
-  }
-
-  {
-    // Stop motor
+    if (!delay_done)
+    {
+      delay_ms(time_delay_begin);
+      delay_done = 1;
+    }
+    if (!plan_begin_Rote)
+    {
+      plan_begin_Rote();
+      plan_begin_Rote_callled = 1;
+    }
+    search2();
   }
 }
 /* USER CODE END 0 */
@@ -539,6 +554,8 @@ int main(void)
     print_sensorvalue();
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     AML_IRSensor_standby();
+    exit_R();
+    exit_L();
   }
 
   /* USER CODE END 3 */

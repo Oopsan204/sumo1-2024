@@ -13,6 +13,6 @@
 #define PWM_speed 150
 #define Array_Size_Button 5
 #define delay1 10 // delay cua ham search
-
+#define time_delay_begin 2990
 
 #endif
