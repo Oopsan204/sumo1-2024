@@ -220,7 +220,7 @@ Section Cross References
     main.o(i.readADCStore) refers to main.o(i.read_analog_value) for read_analog_value
     main.o(i.readADCStore) refers to main.o(i.AML_motor_stop) for AML_motor_stop
     main.o(i.readADCStore) refers to stm32f1xx_hal_gpio.o(i.HAL_GPIO_TogglePin) for HAL_GPIO_TogglePin
-    main.o(i.readADCStore) refers to main.o(i.delay_ms) for delay_ms
+    main.o(i.readADCStore) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     main.o(i.readADCStore) refers to main.o(i.plan_begin_danh_trai) for plan_begin_danh_trai
     main.o(i.readADCStore) refers to main.o(i.search2) for search2
     main.o(i.readADCStore) refers to main.o(i.plan_begin_danh_phai) for plan_begin_danh_phai
@@ -2334,69 +2334,69 @@ Image Symbol Table
     i.plan_begin_danh_trai                   0x08006160   Section        0  main.o(i.plan_begin_danh_trai)
     i.print_sensorvalue                      0x080061a4   Section        0  aml_lasersensor.o(i.print_sensorvalue)
     i.readADCStore                           0x0800622c   Section        0  main.o(i.readADCStore)
-    i.read_analog_value                      0x08006314   Section        0  main.o(i.read_analog_value)
-    i.search1                                0x08006334   Section        0  main.o(i.search1)
-    i.search2                                0x08006458   Section        0  main.o(i.search2)
-    i.searchNearest                          0x080064e4   Section        0  aml_lasersensor.o(i.searchNearest)
-    i.sequence_step_enabled                  0x0800650c   Section        0  vl53l0x_api.o(i.sequence_step_enabled)
-    i.set_ref_spad_map                       0x08006544   Section        0  vl53l0x_api_calibration.o(i.set_ref_spad_map)
-    i.set_sequence_step_timeout              0x0800654e   Section        0  vl53l0x_api_core.o(i.set_sequence_step_timeout)
-    i.sortSensorValuesByRange                0x08006650   Section        0  aml_lasersensor.o(i.sortSensorValuesByRange)
-    i.swap                                   0x080066bc   Section        0  aml_lasersensor.o(i.swap)
-    x$fpl$dadd                               0x080066c8   Section      336  daddsub_clz.o(x$fpl$dadd)
-    _dadd1                                   0x080066d9   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
-    x$fpl$dcheck1                            0x08006818   Section       16  dcheck1.o(x$fpl$dcheck1)
-    x$fpl$ddiv                               0x08006828   Section      688  ddiv.o(x$fpl$ddiv)
-    ddiv_entry                               0x0800682f   Thumb Code     0  ddiv.o(x$fpl$ddiv)
-    x$fpl$dfltu                              0x08006ad8   Section       38  dflt_clz.o(x$fpl$dfltu)
-    x$fpl$dmul                               0x08006b00   Section      340  dmul.o(x$fpl$dmul)
-    x$fpl$dnaninf                            0x08006c54   Section      156  dnaninf.o(x$fpl$dnaninf)
-    x$fpl$dretinf                            0x08006cf0   Section       12  dretinf.o(x$fpl$dretinf)
-    x$fpl$drsb                               0x08006cfc   Section       22  daddsub_clz.o(x$fpl$drsb)
-    x$fpl$dsub                               0x08006d14   Section      468  daddsub_clz.o(x$fpl$dsub)
-    _dsub1                                   0x08006d25   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
-    x$fpl$fadd                               0x08006ee8   Section      196  faddsub_clz.o(x$fpl$fadd)
-    _fadd1                                   0x08006ef7   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
-    x$fpl$fdiv                               0x08006fac   Section      388  fdiv.o(x$fpl$fdiv)
-    _fdiv1                                   0x08006fad   Thumb Code     0  fdiv.o(x$fpl$fdiv)
-    x$fpl$ffixu                              0x08007130   Section       62  ffixu.o(x$fpl$ffixu)
-    x$fpl$ffltu                              0x08007170   Section       38  fflt_clz.o(x$fpl$ffltu)
-    x$fpl$fmul                               0x08007198   Section      258  fmul.o(x$fpl$fmul)
-    x$fpl$fnaninf                            0x0800729a   Section      140  fnaninf.o(x$fpl$fnaninf)
-    x$fpl$fretinf                            0x08007326   Section       10  fretinf.o(x$fpl$fretinf)
-    x$fpl$fsub                               0x08007330   Section      234  faddsub_clz.o(x$fpl$fsub)
-    _fsub1                                   0x0800733f   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
-    x$fpl$retnan                             0x0800741a   Section      100  retnan.o(x$fpl$retnan)
-    x$fpl$scalbn                             0x0800747e   Section       92  scalbn.o(x$fpl$scalbn)
-    x$fpl$trapveneer                         0x080074da   Section       48  trapv.o(x$fpl$trapveneer)
-    .constdata                               0x0800750a   Section       18  stm32f1xx_hal_rcc.o(.constdata)
-    x$fpl$usenofp                            0x0800750a   Section        0  usenofp.o(x$fpl$usenofp)
-    aPredivFactorTable                       0x0800750a   Data           2  stm32f1xx_hal_rcc.o(.constdata)
-    aPLLMULFactorTable                       0x0800750c   Data          16  stm32f1xx_hal_rcc.o(.constdata)
-    .constdata                               0x0800751c   Section       16  system_stm32f1xx.o(.constdata)
-    .constdata                               0x0800752c   Section        8  system_stm32f1xx.o(.constdata)
+    i.read_analog_value                      0x08006344   Section        0  main.o(i.read_analog_value)
+    i.search1                                0x08006364   Section        0  main.o(i.search1)
+    i.search2                                0x08006488   Section        0  main.o(i.search2)
+    i.searchNearest                          0x0800651c   Section        0  aml_lasersensor.o(i.searchNearest)
+    i.sequence_step_enabled                  0x08006544   Section        0  vl53l0x_api.o(i.sequence_step_enabled)
+    i.set_ref_spad_map                       0x0800657c   Section        0  vl53l0x_api_calibration.o(i.set_ref_spad_map)
+    i.set_sequence_step_timeout              0x08006586   Section        0  vl53l0x_api_core.o(i.set_sequence_step_timeout)
+    i.sortSensorValuesByRange                0x08006688   Section        0  aml_lasersensor.o(i.sortSensorValuesByRange)
+    i.swap                                   0x080066f4   Section        0  aml_lasersensor.o(i.swap)
+    x$fpl$dadd                               0x08006700   Section      336  daddsub_clz.o(x$fpl$dadd)
+    _dadd1                                   0x08006711   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
+    x$fpl$dcheck1                            0x08006850   Section       16  dcheck1.o(x$fpl$dcheck1)
+    x$fpl$ddiv                               0x08006860   Section      688  ddiv.o(x$fpl$ddiv)
+    ddiv_entry                               0x08006867   Thumb Code     0  ddiv.o(x$fpl$ddiv)
+    x$fpl$dfltu                              0x08006b10   Section       38  dflt_clz.o(x$fpl$dfltu)
+    x$fpl$dmul                               0x08006b38   Section      340  dmul.o(x$fpl$dmul)
+    x$fpl$dnaninf                            0x08006c8c   Section      156  dnaninf.o(x$fpl$dnaninf)
+    x$fpl$dretinf                            0x08006d28   Section       12  dretinf.o(x$fpl$dretinf)
+    x$fpl$drsb                               0x08006d34   Section       22  daddsub_clz.o(x$fpl$drsb)
+    x$fpl$dsub                               0x08006d4c   Section      468  daddsub_clz.o(x$fpl$dsub)
+    _dsub1                                   0x08006d5d   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
+    x$fpl$fadd                               0x08006f20   Section      196  faddsub_clz.o(x$fpl$fadd)
+    _fadd1                                   0x08006f2f   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
+    x$fpl$fdiv                               0x08006fe4   Section      388  fdiv.o(x$fpl$fdiv)
+    _fdiv1                                   0x08006fe5   Thumb Code     0  fdiv.o(x$fpl$fdiv)
+    x$fpl$ffixu                              0x08007168   Section       62  ffixu.o(x$fpl$ffixu)
+    x$fpl$ffltu                              0x080071a8   Section       38  fflt_clz.o(x$fpl$ffltu)
+    x$fpl$fmul                               0x080071d0   Section      258  fmul.o(x$fpl$fmul)
+    x$fpl$fnaninf                            0x080072d2   Section      140  fnaninf.o(x$fpl$fnaninf)
+    x$fpl$fretinf                            0x0800735e   Section       10  fretinf.o(x$fpl$fretinf)
+    x$fpl$fsub                               0x08007368   Section      234  faddsub_clz.o(x$fpl$fsub)
+    _fsub1                                   0x08007377   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
+    x$fpl$retnan                             0x08007452   Section      100  retnan.o(x$fpl$retnan)
+    x$fpl$scalbn                             0x080074b6   Section       92  scalbn.o(x$fpl$scalbn)
+    x$fpl$trapveneer                         0x08007512   Section       48  trapv.o(x$fpl$trapveneer)
+    .constdata                               0x08007542   Section       18  stm32f1xx_hal_rcc.o(.constdata)
+    x$fpl$usenofp                            0x08007542   Section        0  usenofp.o(x$fpl$usenofp)
+    aPredivFactorTable                       0x08007542   Data           2  stm32f1xx_hal_rcc.o(.constdata)
+    aPLLMULFactorTable                       0x08007544   Data          16  stm32f1xx_hal_rcc.o(.constdata)
+    .constdata                               0x08007554   Section       16  system_stm32f1xx.o(.constdata)
+    .constdata                               0x08007564   Section        8  system_stm32f1xx.o(.constdata)
     .data                                    0x20000000   Section       31  aml_lasersensor.o(.data)
     .data                                    0x20000020   Section       40  aml_mpusensor.o(.data)
-    .data                                    0x20000048   Section       92  main.o(.data)
+    .data                                    0x20000048   Section      100  main.o(.data)
     plan_begin_danh_trai_called              0x20000052   Data           1  main.o(.data)
     plan_begin_danh_phai_called              0x20000053   Data           1  main.o(.data)
     plan_begin_dam_thang_called              0x20000054   Data           1  main.o(.data)
     plan_begin_Rote_callled                  0x20000055   Data           1  main.o(.data)
     delay_done                               0x20000056   Data           1  main.o(.data)
-    .data                                    0x200000a4   Section       12  stm32f1xx_hal.o(.data)
-    .data                                    0x200000b0   Section        4  system_stm32f1xx.o(.data)
-    .data                                    0x200000b4   Section      681  vl53l0x_api.o(.data)
-    .data                                    0x20000360   Section       16  vl53l0x_api_calibration.o(.data)
-    .bss                                     0x20000370   Section     3208  aml_lasersensor.o(.bss)
-    .bss                                     0x20000ff8   Section      528  main.o(.bss)
-    .bss                                     0x20001208   Section       68  main.o(.bss)
-    .bss                                     0x2000124c   Section       64  vl53l0x_platform.o(.bss)
-    .bss                                     0x2000128c   Section       96  libspace.o(.bss)
-    HEAP                                     0x200012f0   Section      512  startup_stm32f103xb.o(HEAP)
-    Heap_Mem                                 0x200012f0   Data         512  startup_stm32f103xb.o(HEAP)
-    STACK                                    0x200014f0   Section     1024  startup_stm32f103xb.o(STACK)
-    Stack_Mem                                0x200014f0   Data        1024  startup_stm32f103xb.o(STACK)
-    __initial_sp                             0x200018f0   Data           0  startup_stm32f103xb.o(STACK)
+    .data                                    0x200000ac   Section       12  stm32f1xx_hal.o(.data)
+    .data                                    0x200000b8   Section        4  system_stm32f1xx.o(.data)
+    .data                                    0x200000bc   Section      681  vl53l0x_api.o(.data)
+    .data                                    0x20000368   Section       16  vl53l0x_api_calibration.o(.data)
+    .bss                                     0x20000378   Section     3208  aml_lasersensor.o(.bss)
+    .bss                                     0x20001000   Section      528  main.o(.bss)
+    .bss                                     0x20001210   Section       68  main.o(.bss)
+    .bss                                     0x20001254   Section       64  vl53l0x_platform.o(.bss)
+    .bss                                     0x20001294   Section       96  libspace.o(.bss)
+    HEAP                                     0x200012f8   Section      512  startup_stm32f103xb.o(HEAP)
+    Heap_Mem                                 0x200012f8   Data         512  startup_stm32f103xb.o(HEAP)
+    STACK                                    0x200014f8   Section     1024  startup_stm32f103xb.o(STACK)
+    Stack_Mem                                0x200014f8   Data        1024  startup_stm32f103xb.o(STACK)
+    __initial_sp                             0x200018f8   Data           0  startup_stm32f103xb.o(STACK)
 
     Global Symbols
 
@@ -2741,53 +2741,53 @@ Image Symbol Table
     plan_begin_danh_phai                     0x0800611d   Thumb Code    62  main.o(i.plan_begin_danh_phai)
     plan_begin_danh_trai                     0x08006161   Thumb Code    62  main.o(i.plan_begin_danh_trai)
     print_sensorvalue                        0x080061a5   Thumb Code   126  aml_lasersensor.o(i.print_sensorvalue)
-    readADCStore                             0x0800622d   Thumb Code   220  main.o(i.readADCStore)
-    read_analog_value                        0x08006315   Thumb Code    26  main.o(i.read_analog_value)
-    search1                                  0x08006335   Thumb Code   282  main.o(i.search1)
-    search2                                  0x08006459   Thumb Code   130  main.o(i.search2)
-    searchNearest                            0x080064e5   Thumb Code    30  aml_lasersensor.o(i.searchNearest)
-    sequence_step_enabled                    0x0800650d   Thumb Code    56  vl53l0x_api.o(i.sequence_step_enabled)
-    set_ref_spad_map                         0x08006545   Thumb Code    10  vl53l0x_api_calibration.o(i.set_ref_spad_map)
-    set_sequence_step_timeout                0x0800654f   Thumb Code   258  vl53l0x_api_core.o(i.set_sequence_step_timeout)
-    sortSensorValuesByRange                  0x08006651   Thumb Code   100  aml_lasersensor.o(i.sortSensorValuesByRange)
-    swap                                     0x080066bd   Thumb Code    10  aml_lasersensor.o(i.swap)
-    __aeabi_dadd                             0x080066c9   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
-    _dadd                                    0x080066c9   Thumb Code   332  daddsub_clz.o(x$fpl$dadd)
-    __fpl_dcheck_NaN1                        0x08006819   Thumb Code    10  dcheck1.o(x$fpl$dcheck1)
-    __aeabi_ddiv                             0x08006829   Thumb Code     0  ddiv.o(x$fpl$ddiv)
-    _ddiv                                    0x08006829   Thumb Code   552  ddiv.o(x$fpl$ddiv)
-    __aeabi_ui2d                             0x08006ad9   Thumb Code     0  dflt_clz.o(x$fpl$dfltu)
-    _dfltu                                   0x08006ad9   Thumb Code    38  dflt_clz.o(x$fpl$dfltu)
-    __aeabi_dmul                             0x08006b01   Thumb Code     0  dmul.o(x$fpl$dmul)
-    _dmul                                    0x08006b01   Thumb Code   332  dmul.o(x$fpl$dmul)
-    __fpl_dnaninf                            0x08006c55   Thumb Code   156  dnaninf.o(x$fpl$dnaninf)
-    __fpl_dretinf                            0x08006cf1   Thumb Code    12  dretinf.o(x$fpl$dretinf)
-    __aeabi_drsub                            0x08006cfd   Thumb Code     0  daddsub_clz.o(x$fpl$drsb)
-    _drsb                                    0x08006cfd   Thumb Code    22  daddsub_clz.o(x$fpl$drsb)
-    __aeabi_dsub                             0x08006d15   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
-    _dsub                                    0x08006d15   Thumb Code   464  daddsub_clz.o(x$fpl$dsub)
-    __aeabi_fadd                             0x08006ee9   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
-    _fadd                                    0x08006ee9   Thumb Code   196  faddsub_clz.o(x$fpl$fadd)
-    __aeabi_fdiv                             0x08006fad   Thumb Code     0  fdiv.o(x$fpl$fdiv)
-    _fdiv                                    0x08006fad   Thumb Code   384  fdiv.o(x$fpl$fdiv)
-    __aeabi_f2uiz                            0x08007131   Thumb Code     0  ffixu.o(x$fpl$ffixu)
-    _ffixu                                   0x08007131   Thumb Code    62  ffixu.o(x$fpl$ffixu)
-    __aeabi_ui2f                             0x08007171   Thumb Code     0  fflt_clz.o(x$fpl$ffltu)
-    _ffltu                                   0x08007171   Thumb Code    38  fflt_clz.o(x$fpl$ffltu)
-    __aeabi_fmul                             0x08007199   Thumb Code     0  fmul.o(x$fpl$fmul)
-    _fmul                                    0x08007199   Thumb Code   258  fmul.o(x$fpl$fmul)
-    __fpl_fnaninf                            0x0800729b   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
-    __fpl_fretinf                            0x08007327   Thumb Code    10  fretinf.o(x$fpl$fretinf)
-    __aeabi_fsub                             0x08007331   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
-    _fsub                                    0x08007331   Thumb Code   234  faddsub_clz.o(x$fpl$fsub)
-    __fpl_return_NaN                         0x0800741b   Thumb Code   100  retnan.o(x$fpl$retnan)
-    __ARM_scalbn                             0x0800747f   Thumb Code    92  scalbn.o(x$fpl$scalbn)
-    __fpl_cmpreturn                          0x080074db   Thumb Code    48  trapv.o(x$fpl$trapveneer)
-    __I$use$fp                               0x0800750a   Number         0  usenofp.o(x$fpl$usenofp)
-    AHBPrescTable                            0x0800751c   Data          16  system_stm32f1xx.o(.constdata)
-    APBPrescTable                            0x0800752c   Data           8  system_stm32f1xx.o(.constdata)
-    Region$$Table$$Base                      0x08007534   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08007554   Number         0  anon$$obj.o(Region$$Table)
+    readADCStore                             0x0800622d   Thumb Code   266  main.o(i.readADCStore)
+    read_analog_value                        0x08006345   Thumb Code    26  main.o(i.read_analog_value)
+    search1                                  0x08006365   Thumb Code   282  main.o(i.search1)
+    search2                                  0x08006489   Thumb Code   140  main.o(i.search2)
+    searchNearest                            0x0800651d   Thumb Code    30  aml_lasersensor.o(i.searchNearest)
+    sequence_step_enabled                    0x08006545   Thumb Code    56  vl53l0x_api.o(i.sequence_step_enabled)
+    set_ref_spad_map                         0x0800657d   Thumb Code    10  vl53l0x_api_calibration.o(i.set_ref_spad_map)
+    set_sequence_step_timeout                0x08006587   Thumb Code   258  vl53l0x_api_core.o(i.set_sequence_step_timeout)
+    sortSensorValuesByRange                  0x08006689   Thumb Code   100  aml_lasersensor.o(i.sortSensorValuesByRange)
+    swap                                     0x080066f5   Thumb Code    10  aml_lasersensor.o(i.swap)
+    __aeabi_dadd                             0x08006701   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
+    _dadd                                    0x08006701   Thumb Code   332  daddsub_clz.o(x$fpl$dadd)
+    __fpl_dcheck_NaN1                        0x08006851   Thumb Code    10  dcheck1.o(x$fpl$dcheck1)
+    __aeabi_ddiv                             0x08006861   Thumb Code     0  ddiv.o(x$fpl$ddiv)
+    _ddiv                                    0x08006861   Thumb Code   552  ddiv.o(x$fpl$ddiv)
+    __aeabi_ui2d                             0x08006b11   Thumb Code     0  dflt_clz.o(x$fpl$dfltu)
+    _dfltu                                   0x08006b11   Thumb Code    38  dflt_clz.o(x$fpl$dfltu)
+    __aeabi_dmul                             0x08006b39   Thumb Code     0  dmul.o(x$fpl$dmul)
+    _dmul                                    0x08006b39   Thumb Code   332  dmul.o(x$fpl$dmul)
+    __fpl_dnaninf                            0x08006c8d   Thumb Code   156  dnaninf.o(x$fpl$dnaninf)
+    __fpl_dretinf                            0x08006d29   Thumb Code    12  dretinf.o(x$fpl$dretinf)
+    __aeabi_drsub                            0x08006d35   Thumb Code     0  daddsub_clz.o(x$fpl$drsb)
+    _drsb                                    0x08006d35   Thumb Code    22  daddsub_clz.o(x$fpl$drsb)
+    __aeabi_dsub                             0x08006d4d   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
+    _dsub                                    0x08006d4d   Thumb Code   464  daddsub_clz.o(x$fpl$dsub)
+    __aeabi_fadd                             0x08006f21   Thumb Code     0  faddsub_clz.o(x$fpl$fadd)
+    _fadd                                    0x08006f21   Thumb Code   196  faddsub_clz.o(x$fpl$fadd)
+    __aeabi_fdiv                             0x08006fe5   Thumb Code     0  fdiv.o(x$fpl$fdiv)
+    _fdiv                                    0x08006fe5   Thumb Code   384  fdiv.o(x$fpl$fdiv)
+    __aeabi_f2uiz                            0x08007169   Thumb Code     0  ffixu.o(x$fpl$ffixu)
+    _ffixu                                   0x08007169   Thumb Code    62  ffixu.o(x$fpl$ffixu)
+    __aeabi_ui2f                             0x080071a9   Thumb Code     0  fflt_clz.o(x$fpl$ffltu)
+    _ffltu                                   0x080071a9   Thumb Code    38  fflt_clz.o(x$fpl$ffltu)
+    __aeabi_fmul                             0x080071d1   Thumb Code     0  fmul.o(x$fpl$fmul)
+    _fmul                                    0x080071d1   Thumb Code   258  fmul.o(x$fpl$fmul)
+    __fpl_fnaninf                            0x080072d3   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
+    __fpl_fretinf                            0x0800735f   Thumb Code    10  fretinf.o(x$fpl$fretinf)
+    __aeabi_fsub                             0x08007369   Thumb Code     0  faddsub_clz.o(x$fpl$fsub)
+    _fsub                                    0x08007369   Thumb Code   234  faddsub_clz.o(x$fpl$fsub)
+    __fpl_return_NaN                         0x08007453   Thumb Code   100  retnan.o(x$fpl$retnan)
+    __ARM_scalbn                             0x080074b7   Thumb Code    92  scalbn.o(x$fpl$scalbn)
+    __fpl_cmpreturn                          0x08007513   Thumb Code    48  trapv.o(x$fpl$trapveneer)
+    __I$use$fp                               0x08007542   Number         0  usenofp.o(x$fpl$usenofp)
+    AHBPrescTable                            0x08007554   Data          16  system_stm32f1xx.o(.constdata)
+    APBPrescTable                            0x08007564   Data           8  system_stm32f1xx.o(.constdata)
+    Region$$Table$$Base                      0x0800756c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800758c   Number         0  anon$$obj.o(Region$$Table)
     isApertureSpads                          0x20000000   Data           1  aml_lasersensor.o(.data)
     VhvSettings                              0x20000001   Data           1  aml_lasersensor.o(.data)
     PhaseCal                                 0x20000002   Data           1  aml_lasersensor.o(.data)
@@ -2820,37 +2820,38 @@ Image Symbol Table
     old_ADC_value                            0x2000005a   Data           2  main.o(.data)
     adcvalue                                 0x2000005c   Data           2  main.o(.data)
     temp                                     0x2000005e   Data           2  main.o(.data)
-    timer_exit                               0x20000060   Data           4  main.o(.data)
-    timer1                                   0x20000064   Data           4  main.o(.data)
-    PreviousAngle                            0x20000068   Data           8  main.o(.data)
-    Angle                                    0x20000070   Data           8  main.o(.data)
-    T                                        0x20000078   Data           8  main.o(.data)
-    rxBuffer                                 0x20000080   Data          36  main.o(.data)
-    uwTickFreq                               0x200000a4   Data           1  stm32f1xx_hal.o(.data)
-    uwTickPrio                               0x200000a8   Data           4  stm32f1xx_hal.o(.data)
-    uwTick                                   0x200000ac   Data           4  stm32f1xx_hal.o(.data)
-    SystemCoreClock                          0x200000b0   Data           4  system_stm32f1xx.o(.data)
-    DefaultTuningSettings                    0x200000b4   Data         243  vl53l0x_api.o(.data)
-    InterruptThresholdSettings               0x200001a7   Data         438  vl53l0x_api.o(.data)
-    refArrayQuadrants                        0x20000360   Data          16  vl53l0x_api_calibration.o(.data)
-    KalmanFilter                             0x20000370   Data         168  aml_lasersensor.o(.bss)
-    SensorValue                              0x20000418   Data         196  aml_lasersensor.o(.bss)
-    Dev_Val                                  0x200004dc   Data        2800  aml_lasersensor.o(.bss)
-    Laser                                    0x20000fcc   Data          28  aml_lasersensor.o(.bss)
-    mark                                     0x20000fe8   Data          16  aml_lasersensor.o(.bss)
-    hadc1                                    0x20000ff8   Data          48  main.o(.bss)
-    hi2c1                                    0x20001028   Data          84  main.o(.bss)
-    htim1                                    0x2000107c   Data          72  main.o(.bss)
-    htim2                                    0x200010c4   Data          72  main.o(.bss)
-    htim3                                    0x2000110c   Data          72  main.o(.bss)
-    huart2                                   0x20001154   Data          72  main.o(.bss)
-    hdma_usart2_rx                           0x2000119c   Data          68  main.o(.bss)
-    button                                   0x200011e0   Data          10  main.o(.bss)
-    g                                        0x200011f0   Data          24  main.o(.bss)
-    hdma_adc1                                0x20001208   Data          68  main.o(.bss)
-    _I2CBuffer                               0x2000124c   Data          64  vl53l0x_platform.o(.bss)
-    __libspace_start                         0x2000128c   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x200012ec   Data           0  libspace.o(.bss)
+    timer_exit_L                             0x20000060   Data           4  main.o(.data)
+    timer_exit_R                             0x20000064   Data           4  main.o(.data)
+    timer1                                   0x20000068   Data           4  main.o(.data)
+    PreviousAngle                            0x20000070   Data           8  main.o(.data)
+    Angle                                    0x20000078   Data           8  main.o(.data)
+    T                                        0x20000080   Data           8  main.o(.data)
+    rxBuffer                                 0x20000088   Data          36  main.o(.data)
+    uwTickFreq                               0x200000ac   Data           1  stm32f1xx_hal.o(.data)
+    uwTickPrio                               0x200000b0   Data           4  stm32f1xx_hal.o(.data)
+    uwTick                                   0x200000b4   Data           4  stm32f1xx_hal.o(.data)
+    SystemCoreClock                          0x200000b8   Data           4  system_stm32f1xx.o(.data)
+    DefaultTuningSettings                    0x200000bc   Data         243  vl53l0x_api.o(.data)
+    InterruptThresholdSettings               0x200001af   Data         438  vl53l0x_api.o(.data)
+    refArrayQuadrants                        0x20000368   Data          16  vl53l0x_api_calibration.o(.data)
+    KalmanFilter                             0x20000378   Data         168  aml_lasersensor.o(.bss)
+    SensorValue                              0x20000420   Data         196  aml_lasersensor.o(.bss)
+    Dev_Val                                  0x200004e4   Data        2800  aml_lasersensor.o(.bss)
+    Laser                                    0x20000fd4   Data          28  aml_lasersensor.o(.bss)
+    mark                                     0x20000ff0   Data          16  aml_lasersensor.o(.bss)
+    hadc1                                    0x20001000   Data          48  main.o(.bss)
+    hi2c1                                    0x20001030   Data          84  main.o(.bss)
+    htim1                                    0x20001084   Data          72  main.o(.bss)
+    htim2                                    0x200010cc   Data          72  main.o(.bss)
+    htim3                                    0x20001114   Data          72  main.o(.bss)
+    huart2                                   0x2000115c   Data          72  main.o(.bss)
+    hdma_usart2_rx                           0x200011a4   Data          68  main.o(.bss)
+    button                                   0x200011e8   Data          10  main.o(.bss)
+    g                                        0x200011f8   Data          24  main.o(.bss)
+    hdma_adc1                                0x20001210   Data          68  main.o(.bss)
+    _I2CBuffer                               0x20001254   Data          64  vl53l0x_platform.o(.bss)
+    __libspace_start                         0x20001294   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x200012f4   Data           0  libspace.o(.bss)
 
 
 
@@ -2860,9 +2861,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000078c4, Max: 0x00010000, ABSOLUTE, COMPRESSED[0x000077fc])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00007904, Max: 0x00010000, ABSOLUTE, COMPRESSED[0x00007834])
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00007554, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000758c, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -3171,69 +3172,69 @@ Memory Map of the image
     0x0800611c   0x0800611c   0x00000044   Code   RO          413    i.plan_begin_danh_phai  main.o
     0x08006160   0x08006160   0x00000044   Code   RO          414    i.plan_begin_danh_trai  main.o
     0x080061a4   0x080061a4   0x00000088   Code   RO           19    i.print_sensorvalue  aml_lasersensor.o
-    0x0800622c   0x0800622c   0x000000e8   Code   RO          415    i.readADCStore      main.o
-    0x08006314   0x08006314   0x00000020   Code   RO          416    i.read_analog_value  main.o
-    0x08006334   0x08006334   0x00000124   Code   RO          417    i.search1           main.o
-    0x08006458   0x08006458   0x0000008c   Code   RO          418    i.search2           main.o
-    0x080064e4   0x080064e4   0x00000028   Code   RO           20    i.searchNearest     aml_lasersensor.o
-    0x0800650c   0x0800650c   0x00000038   Code   RO         4129    i.sequence_step_enabled  vl53l0x_api.o
-    0x08006544   0x08006544   0x0000000a   Code   RO         4671    i.set_ref_spad_map  vl53l0x_api_calibration.o
-    0x0800654e   0x0800654e   0x00000102   Code   RO         4829    i.set_sequence_step_timeout  vl53l0x_api_core.o
-    0x08006650   0x08006650   0x0000006c   Code   RO           21    i.sortSensorValuesByRange  aml_lasersensor.o
-    0x080066bc   0x080066bc   0x0000000a   Code   RO           22    i.swap              aml_lasersensor.o
-    0x080066c6   0x080066c6   0x00000002   PAD
-    0x080066c8   0x080066c8   0x00000150   Code   RO         5061    x$fpl$dadd          fz_ws.l(daddsub_clz.o)
-    0x08006818   0x08006818   0x00000010   Code   RO         5104    x$fpl$dcheck1       fz_ws.l(dcheck1.o)
-    0x08006828   0x08006828   0x000002b0   Code   RO         5068    x$fpl$ddiv          fz_ws.l(ddiv.o)
-    0x08006ad8   0x08006ad8   0x00000026   Code   RO         5071    x$fpl$dfltu         fz_ws.l(dflt_clz.o)
-    0x08006afe   0x08006afe   0x00000002   PAD
-    0x08006b00   0x08006b00   0x00000154   Code   RO         5077    x$fpl$dmul          fz_ws.l(dmul.o)
-    0x08006c54   0x08006c54   0x0000009c   Code   RO         5106    x$fpl$dnaninf       fz_ws.l(dnaninf.o)
-    0x08006cf0   0x08006cf0   0x0000000c   Code   RO         5108    x$fpl$dretinf       fz_ws.l(dretinf.o)
-    0x08006cfc   0x08006cfc   0x00000016   Code   RO         5062    x$fpl$drsb          fz_ws.l(daddsub_clz.o)
-    0x08006d12   0x08006d12   0x00000002   PAD
-    0x08006d14   0x08006d14   0x000001d4   Code   RO         5063    x$fpl$dsub          fz_ws.l(daddsub_clz.o)
-    0x08006ee8   0x08006ee8   0x000000c4   Code   RO         5079    x$fpl$fadd          fz_ws.l(faddsub_clz.o)
-    0x08006fac   0x08006fac   0x00000184   Code   RO         5086    x$fpl$fdiv          fz_ws.l(fdiv.o)
-    0x08007130   0x08007130   0x0000003e   Code   RO         5089    x$fpl$ffixu         fz_ws.l(ffixu.o)
-    0x0800716e   0x0800716e   0x00000002   PAD
-    0x08007170   0x08007170   0x00000026   Code   RO         5093    x$fpl$ffltu         fz_ws.l(fflt_clz.o)
-    0x08007196   0x08007196   0x00000002   PAD
-    0x08007198   0x08007198   0x00000102   Code   RO         5099    x$fpl$fmul          fz_ws.l(fmul.o)
-    0x0800729a   0x0800729a   0x0000008c   Code   RO         5110    x$fpl$fnaninf       fz_ws.l(fnaninf.o)
-    0x08007326   0x08007326   0x0000000a   Code   RO         5112    x$fpl$fretinf       fz_ws.l(fretinf.o)
-    0x08007330   0x08007330   0x000000ea   Code   RO         5081    x$fpl$fsub          fz_ws.l(faddsub_clz.o)
-    0x0800741a   0x0800741a   0x00000064   Code   RO         5130    x$fpl$retnan        fz_ws.l(retnan.o)
-    0x0800747e   0x0800747e   0x0000005c   Code   RO         5101    x$fpl$scalbn        fz_ws.l(scalbn.o)
-    0x080074da   0x080074da   0x00000030   Code   RO         5142    x$fpl$trapveneer    fz_ws.l(trapv.o)
-    0x0800750a   0x0800750a   0x00000000   Code   RO         5114    x$fpl$usenofp       fz_ws.l(usenofp.o)
-    0x0800750a   0x0800750a   0x00000012   Data   RO         1317    .constdata          stm32f1xx_hal_rcc.o
-    0x0800751c   0x0800751c   0x00000010   Data   RO         3881    .constdata          system_stm32f1xx.o
-    0x0800752c   0x0800752c   0x00000008   Data   RO         3882    .constdata          system_stm32f1xx.o
-    0x08007534   0x08007534   0x00000020   Data   RO         5271    Region$$Table       anon$$obj.o
+    0x0800622c   0x0800622c   0x00000118   Code   RO          415    i.readADCStore      main.o
+    0x08006344   0x08006344   0x00000020   Code   RO          416    i.read_analog_value  main.o
+    0x08006364   0x08006364   0x00000124   Code   RO          417    i.search1           main.o
+    0x08006488   0x08006488   0x00000094   Code   RO          418    i.search2           main.o
+    0x0800651c   0x0800651c   0x00000028   Code   RO           20    i.searchNearest     aml_lasersensor.o
+    0x08006544   0x08006544   0x00000038   Code   RO         4129    i.sequence_step_enabled  vl53l0x_api.o
+    0x0800657c   0x0800657c   0x0000000a   Code   RO         4671    i.set_ref_spad_map  vl53l0x_api_calibration.o
+    0x08006586   0x08006586   0x00000102   Code   RO         4829    i.set_sequence_step_timeout  vl53l0x_api_core.o
+    0x08006688   0x08006688   0x0000006c   Code   RO           21    i.sortSensorValuesByRange  aml_lasersensor.o
+    0x080066f4   0x080066f4   0x0000000a   Code   RO           22    i.swap              aml_lasersensor.o
+    0x080066fe   0x080066fe   0x00000002   PAD
+    0x08006700   0x08006700   0x00000150   Code   RO         5061    x$fpl$dadd          fz_ws.l(daddsub_clz.o)
+    0x08006850   0x08006850   0x00000010   Code   RO         5104    x$fpl$dcheck1       fz_ws.l(dcheck1.o)
+    0x08006860   0x08006860   0x000002b0   Code   RO         5068    x$fpl$ddiv          fz_ws.l(ddiv.o)
+    0x08006b10   0x08006b10   0x00000026   Code   RO         5071    x$fpl$dfltu         fz_ws.l(dflt_clz.o)
+    0x08006b36   0x08006b36   0x00000002   PAD
+    0x08006b38   0x08006b38   0x00000154   Code   RO         5077    x$fpl$dmul          fz_ws.l(dmul.o)
+    0x08006c8c   0x08006c8c   0x0000009c   Code   RO         5106    x$fpl$dnaninf       fz_ws.l(dnaninf.o)
+    0x08006d28   0x08006d28   0x0000000c   Code   RO         5108    x$fpl$dretinf       fz_ws.l(dretinf.o)
+    0x08006d34   0x08006d34   0x00000016   Code   RO         5062    x$fpl$drsb          fz_ws.l(daddsub_clz.o)
+    0x08006d4a   0x08006d4a   0x00000002   PAD
+    0x08006d4c   0x08006d4c   0x000001d4   Code   RO         5063    x$fpl$dsub          fz_ws.l(daddsub_clz.o)
+    0x08006f20   0x08006f20   0x000000c4   Code   RO         5079    x$fpl$fadd          fz_ws.l(faddsub_clz.o)
+    0x08006fe4   0x08006fe4   0x00000184   Code   RO         5086    x$fpl$fdiv          fz_ws.l(fdiv.o)
+    0x08007168   0x08007168   0x0000003e   Code   RO         5089    x$fpl$ffixu         fz_ws.l(ffixu.o)
+    0x080071a6   0x080071a6   0x00000002   PAD
+    0x080071a8   0x080071a8   0x00000026   Code   RO         5093    x$fpl$ffltu         fz_ws.l(fflt_clz.o)
+    0x080071ce   0x080071ce   0x00000002   PAD
+    0x080071d0   0x080071d0   0x00000102   Code   RO         5099    x$fpl$fmul          fz_ws.l(fmul.o)
+    0x080072d2   0x080072d2   0x0000008c   Code   RO         5110    x$fpl$fnaninf       fz_ws.l(fnaninf.o)
+    0x0800735e   0x0800735e   0x0000000a   Code   RO         5112    x$fpl$fretinf       fz_ws.l(fretinf.o)
+    0x08007368   0x08007368   0x000000ea   Code   RO         5081    x$fpl$fsub          fz_ws.l(faddsub_clz.o)
+    0x08007452   0x08007452   0x00000064   Code   RO         5130    x$fpl$retnan        fz_ws.l(retnan.o)
+    0x080074b6   0x080074b6   0x0000005c   Code   RO         5101    x$fpl$scalbn        fz_ws.l(scalbn.o)
+    0x08007512   0x08007512   0x00000030   Code   RO         5142    x$fpl$trapveneer    fz_ws.l(trapv.o)
+    0x08007542   0x08007542   0x00000000   Code   RO         5114    x$fpl$usenofp       fz_ws.l(usenofp.o)
+    0x08007542   0x08007542   0x00000012   Data   RO         1317    .constdata          stm32f1xx_hal_rcc.o
+    0x08007554   0x08007554   0x00000010   Data   RO         3881    .constdata          system_stm32f1xx.o
+    0x08007564   0x08007564   0x00000008   Data   RO         3882    .constdata          system_stm32f1xx.o
+    0x0800756c   0x0800756c   0x00000020   Data   RO         5271    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08007554, Size: 0x000018f0, Max: 0x00005000, ABSOLUTE, COMPRESSED[0x000002a8])
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0800758c, Size: 0x000018f8, Max: 0x00005000, ABSOLUTE, COMPRESSED[0x000002a8])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   COMPRESSED   0x0000001f   Data   RW           25    .data               aml_lasersensor.o
     0x2000001f   COMPRESSED   0x00000001   PAD
     0x20000020   COMPRESSED   0x00000028   Data   RW          342    .data               aml_mpusensor.o
-    0x20000048   COMPRESSED   0x0000005c   Data   RW          421    .data               main.o
-    0x200000a4   COMPRESSED   0x0000000c   Data   RW         1154    .data               stm32f1xx_hal.o
-    0x200000b0   COMPRESSED   0x00000004   Data   RW         3883    .data               system_stm32f1xx.o
-    0x200000b4   COMPRESSED   0x000002a9   Data   RW         4130    .data               vl53l0x_api.o
-    0x2000035d   COMPRESSED   0x00000003   PAD
-    0x20000360   COMPRESSED   0x00000010   Data   RW         4672    .data               vl53l0x_api_calibration.o
-    0x20000370        -       0x00000c88   Zero   RW           23    .bss                aml_lasersensor.o
-    0x20000ff8        -       0x00000210   Zero   RW          419    .bss                main.o
-    0x20001208        -       0x00000044   Zero   RW          420    .bss                main.o
-    0x2000124c        -       0x00000040   Zero   RW         3929    .bss                vl53l0x_platform.o
-    0x2000128c        -       0x00000060   Zero   RW         5145    .bss                c_w.l(libspace.o)
-    0x200012ec   COMPRESSED   0x00000004   PAD
-    0x200012f0        -       0x00000200   Zero   RW            2    HEAP                startup_stm32f103xb.o
-    0x200014f0        -       0x00000400   Zero   RW            1    STACK               startup_stm32f103xb.o
+    0x20000048   COMPRESSED   0x00000064   Data   RW          421    .data               main.o
+    0x200000ac   COMPRESSED   0x0000000c   Data   RW         1154    .data               stm32f1xx_hal.o
+    0x200000b8   COMPRESSED   0x00000004   Data   RW         3883    .data               system_stm32f1xx.o
+    0x200000bc   COMPRESSED   0x000002a9   Data   RW         4130    .data               vl53l0x_api.o
+    0x20000365   COMPRESSED   0x00000003   PAD
+    0x20000368   COMPRESSED   0x00000010   Data   RW         4672    .data               vl53l0x_api_calibration.o
+    0x20000378        -       0x00000c88   Zero   RW           23    .bss                aml_lasersensor.o
+    0x20001000        -       0x00000210   Zero   RW          419    .bss                main.o
+    0x20001210        -       0x00000044   Zero   RW          420    .bss                main.o
+    0x20001254        -       0x00000040   Zero   RW         3929    .bss                vl53l0x_platform.o
+    0x20001294        -       0x00000060   Zero   RW         5145    .bss                c_w.l(libspace.o)
+    0x200012f4   COMPRESSED   0x00000004   PAD
+    0x200012f8        -       0x00000200   Zero   RW            2    HEAP                startup_stm32f103xb.o
+    0x200014f8        -       0x00000400   Zero   RW            1    STACK               startup_stm32f103xb.o
 
 
 ==============================================================================
@@ -3246,7 +3247,7 @@ Image component sizes
       1338         92          0         31       3208     470514   aml_lasersensor.o
        176         30          0         40          0       1513   aml_mpusensor.o
        122          0          0          0          0       1490   kalmanfilter.o
-      3042        244          0         92        596      20065   main.o
+      3098        244          0        100        596      20344   main.o
         64         26        236          0       1536        780   startup_stm32f103xb.o
        164         28          0         12          0       5645   stm32f1xx_hal.o
       1134         56          0          0          0       8138   stm32f1xx_hal_adc.o
@@ -3268,7 +3269,7 @@ Image component sizes
        468         24          0          0         64       8525   vl53l0x_platform.o
 
     ----------------------------------------------------------------------
-     25336       1034        310        880       5404     682147   Object Totals
+     25392       1034        310        888       5404     682426   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         42          0          0          4          0          0   (incl. Padding)
 
@@ -3340,15 +3341,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     29726       1322        310        880       5504     671587   Grand Totals
-     29726       1322        310        680       5504     671587   ELF Image Totals (compressed)
-     29726       1322        310        680          0          0   ROM Totals
+     29782       1322        310        888       5504     671866   Grand Totals
+     29782       1322        310        680       5504     671866   ELF Image Totals (compressed)
+     29782       1322        310        680          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                30036 (  29.33kB)
-    Total RW  Size (RW Data + ZI Data)              6384 (   6.23kB)
-    Total ROM Size (Code + RO Data + RW Data)      30716 (  30.00kB)
+    Total RO  Size (Code + RO Data)                30092 (  29.39kB)
+    Total RW  Size (RW Data + ZI Data)              6392 (   6.24kB)
+    Total ROM Size (Code + RO Data + RW Data)      30772 (  30.05kB)
 
 ==============================================================================
 
