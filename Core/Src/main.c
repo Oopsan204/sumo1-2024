@@ -65,8 +65,8 @@ uint8_t u8_fl = 1; // gpio_ext0
 uint8_t u8_br = 1; // gpio_ext4
 uint8_t u8_bl = 1; // gpio_ext1
 uint16_t currentIndex = 1;
-uint32_t timer_exit_L = 0;
-uint32_t timer_exit_R = 0;
+uint32_t timer_begin_exit_L = 0;
+uint32_t timer_begin_exit_R = 0;
 // co interrupt
 bool flagInterrupt_fl = false;
 bool flagInterrupt_bl = false;
@@ -143,10 +143,10 @@ void AML_motor_stop()
 }
 void AML_motor_forward(uint8_t speed)
 {
-  PWM_Start(&htim2, RPWM1);
   PWM_Start(&htim2, RPWM2);
-  PWM_Write(&htim2, RPWM1, speed);
+  PWM_Start(&htim2, RPWM1);
   PWM_Write(&htim2, RPWM2, speed);
+  PWM_Write(&htim2, RPWM1, speed);
 }
 void AML_motor_lef(uint8_t speed_L, uint8_t speed_R)
 {
@@ -214,8 +214,8 @@ void AML_IRSensor_standby()
 }
 void exit_R()
 {
-  uint32_t timer_exit_r = 1000;
-  while (flag_exit_R && HAL_GetTick() - timer_exit_R < timer_exit_r)
+  uint32_t timer_exit_R = 1000;
+  while (flag_exit_R && HAL_GetTick() - timer_begin_exit_R < timer_exit_R)
     ;
   PWM_Start(&htim2, RPWM2);
   PWM_Write(&htim2, RPWM2, 150);
@@ -223,8 +223,8 @@ void exit_R()
 }
 void exit_L()
 {
-  uint32_t timer_exit_l = 1000;
-  while (flag_exit_L && HAL_GetTick() - timer_exit_L < timer_exit_l)
+  uint32_t timer_exit_L = 1000;
+  while (flag_exit_L && HAL_GetTick() - timer_begin_exit_L < timer_exit_L)
     ;
   PWM_Start(&htim2, RPWM1);
   PWM_Write(&htim2, RPWM1, 150);
@@ -289,16 +289,16 @@ void search1()
   {
     // R quay sang phai
     AML_motor_right(PWM_speed_L, PWM_speed_R - 50);
-    timer_exit_R = HAL_GetTick();
-    flag_exit_R = true;
+    // timer_begin_exit_R = HAL_GetTick();
+    // flag_exit_R = true;
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     HAL_Delay(100);
   }
   if (target == 7)
   {
     AML_motor_lef(PWM_speed_L - 50, PWM_speed_R);
-    timer_exit_L = HAL_GetTick();
-    flag_exit_L = true;
+    // timer_begin_exit_L = HAL_GetTick();
+    // flag_exit_L = true;
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     HAL_Delay(100);
   }
@@ -352,15 +352,15 @@ void search2()
     break;
   case 6:
     AML_motor_right(PWM_speed_L, PWM_speed_R - 50);
-    timer_exit_R = HAL_GetTick();
-    flag_exit_R = true;
+    // timer_begin_exit_R = HAL_GetTick();
+    // flag_exit_R = true;
     HAL_Delay(120);
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     break;
   case 7:
     AML_motor_lef(PWM_speed_L - 50, PWM_speed_R);
-    timer_exit_L = HAL_GetTick();
-    flag_exit_L = true;
+    // timer_begin_exit_L = HAL_GetTick();
+    // flag_exit_L = true;
     HAL_Delay(120);
     HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     break;
@@ -394,7 +394,10 @@ void plan_begin_Rote()
 {
   AML_motor_turn_left(150, 150);
   delay_ms(500);
-  HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
+  AML_motor_stop();
+  AML_motor_forward(150);
+  delay_ms(500);
+
 }
 uint16_t read_analog_value(uint16_t new_value)
 {
@@ -418,10 +421,8 @@ void readADCStore()
   // Assume you have read the ADC value and stored it in adcvalue
   HAL_ADC_Start_DMA(&hadc1, (uint32_t *)button, 1);
   adcvalue = button[0]; // Replace with your actual ADC reading
-
   // Call the function to update the old ADC value
   uint16_t updated_ADC_value = read_analog_value(adcvalue);
-
   // Example logic based on the updated ADC value
   if (updated_ADC_value == 0)
   {
@@ -568,18 +569,12 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     readADCStore();
-
-    // if (plan != NULL)
-    // {
-    //   (*plan)();
-    //   plan = NULL;
-    // }
     AML_LaserSensor_ReadAll();
     print_sensorvalue();
-    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
     AML_IRSensor_standby();
     // exit_R();
     // exit_L();
+    HAL_GPIO_TogglePin(Led_GPIO_Port, Led_Pin);
   }
 
   /* USER CODE END 3 */
